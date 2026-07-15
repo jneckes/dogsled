@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkpoints — Questions We Help You Answer | Dogsled Labs</title>
+<meta name="description" content="Checkpoints: the questions every team crosses on the trail to an agentic workforce — fragmented data, the company brain, the harness, operating models, employee agency, trust, and working beyond your four walls. Dogsled Labs helps you answer them.">
+<link rel="icon" type="image/svg+xml" href="/logo.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#070b16;color:#eef3fa;font-family:'Manrope',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{text-decoration:none}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .btn-grad{display:inline-block;font-size:15px;font-weight:600;color:#070b16;background:linear-gradient(92deg,#8fb0f2,#38bdf8);padding:14px 26px;border-radius:999px;transition:filter .15s}
+  .btn-grad:hover{filter:brightness(1.1)}
+  header.site{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid rgba(255,255,255,.07);flex-wrap:wrap;gap:14px}
+  .logo{display:flex;align-items:center;gap:11px}
+  .navpill{display:flex;align-items:center;gap:40px;padding:9px 24px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.02)}
+  .navpill a{font-size:14.5px;font-weight:600;color:#c4cedf;transition:color .15s}
+  .navpill a:hover{color:#fff}
+  .dl-dd{position:relative;display:inline-flex}
+  .dl-dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;display:none;z-index:200}
+  .dl-dd:hover .dl-dd-menu,.dl-dd:focus-within .dl-dd-menu{display:block}
+  .dl-dd-inner{min-width:268px;background:#0c1322;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;box-shadow:0 20px 44px rgba(0,0,0,.55)}
+  .dl-dd-eyebrow{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:9.5px;letter-spacing:.16em;color:#66738e;text-transform:uppercase;padding:6px 12px 8px}
+  .dl-dd-inner a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font-size:13.5px;color:#c4cedf}
+  .dl-dd-inner a:hover{background:rgba(143,176,242,.12);color:#fff}
+  .dl-dd-num{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:10px;color:#8fb0f2}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 40px}
+  .mnav{display:none}
+  header.site{position:relative}
+  .mnav summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(255,255,255,.14);border-radius:12px;background:rgba(255,255,255,.03)}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav[open] summary{border-color:rgba(143,176,242,.5)}
+  .mnav-panel{position:absolute;right:22px;top:calc(100% + 8px);min-width:252px;background:#0c1322;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;box-shadow:0 20px 44px rgba(0,0,0,.55);z-index:300}
+  .mnav-panel a{display:block;padding:9px 12px;border-radius:9px;font-size:14px;font-weight:600;color:#c4cedf}
+  .mnav-panel a:hover{background:rgba(143,176,242,.12);color:#fff}
+  .mnav-eyebrow{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:9.5px;letter-spacing:.16em;color:#66738e;text-transform:uppercase;padding:8px 12px 5px}
+  @media (max-width:940px){.navpill{display:none}.mnav{display:block}}
+
+  /* Route map sidebar */
+  .routemap{position:sticky;top:24px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px}
+  .routemap-title{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.16em;color:#8fb0f2;text-transform:uppercase;margin-bottom:6px}
+  .routemap-sub{font-size:12.5px;color:#707c93;margin-bottom:14px}
+  .rm-stop{display:flex;align-items:baseline;gap:12px;padding:8px 10px;margin:0 -10px;border-radius:9px;transition:background .15s}
+  .rm-stop:hover{background:rgba(143,176,242,.1)}
+  .rm-stop .n{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:#38bdf8;flex:none}
+  .rm-stop .t{font-size:13.5px;font-weight:600;color:#c4cedf}
+  .rm-stop:hover .t{color:#fff}
+  .rm-cap{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:#57647e;text-transform:uppercase;padding:8px 0 2px}
+
+  /* The trail of checkpoints */
+  .route{position:relative}
+  .route::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,rgba(143,176,242,.55),rgba(56,189,248,.35) 55%,rgba(56,189,248,0));border-radius:2px}
+  .cp{position:relative;padding:0 0 54px 44px}
+  .cp:last-child{padding-bottom:6px}
+  .cp-node{position:absolute;left:0;top:4px;width:16px;height:16px;transform:rotate(45deg);background:#0b1120;border:2px solid #38bdf8;border-radius:4px;box-shadow:0 0 14px rgba(56,189,248,.5)}
+  .cp-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.16em;color:#8fb0f2;text-transform:uppercase}
+  .cp h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,31px);letter-spacing:-.025em;line-height:1.12;color:#f6f9fd;margin:8px 0 0}
+  .cp-intro{font-size:15px;line-height:1.6;color:#96a1b5;max-width:600px;margin-top:10px}
+  .qs{margin-top:20px;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:rgba(255,255,255,.015);overflow:hidden}
+  .q{display:flex;gap:14px;align-items:baseline;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.06);transition:background .15s}
+  .q:last-child{border-bottom:none}
+  .q:hover{background:rgba(143,176,242,.06)}
+  .q .qn{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:#38bdf8;flex:none;width:26px}
+  .q .qt{font-size:15px;font-weight:500;line-height:1.5;color:#d3dcea}
+  .cp-ask{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#8fb0f2;margin-top:14px}
+  .cp-ask:hover{color:#fff}
+
+  footer.site{padding:36px 40px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  @media (max-width:900px){.cols{grid-template-columns:1fr !important}.routemap{position:static;margin-bottom:34px}}
+  @media (max-width:720px){.wrap{padding:0 22px}header.site{padding:16px 22px}.cp{padding-left:34px}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a href="/" class="logo" aria-label="Dogsled Labs home">
+    <svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="dlfurh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fb0f2"/><stop offset="1" stop-color="#3e6bd6"/></linearGradient></defs><polygon points="24,23 31,2 45,16" fill="url(#dlfurh)"/><polygon points="76,23 69,2 55,16" fill="url(#dlfurh)"/><polygon points="29,16 31.5,7 39,13.5" fill="#b9cdf5" opacity="0.75"/><polygon points="71,16 68.5,7 61,13.5" fill="#b9cdf5" opacity="0.75"/><polygon points="22,21 78,21 86,31 90,44 84,50 89,57 81,60 84,68 70,74 60,78 50,79 40,78 30,74 16,68 19,60 11,57 16,50 10,44 14,31" fill="#eef3fa"/><polygon points="22,21 78,21 86,31 90,44 84,50 70,54 58,52 53,56 50,33 47,56 42,52 30,54 16,50 10,44 14,31" fill="url(#dlfurh)"/><polygon points="25,45.5 31.5,40.5 39,43 32.5,48" fill="#38bdf8"/><polygon points="75,45.5 68.5,40.5 61,43 67.5,48" fill="#38bdf8"/><rect x="43.5" y="57.5" width="13" height="6.5" rx="3" fill="#0a0e16"/><rect x="49.35" y="63.5" width="1.3" height="5" fill="#0a0e16" opacity="0.45"/><rect x="33" y="81" width="34" height="4.4" rx="2.2" fill="#38bdf8"/><rect x="26" y="88" width="48" height="4.4" rx="2.2" fill="#3e6bd6"/><rect x="19" y="95" width="62" height="4.4" rx="2.2" fill="#eef3fa" opacity="0.92"/></svg>
+    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.02em;color:#eef3fa;">Dogsled<span style="color:#8fb0f2;"> Labs</span></span>
+  </a>
+  <nav style="display:flex;align-items:center;gap:14px;">
+    <div class="navpill">
+      <a href="/why-dogsled/">Why Dogsled</a>
+      <a href="/gangline/">Gangline</a>
+      <div class="dl-dd">
+        <a href="#" onclick="return false">Trails <span style="font-size:9px;color:#66738e;">&#9662;</span></a>
+        <div class="dl-dd-menu">
+          <div class="dl-dd-inner">
+            <div class="dl-dd-eyebrow">Where we run</div>
+            <a href="/dtc/"><span class="dl-dd-num">01</span> DTC &amp; Consumer Brands</a>
+            <a href="/entertainment/"><span class="dl-dd-num">02</span> Entertainment &amp; Production</a>
+            <a href="/data-providers/"><span class="dl-dd-num">03</span> Data Providers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+      <details class="mnav">
+        <summary aria-label="Open menu"><svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true"><rect y="0" width="18" height="2" rx="1" fill="#c4cedf"/><rect y="6" width="18" height="2" rx="1" fill="#c4cedf"/><rect y="12" width="18" height="2" rx="1" fill="#c4cedf"/></svg></summary>
+        <div class="mnav-panel">
+          <div class="mnav-eyebrow">Dogsled Labs</div>
+          <a href="/why-dogsled/">Why Dogsled</a>
+          <a href="/gangline/">Gangline</a>
+          <a href="/">Home</a>
+          <div class="mnav-eyebrow">Where we run</div>
+          <a href="/dtc/">DTC &amp; Consumer Brands</a>
+          <a href="/entertainment/">Entertainment &amp; Production</a>
+          <a href="/data-providers/">Data Providers</a>
+        </div>
+      </details>
+    <a class="btn-grad" style="font-size:14px;padding:10px 18px;" href="mailto:hello@dogsledlabs.com?subject=Checkpoints">Get in touch</a>
+  </nav>
+</header>
+
+<!-- Masthead -->
+<section style="border-bottom:1px solid rgba(255,255,255,.1);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:40px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;">
+      <div>
+        <div class="mono" style="font-size:11px;letter-spacing:.18em;color:#8fb0f2;text-transform:uppercase;">The questions we help you answer</div>
+        <h1 style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(48px,8vw,84px);line-height:.98;letter-spacing:-.035em;color:#f6f9fd;margin:14px 0 0;">Checkpoints<span class="mono" style="color:#38bdf8;">.</span></h1>
+      </div>
+      <div style="max-width:400px;padding-bottom:8px;">
+        <p style="font-size:15px;line-height:1.6;color:#9ea9bf;">On a long run, checkpoints are where the team pulls in, takes stock, and sets the line for the next leg. The trail to an agentic workforce has them too — the same hard questions, at nearly every company, in nearly the same order.</p>
+        <a class="btn-grad" style="font-size:13.5px;padding:10px 18px;margin-top:14px;" href="mailto:hello@dogsledlabs.com?subject=A%20question%20from%20the%20trail">Bring us your question &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trail conditions strip -->
+<section style="border-bottom:1px solid rgba(255,255,255,.1);background:linear-gradient(160deg,#0d1526,#0a101f);">
+  <div class="wrap" style="padding-top:34px;padding-bottom:34px;display:flex;gap:40px;align-items:center;flex-wrap:wrap;">
+    <div style="display:flex;gap:34px;flex-wrap:wrap;">
+      <div><div class="mono" style="font-size:22px;font-weight:600;color:#eef3fa;">07</div><div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#66738e;text-transform:uppercase;margin-top:3px;">Checkpoints</div></div>
+      <div><div class="mono" style="font-size:22px;font-weight:600;color:#eef3fa;">47</div><div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#66738e;text-transform:uppercase;margin-top:3px;">Questions</div></div>
+      <div><div class="mono" style="font-size:22px;font-weight:600;color:#eef3fa;">&infin;</div><div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#66738e;text-transform:uppercase;margin-top:3px;">Follow-ups welcome</div></div>
+    </div>
+    <p style="font-size:14.5px;line-height:1.6;color:#96a1b5;max-width:520px;">If you're chewing on one of these, you're not behind — you're on the trail. We've crossed every checkpoint below with real teams, on real data, enough times to know the terrain.</p>
+  </div>
+</section>
+
+<!-- Route -->
+<section>
+  <div class="wrap" style="padding-top:50px;padding-bottom:70px;">
+    <div class="cols" style="display:grid;grid-template-columns:300px 1fr;gap:50px;align-items:start;">
+
+      <!-- Route map -->
+      <div class="routemap">
+        <div class="routemap-title">Route map</div>
+        <div class="routemap-sub">Seven stops. Start anywhere — the trail loops.</div>
+        <div class="rm-cap">Start</div>
+        <a class="rm-stop" href="#cp1"><span class="n">01</span><span class="t">Fragmented Data</span></a>
+        <a class="rm-stop" href="#cp2"><span class="n">02</span><span class="t">The Company Brain</span></a>
+        <a class="rm-stop" href="#cp3"><span class="n">03</span><span class="t">The Harness</span></a>
+        <a class="rm-stop" href="#cp4"><span class="n">04</span><span class="t">The Operating Model</span></a>
+        <a class="rm-stop" href="#cp5"><span class="n">05</span><span class="t">Your People</span></a>
+        <a class="rm-stop" href="#cp6"><span class="n">06</span><span class="t">Safe Ice</span></a>
+        <a class="rm-stop" href="#cp7"><span class="n">07</span><span class="t">Beyond Your Four Walls</span></a>
+        <div class="rm-cap">Finish — for now</div>
+      </div>
+
+      <!-- Checkpoints -->
+      <div class="route">
+
+        <div class="cp" id="cp1">
+          <div class="cp-node" aria-hidden="true"></div>
+          <div class="cp-eyebrow">Checkpoint 01 &middot; Breaking trail</div>
+          <h2>Fragmented Data</h2>
+          <p class="cp-intro">Every run starts here. Agents are only as good as the ground under them — and at most companies, that ground is scattered across systems that were never meant to pull together.</p>
+          <div class="qs">
+            <div class="q"><span class="qn">Q1</span><span class="qt">My data is fragmented across dozens of systems that don't talk to each other. Where do agents even start?</span></div>
+            <div class="q"><span class="qn">Q2</span><span class="qt">How do we unify our data and make it agent-ready without a giant migration or overhauling everything?</span></div>
+            <div class="q"><span class="qn">Q3</span><span class="qt">What does "agent-ready" actually mean — what's the bar our data has to clear?</span></div>
+            <div class="q"><span class="qn">Q4</span><span class="qt">Do we need a new warehouse, lakehouse, or vector database before any of this works?</span></div>
+            <div class="q"><span class="qn">Q5</span><span class="qt">What do we do about data that's stale, duplicated, or contradicts itself from one system to the next?</span></div>
+            <div class="q"><span class="qn">Q6</span><span class="qt">Which data problems must be fixed before agents show up — and which can agents help fix themselves?</span></div>
+            <div class="q"><span class="qn">Q7</span><span class="qt">How do the spreadsheets, PDFs, and tribal knowledge that run half the business make it onto the sled?</span></div>
+          </div>
+          <a class="cp-ask" href="mailto:hello@dogsledlabs.com?subject=Checkpoint%2001%20%E2%80%94%20Fragmented%20Data">Stuck at this checkpoint? Write us &rarr;</a>
+        </div>
+
+        <div class="cp" id="cp2">
+          <div class="cp-node" aria-hidden="true"></div>
+          <div class="cp-eyebrow">Checkpoint 02 &middot; One picture of the business</div>
+          <h2>The Company Brain</h2>
+          <p class="cp-intro">Unified data is table stakes. The compounding advantage is a living, governed picture of your business — context every agent can draw from, so each one runs smarter than the last.</p>
+          <div class="qs">
+            <div class="q"><span class="qn">Q1</span><span class="qt">How do we develop a central company brain that captures context and makes every agent more effective?</span></div>
+            <div class="q"><span class="qn">Q2</span><span class="qt">What is a company brain, concretely — and how is it different from our warehouse, our wiki, or RAG?</span></div>
+            <div class="q"><span class="qn">Q3</span><span class="qt">How do we capture the context that lives in people's heads before it walks out the door?</span></div>
+            <div class="q"><span class="qn">Q4</span><span class="qt">How do agents learn our vocabulary, our policies, our precedents — the way we do things here?</span></div>
+            <div class="q"><span class="qn">Q5</span><span class="qt">Who owns and curates shared context so it stays current instead of rotting like the intranet did?</span></div>
+            <div class="q"><span class="qn">Q6</span><span class="qt">How do we stop every team from quietly rebuilding the same context in their own silo?</span></div>
+            <div class="q"><span class="qn">Q7</span><span class="qt">Can one brain serve finance, marketing, and ops at once — without turning into mush?</span></div>
+          </div>
+          <a class="cp-ask" href="mailto:hello@dogsledlabs.com?subject=Checkpoint%2002%20%E2%80%94%20The%20Company%20Brain">Stuck at this checkpoint? Write us &rarr;</a>
+        </div>
+
+        <div class="cp" id="cp3">
+          <div class="cp-node" aria-hidden="true"></div>
+          <div class="cp-eyebrow">Checkpoint 03 &middot; The rigging</div>
+          <h2>The Harness</h2>
+          <p class="cp-intro">A model is a strong dog. A harness is what turns strong dogs into a team you can steer, meter, and trust with a load. This checkpoint is where pilots become production.</p>
+          <div class="qs">
+            <div class="q"><span class="qn">Q1</span><span class="qt">What does an agent harness actually do — and why can't we just call a model API and be done?</span></div>
+            <div class="q"><span class="qn">Q2</span><span class="qt">How do I manage and control token spend before it becomes a line item nobody can explain?</span></div>
+            <div class="q"><span class="qn">Q3</span><span class="qt">How do we monitor agents in production — what's the equivalent of APM for an agentic workforce?</span></div>
+            <div class="q"><span class="qn">Q4</span><span class="qt">What happens when an agent fails halfway through a workflow that matters?</span></div>
+            <div class="q"><span class="qn">Q5</span><span class="qt">How do we evaluate agent quality before they ship — and keep evaluating after?</span></div>
+            <div class="q"><span class="qn">Q6</span><span class="qt">Should we build the harness ourselves, or deploy one that exists and make it ours?</span></div>
+            <div class="q"><span class="qn">Q7</span><span class="qt">How do we swap in better models as they arrive without breaking everything hitched downstream?</span></div>
+          </div>
+          <a class="cp-ask" href="mailto:hello@dogsledlabs.com?subject=Checkpoint%2003%20%E2%80%94%20The%20Harness">Stuck at this checkpoint? Write us &rarr;</a>
+        </div>
+
+        <div class="cp" id="cp4">
+          <div class="cp-node" aria-hidden="true"></div>
+          <div class="cp-eyebrow">Checkpoint 04 &middot; Who steers, who pulls</div>
+          <h2>The Operating Model</h2>
+          <p class="cp-intro">The technology is the easy half. The harder half is how humans and agents actually share the work — handoffs, accountability, and the day-to-day rhythm of a mixed team.</p>
+          <div class="qs">
+            <div class="q"><span class="qn">Q1</span><span class="qt">What does an operating model look like when agents and humans are interacting in the same workflows?</span></div>
+            <div class="q"><span class="qn">Q2</span><span class="qt">Which decisions must keep a human in the loop — and which are safe to hand to the team?</span></div>
+            <div class="q"><span class="qn">Q3</span><span class="qt">Who manages an agent? And who's accountable when it gets something wrong?</span></div>
+            <div class="q"><span class="qn">Q4</span><span class="qt">How should handoffs between people and agents actually work, hour to hour?</span></div>
+            <div class="q"><span class="qn">Q5</span><span class="qt">How do roles change when the doing moves to agents and the people move to steering?</span></div>
+            <div class="q"><span class="qn">Q6</span><span class="qt">How do we measure agent work — the same scorecard as people, or something new?</span></div>
+          </div>
+          <a class="cp-ask" href="mailto:hello@dogsledlabs.com?subject=Checkpoint%2004%20%E2%80%94%20The%20Operating%20Model">Stuck at this checkpoint? Write us &rarr;</a>
+        </div>
+
+        <div class="cp" id="cp5">
+          <div class="cp-node" aria-hidden="true"></div>
+          <div class="cp-eyebrow">Checkpoint 05 &middot; Every seat on the sled</div>
+          <h2>Your People</h2>
+          <p class="cp-intro">An agentic workforce isn't something IT does to a company — it's something your people learn to drive. That includes the person reading this page.</p>
+          <div class="qs">
+            <div class="q"><span class="qn">Q1</span><span class="qt">How do we give employees the agency to build and deploy their own agents?</span></div>
+            <div class="q"><span class="qn">Q2</span><span class="qt">Where does self-serve agent building make sense — and where should it stay centralized?</span></div>
+            <div class="q"><span class="qn">Q3</span><span class="qt">How do we keep a hundred home-grown agents from becoming next year's shadow IT?</span></div>
+            <div class="q"><span class="qn">Q4</span><span class="qt">What guardrails let people experiment freely without putting the business at risk?</span></div>
+            <div class="q"><span class="qn">Q5</span><span class="qt">How do we find and grow the people who'll become our best agent builders?</span></div>
+            <div class="q"><span class="qn">Q6</span><span class="qt">Should I be using AI myself in my day-to-day work — or is that someone else's job?</span></div>
+            <div class="q"><span class="qn">Q7</span><span class="qt">How do we train people to steer well when they've spent whole careers being valued for pulling?</span></div>
+          </div>
+          <a class="cp-ask" href="mailto:hello@dogsledlabs.com?subject=Checkpoint%2005%20%E2%80%94%20Your%20People">Stuck at this checkpoint? Write us &rarr;</a>
+        </div>
+
+        <div class="cp" id="cp6">
+          <div class="cp-node" aria-hidden="true"></div>
+          <div class="cp-eyebrow">Checkpoint 06 &middot; Reading the ice</div>
+          <h2>Safe Ice</h2>
+          <p class="cp-intro">A good musher knows which ice holds and which doesn't. Same discipline here: what agents may see, what they may touch, and how you prove it afterward.</p>
+          <div class="qs">
+            <div class="q"><span class="qn">Q1</span><span class="qt">What data is safe to expose to agents — and what should never be?</span></div>
+            <div class="q"><span class="qn">Q2</span><span class="qt">What tools should we be using to de-identify or mask our company's data before agents touch it?</span></div>
+            <div class="q"><span class="qn">Q3</span><span class="qt">How do we scope what each agent can see and do — per team, per task, per customer?</span></div>
+            <div class="q"><span class="qn">Q4</span><span class="qt">What audit trail do we need of what agents saw, decided, and did?</span></div>
+            <div class="q"><span class="qn">Q5</span><span class="qt">How do we keep an agent from leaking one team's data to another — or into a vendor's model?</span></div>
+            <div class="q"><span class="qn">Q6</span><span class="qt">What do our security team, our regulators, and our board need to see before we scale?</span></div>
+            <div class="q"><span class="qn">Q7</span><span class="qt">When a model provider changes terms or models, what happens to the data we've already exposed?</span></div>
+          </div>
+          <a class="cp-ask" href="mailto:hello@dogsledlabs.com?subject=Checkpoint%2006%20%E2%80%94%20Safe%20Ice">Stuck at this checkpoint? Write us &rarr;</a>
+        </div>
+
+        <div class="cp" id="cp7">
+          <div class="cp-node" aria-hidden="true"></div>
+          <div class="cp-eyebrow">Checkpoint 07 &middot; Cross-country</div>
+          <h2>Beyond Your Four Walls</h2>
+          <p class="cp-intro">The biggest workflows don't end at your org chart — they run through suppliers, partners, agencies, and customers. Agents change what's possible between companies, not just within one.</p>
+          <div class="qs">
+            <div class="q"><span class="qn">Q1</span><span class="qt">What are the best ways to use agents to collaborate with organizations outside our four walls?</span></div>
+            <div class="q"><span class="qn">Q2</span><span class="qt">Can our agents work with our partners' and suppliers' agents — safely?</span></div>
+            <div class="q"><span class="qn">Q3</span><span class="qt">How do we share just enough data with a partner's agents without giving away the farm?</span></div>
+            <div class="q"><span class="qn">Q4</span><span class="qt">What protocols and agreements govern agent-to-agent work across company lines?</span></div>
+            <div class="q"><span class="qn">Q5</span><span class="qt">Can agents run the connective tissue — chasing POs, reconciling invoices, syncing catalogs — between us and our partners?</span></div>
+            <div class="q"><span class="qn">Q6</span><span class="qt">What does a clean room look like when both sides bring agents to it?</span></div>
+          </div>
+          <a class="cp-ask" href="mailto:hello@dogsledlabs.com?subject=Checkpoint%2007%20%E2%80%94%20Beyond%20Your%20Four%20Walls">Stuck at this checkpoint? Write us &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Past the last checkpoint -->
+<section style="border-top:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg,#0b1120,#070b16);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:72px;text-align:center;">
+    <div class="mono" style="font-size:11px;letter-spacing:.18em;color:#8fb0f2;text-transform:uppercase;">Past the last checkpoint</div>
+    <h2 style="font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(28px,4.5vw,40px);letter-spacing:-.03em;line-height:1.08;color:#f6f9fd;margin:14px auto 0;max-width:640px;">The trail doesn't end — and neither do the questions.</h2>
+    <p style="font-size:16px;line-height:1.62;color:#9ea9bf;max-width:560px;margin:16px auto 0;">Every answer opens the next leg. Bring us the question you're stuck on — even the half-formed one — and we'll tell you honestly what we know, what we don't, and what we'd run first.</p>
+    <a class="btn-grad" style="margin-top:28px;" href="mailto:hello@dogsledlabs.com?subject=A%20question%20from%20the%20trail">Ask us anything &rarr;</a>
+  </div>
+</section>
+
+<footer class="site">
+  <div style="display:flex;align-items:center;gap:11px;">
+    <svg width="20" height="20" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="dlfurf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fb0f2"/><stop offset="1" stop-color="#3e6bd6"/></linearGradient></defs><polygon points="24,23 31,2 45,16" fill="url(#dlfurf)"/><polygon points="76,23 69,2 55,16" fill="url(#dlfurf)"/><polygon points="29,16 31.5,7 39,13.5" fill="#b9cdf5" opacity="0.75"/><polygon points="71,16 68.5,7 61,13.5" fill="#b9cdf5" opacity="0.75"/><polygon points="22,21 78,21 86,31 90,44 84,50 89,57 81,60 84,68 70,74 60,78 50,79 40,78 30,74 16,68 19,60 11,57 16,50 10,44 14,31" fill="#eef3fa"/><polygon points="22,21 78,21 86,31 90,44 84,50 70,54 58,52 53,56 50,33 47,56 42,52 30,54 16,50 10,44 14,31" fill="url(#dlfurf)"/><polygon points="25,45.5 31.5,40.5 39,43 32.5,48" fill="#38bdf8"/><polygon points="75,45.5 68.5,40.5 61,43 67.5,48" fill="#38bdf8"/><rect x="43.5" y="57.5" width="13" height="6.5" rx="3" fill="#0a0e16"/><rect x="49.35" y="63.5" width="1.3" height="5" fill="#0a0e16" opacity="0.45"/><rect x="33" y="81" width="34" height="4.4" rx="2.2" fill="#38bdf8"/><rect x="26" y="88" width="48" height="4.4" rx="2.2" fill="#3e6bd6"/><rect x="19" y="95" width="62" height="4.4" rx="2.2" fill="#eef3fa" opacity="0.92"/></svg>
+    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:15px;color:#eef3fa;">Dogsled Labs</span>
+    <span style="font-size:13px;color:#707c93;margin-left:6px;">— the lab of <a href="https://www.bobsled.com" style="color:#9ea9bf;border-bottom:1px solid rgba(255,255,255,.2);">Bobsled</a></span>
+  </div>
+  <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;">
+    <a href="/" style="font-size:13px;color:#9ea9bf;">&larr; Dogsled Labs home</a>
+    <a href="/why-dogsled/" style="font-size:13px;color:#9ea9bf;">Why Dogsled &rarr;</a>
+    <a href="/gangline/" style="font-size:13px;color:#9ea9bf;">Gangline &rarr;</a>
+    <span class="mono" style="font-size:11px;color:#57647e;">© 2026 Dogsled Labs</span>
+  </div>
+</footer>
+
+</body>
+</html>
