@@ -1,27 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
     <linearGradient id="fur" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#a78bfa"/>
-      <stop offset="1" stop-color="#8b5cf6"/>
+      <stop offset="0" stop-color="#e9eff9"/>
+      <stop offset="1" stop-color="#c6d6f1"/>
     </linearGradient>
   </defs>
-  <!-- ears (upright, planted on the head) -->
-  <polygon points="24,23 31,2 45,16" fill="url(#fur)"/>
-  <polygon points="76,23 69,2 55,16" fill="url(#fur)"/>
-  <polygon points="29,16 31.5,7 39,13.5" fill="#c4b5fd" opacity="0.75"/>
-  <polygon points="71,16 68.5,7 61,13.5" fill="#c4b5fd" opacity="0.75"/>
-  <!-- head base (white), fluffy cheek silhouette -->
-  <polygon points="22,21 78,21 86,31 90,44 84,50 89,57 81,60 84,68 70,74 60,78 50,79 40,78 30,74 16,68 19,60 11,57 16,50 10,44 14,31" fill="#f3f0f7"/>
-  <!-- dark cap + eye mask with white blaze up the center -->
-  <polygon points="22,21 78,21 86,31 90,44 84,50 70,54 58,52 53,56 50,33 47,56 42,52 30,54 16,50 10,44 14,31" fill="url(#fur)"/>
-  <!-- eyes -->
-  <polygon points="25,45.5 31.5,40.5 39,43 32.5,48" fill="#22d3ee"/>
-  <polygon points="75,45.5 68.5,40.5 61,43 67.5,48" fill="#22d3ee"/>
-  <!-- nose + philtrum -->
-  <rect x="43.5" y="57.5" width="13" height="6.5" rx="3" fill="#0a0c11"/>
-  <rect x="49.35" y="63.5" width="1.3" height="5" fill="#0a0c11" opacity="0.45"/>
-  <!-- data layers -->
-  <rect x="33" y="81" width="34" height="4.4" rx="2.2" fill="#22d3ee"/>
-  <rect x="26" y="88" width="48" height="4.4" rx="2.2" fill="#8b5cf6"/>
-  <rect x="19" y="95" width="62" height="4.4" rx="2.2" fill="#f3f0f7" opacity="0.92"/>
+  <!-- ears -->
+  <polygon points="18,22 30,2 40,16" fill="url(#fur)"/>
+  <polygon points="42,14 52,2 58,18" fill="url(#fur)"/>
+  <!-- skull + snout (profile, facing right) -->
+  <polygon points="16,22 58,18 66,26 86,38 86,43 64,45 30,46 16,44" fill="url(#fur)"/>
+  <!-- cheek / jaw band -->
+  <polygon points="16,47 30,49 62,48 70,52 54,57 16,55" fill="url(#fur)"/>
+  <!-- chest band -->
+  <polygon points="16,58 54,59 40,66 16,67" fill="url(#fur)"/>
+  <!-- eye + nose -->
+  <polygon points="60,25 64.5,28 60,31 55.5,28" fill="#0b1424"/>
+  <polygon points="81,37 86,38 86,43 81,42" fill="#0b1424"/>
+  <!-- data chevrons -->
+  <polygon points="14,68 41,75 68,68 68,72.5 41,79.5 14,72.5" fill="#8fb0f2"/>
+  <polygon points="14,77 41,84 68,77 68,81.5 41,88.5 14,81.5" fill="#5f8ae4"/>
+  <polygon points="14,86 41,93 68,86 68,90.5 41,97.5 14,90.5" fill="#38bdf8"/>
 </svg>
