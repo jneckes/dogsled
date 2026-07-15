@@ -68,25 +68,49 @@ function buildSlackMessage(lead) {
   const trails = (lead.trail != null ? [lead.trail] : (Array.isArray(lead.focus) ? lead.focus : []))
     .map(clean).filter(Boolean);
   const topics = trails.length ? trails.map((t) => `\`${t}\``).join('  ') : '—';
+
+  // Step 2 (about you) and step 3 (the ask) fields.
+  const company = clean(lead.company);
+  const role = clean(lead.role);
+  const size = clean(lead.size);
+  const workflows = clean(lead.workflows);
+  const timeline = clean(lead.timeline);
+
   const source = clean(lead.source) || 'book-a-demo';
   const when = formatWhen(lead.submittedAt);
 
   // Fallback text (notifications / no-blocks clients).
-  const fallback = `New pup — ${name} · ${email}`;
+  const fallback = `New Pup — ${name} · ${email}`;
+
+  // Step 1 + step 2 identity fields, one per line, only what was filled in.
+  const details = [
+    `*Name:* ${name}`,
+    `*Email:* <mailto:${email}|${email}>`,
+  ];
+  if (company) details.push(`*Company:* ${company}`);
+  if (role) details.push(`*Role:* ${role}`);
+  if (size) details.push(`*Company size:* ${size}`);
+  details.push(`*Trails:* ${topics}`);
+  if (timeline) details.push(`*Timeline:* ${timeline}`);
 
   const blocks = [
     {
       type: 'header',
-      text: { type: 'plain_text', text: '🐶 New pup', emoji: true },
+      text: { type: 'plain_text', text: '🐶 New Pup', emoji: true },
     },
     {
       type: 'section',
-      text: {
-        type: 'mrkdwn',
-        text: `*Name:* ${name}\n*Email:* <mailto:${email}|${email}>\n*Trails:* ${topics}`,
-      },
+      text: { type: 'mrkdwn', text: details.join('\n') },
     },
   ];
+
+  // Step 3 free-text — its own block so long answers stay readable.
+  if (workflows) {
+    blocks.push({
+      type: 'section',
+      text: { type: 'mrkdwn', text: `*Hardest workflows:*\n${workflows}` },
+    });
+  }
 
   const contextParts = [`Source: \`${source}\``];
   if (when) contextParts.push(`Submitted ${when}`);
@@ -95,9 +119,9 @@ function buildSlackMessage(lead) {
     elements: [{ type: 'mrkdwn', text: contextParts.join('  ·  ') }],
   });
 
-  // icon_emoji overrides the app's default avatar per-message (Slack honors this
-  // for incoming webhooks). :dog: renders as the 🐶 puppy face.
-  return { text: fallback, icon_emoji: ':dog:', blocks };
+  // username + icon_emoji override the app's default name/avatar per-message
+  // (Slack honors both for incoming webhooks). :dog: renders as the 🐶 puppy face.
+  return { text: fallback, username: 'New Pup', icon_emoji: ':dog:', blocks };
 }
 
 function clean(v) {
