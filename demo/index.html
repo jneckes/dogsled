@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a demo — Dogsled Labs</title>
+<meta name="description" content="One hour with the team that harnesses agents to enterprise work. Book your 60-minute agentic diagnostic.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070b16; --panel-1:#0d1424; --panel-2:#0a0f1c;
+    --ink:#f6f9fd; --muted:#9ea9bf; --faint:#66738e;
+    --line:rgba(255,255,255,.1);
+    --a1:#8fb0f2; --a2:#38bdf8;
+    --grad:linear-gradient(92deg,#8fb0f2,#38bdf8);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    display:grid; grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);
+    align-items:stretch; min-height:100vh;
+  }
+
+  /* ---------- LEFT: brand / offer panel ---------- */
+  .brand{
+    position:relative; padding:52px 56px;
+    background:
+      radial-gradient(circle at 12% -10%,rgba(56,189,248,.16),transparent 46%),
+      radial-gradient(circle at 90% 115%,rgba(62,107,214,.30),transparent 52%),
+      linear-gradient(180deg,var(--panel-1),var(--panel-2));
+    border-right:1px solid var(--line);
+    display:flex; flex-direction:column;
+  }
+  .brand::before{ /* dot grid */
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:26px 26px;
+    -webkit-mask-image:radial-gradient(120% 80% at 20% 0%,#000 20%,transparent 70%);
+    mask-image:radial-gradient(120% 80% at 20% 0%,#000 20%,transparent 70%);
+  }
+  .brand > *{position:relative}
+  .logo{display:inline-flex; align-items:center; gap:10px; font-family:'Sora';font-weight:800;font-size:18px;letter-spacing:-.01em;
+    color:inherit; text-decoration:none; align-self:flex-start; transition:opacity .15s;}
+  .logo:hover{opacity:.8;}
+  .logo .mark{width:26px;height:26px;display:grid;place-items:center;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; align-self:flex-start;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--a1);
+    border:1px solid rgba(143,176,242,.3); background:rgba(143,176,242,.06);
+    padding:6px 13px; border-radius:999px; margin-top:40px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:999px;background:var(--a2);box-shadow:0 0 10px var(--a2)}
+  .brand h1{font-family:'Sora',sans-serif;font-weight:800;font-size:38px;line-height:1.08;letter-spacing:-.025em;margin:20px 0 0;max-width:15ch;}
+  .brand h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .brand .lede{color:var(--muted);font-size:16px;line-height:1.6;margin:16px 0 30px;max-width:42ch;}
+  .gets{list-style:none;padding:0;margin:0;display:grid;gap:15px;}
+  .gets li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:#d3dcea;line-height:1.45;}
+  .gets .ic{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+    background:rgba(143,176,242,.1);border:1px solid rgba(143,176,242,.28);margin-top:1px;}
+  .wall{margin-top:auto;border-top:1px solid var(--line);padding-top:20px;}
+  /* keep a real gap when the panel is taller than the viewport and auto-margin collapses */
+  .gets{margin-bottom:34px;}
+  .wall-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:16px;}
+  .wall-grid{display:flex;flex-wrap:wrap;align-items:center;gap:20px 30px;max-width:456px;}
+  /* Real brand SVGs, normalized to a uniform muted gray so they read as one wall. */
+  .wall-grid img{height:18px;width:auto;display:block;
+    filter:brightness(0) invert(.5);opacity:.82;transition:filter .2s,opacity .2s;}
+  .wall-grid img:hover{filter:brightness(0) invert(.72);opacity:1;}
+  /* per-logo optical balancing — tighter-canvas marks render smaller */
+  .wall-grid img[alt="LSEG"]{height:17px;}
+  .wall-grid img[alt="GlobalData"]{height:15px;}
+  .wall-grid img[alt="MediaRadar"]{height:15px;}
+  .wall-grid img[alt="Deutsche Börse"]{height:14px;}
+  .wall-grid img[alt="Aampe"]{height:14px;}
+
+  /* ---------- RIGHT: wizard ---------- */
+  .wizard{padding:48px 56px;display:flex;flex-direction:column;min-height:100vh;}
+  .progress{display:flex;gap:8px;margin-bottom:52px;}
+  .progress .seg{flex:1;height:4px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;}
+  .progress .seg i{display:block;height:100%;width:0;background:var(--grad);transition:width .4s ease;}
+  .progress .seg.done i{width:100%}
+  .progress .seg.active i{width:100%}
+
+  .stepwrap{flex:1;max-width:440px;}
+  .step{display:none;animation:fade .35s ease;}
+  .step.on{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--a1);}
+  .step h2{font-family:'Sora',sans-serif;font-weight:800;font-size:27px;letter-spacing:-.02em;margin:10px 0 6px;}
+  .step .hint{color:var(--muted);font-size:14.5px;line-height:1.55;margin:0 0 26px;}
+
+  .field{display:flex;flex-direction:column;gap:7px;margin-bottom:18px;}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  label{font-size:12.5px;font-weight:600;color:#c4cedf;}
+  label .opt{color:var(--faint);font-weight:500;}
+  input,select,textarea{
+    font-family:inherit;font-size:14.5px;color:var(--ink);
+    background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;
+    padding:12px 14px;width:100%;transition:border-color .15s,box-shadow .15s,background .15s;appearance:none;
+  }
+  textarea{resize:vertical;min-height:96px;line-height:1.5;}
+  input::placeholder,textarea::placeholder{color:var(--faint);}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--a1);
+    background:rgba(143,176,242,.05);box-shadow:0 0 0 4px rgba(143,176,242,.14);}
+  select{color:var(--muted);padding-right:38px;background-repeat:no-repeat;background-position:right 14px center;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239ea9bf' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");}
+  select.filled{color:var(--ink);}
+  .err{color:#f0a8a8;font-size:12px;margin-top:2px;min-height:14px;}
+
+  .pickhint{font-size:12.5px;color:var(--faint);margin:-4px 0 12px;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;}
+  .chip{font-size:13.5px;color:#cdd6e6;background:rgba(255,255,255,.03);border:1px solid var(--line);
+    border-radius:999px;padding:9px 16px;cursor:pointer;user-select:none;transition:all .14s;}
+  .chip:hover{border-color:rgba(143,176,242,.5);color:#fff;}
+  .chip.sel{background:rgba(143,176,242,.12);border-color:var(--a1);color:#fff;
+    box-shadow:0 0 0 3px rgba(143,176,242,.12);}
+
+  .nav{display:flex;align-items:center;gap:14px;margin-top:34px;}
+  .btn{font-family:inherit;font-weight:700;font-size:15px;border-radius:999px;padding:13px 26px;cursor:pointer;border:0;transition:transform .12s,box-shadow .2s,filter .2s;}
+  .btn.primary{color:#070b16;background:var(--grad);box-shadow:0 10px 30px -10px rgba(56,189,248,.5);}
+  .btn.primary:hover{transform:translateY(-1px);filter:brightness(1.05);}
+  .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);}
+  .btn.ghost:hover{color:var(--ink);border-color:rgba(255,255,255,.3);}
+  .stepnum{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--faint);}
+
+  /* success */
+  .done{display:none;text-align:left;max-width:440px;}
+  .done.on{display:block;animation:fade .35s ease;}
+  .done .check{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;
+    background:rgba(143,176,242,.1);border:1px solid rgba(143,176,242,.4);box-shadow:0 0 0 6px rgba(143,176,242,.06);margin-bottom:22px;}
+  .done h2{font-family:'Sora',sans-serif;font-weight:800;font-size:28px;margin:0 0 10px;}
+  .done p{color:var(--muted);font-size:15px;line-height:1.6;margin:0 0 6px;max-width:42ch;}
+
+  @media(max-width:900px){
+    body{grid-template-columns:1fr;}
+    .brand{display:none;}
+    .wizard{padding:40px 26px;}
+  }
+</style>
+</head>
+<body>
+  <!-- LEFT -->
+  <aside class="brand">
+    <a class="logo" href="/" aria-label="Dogsled Labs — back to home">
+      <span class="mark">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 15l8-9 8 9M8 15l4-4.5 4 4.5" stroke="url(#g)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g" x1="4" y1="6" x2="20" y2="15"><stop stop-color="#8fb0f2"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs></svg>
+      </span>
+      Dogsled Labs
+    </a>
+
+    <span class="eyebrow"><span class="dot"></span>60-minute diagnostic</span>
+    <h1>One hour with the people who <span class="grad">harness agents to do real work.</span></h1>
+    <p class="lede">Bring your hardest workflows. We'll run a live diagnostic and map the route from where you are to a coordinated agentic workforce — and what it's worth.</p>
+
+    <ul class="gets">
+      <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8fb0f2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></span>Where you sit on the agentic maturity trail</li>
+      <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8fb0f2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg></span>Your top workflows scored for agent leverage</li>
+      <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8fb0f2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>An honest estimate of what going agentic is worth</li>
+      <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8fb0f2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Direct time with our founding team — no SDRs</li>
+    </ul>
+
+    <div class="wall">
+      <div class="wall-label">The lab of Bobsled · trusted by teams at</div>
+      <div class="wall-grid">
+        <img src="logos/zoominfo.svg" alt="ZoomInfo">
+        <img src="logos/lseg.svg" alt="LSEG">
+        <img src="logos/cotality.svg" alt="Cotality">
+        <img src="logos/deutsche-borse.svg" alt="Deutsche Börse">
+        <img src="logos/globaldata.svg" alt="GlobalData">
+        <img src="logos/mediaradar.svg" alt="MediaRadar">
+        <img src="logos/aampe.svg" alt="Aampe">
+        <img src="logos/actioniq.svg" alt="ActionIQ">
+      </div>
+    </div>
+  </aside>
+
+  <!-- RIGHT -->
+  <main class="wizard">
+    <div class="progress">
+      <div class="seg" data-seg="1"><i></i></div>
+      <div class="seg" data-seg="2"><i></i></div>
+      <div class="seg" data-seg="3"><i></i></div>
+    </div>
+
+    <form id="wz" class="stepwrap" novalidate>
+      <!-- STEP 1 -->
+      <section class="step on" data-step="1">
+        <div class="kicker">Step 1 of 3</div>
+        <h2>Let's get started</h2>
+        <p class="hint">Where should we point the diagnostic? Start with your work email.</p>
+        <div class="field">
+          <label for="email">Work email</label>
+          <input id="email" type="email" placeholder="you@company.com" autocomplete="email">
+          <div class="err" data-err="email"></div>
+        </div>
+        <label style="display:block;margin-bottom:6px;">Pick your trail</label>
+        <div class="pickhint">Where you run</div>
+        <div class="chips" data-chips>
+          <span class="chip">DTC &amp; Consumer Brands</span>
+          <span class="chip">Entertainment &amp; Production</span>
+          <span class="chip">Data Providers</span>
+          <span class="chip">Other</span>
+        </div>
+        <div class="nav">
+          <button type="button" class="btn primary" data-next>Continue</button>
+          <span class="stepnum">1 / 3</span>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="step" data-step="2">
+        <div class="kicker">Step 2 of 3</div>
+        <h2>A bit about you</h2>
+        <p class="hint">So the right person from our team walks into the session.</p>
+        <div class="row">
+          <div class="field"><label for="name">Name</label><input id="name" type="text" placeholder="Jane Rivera" autocomplete="name"><div class="err" data-err="name"></div></div>
+          <div class="field"><label for="company">Company</label><input id="company" type="text" placeholder="Acme Inc." autocomplete="organization"><div class="err" data-err="company"></div></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="role">Role <span class="opt">· optional</span></label><input id="role" type="text" placeholder="VP Operations"></div>
+          <div class="field"><label for="size">Company size</label>
+            <select id="size"><option value="" disabled selected>Select…</option><option>1–50</option><option>51–200</option><option>201–1,000</option><option>1,001–5,000</option><option>5,000+</option></select>
+          </div>
+        </div>
+        <div class="nav">
+          <button type="button" class="btn ghost" data-back>Back</button>
+          <button type="button" class="btn primary" data-next>Continue</button>
+          <span class="stepnum">2 / 3</span>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="step" data-step="3">
+        <div class="kicker">Step 3 of 3</div>
+        <h2>What's the hardest part?</h2>
+        <p class="hint">The workflows, handoffs, or backlogs you'd most want to hand off. This is what we'll dig into live.</p>
+        <div class="field">
+          <label for="notes">Your hardest workflows <span class="opt">· optional</span></label>
+          <textarea id="notes" placeholder="e.g. Manual invoice reconciliation across 4 systems; support triage; contract review…"></textarea>
+        </div>
+        <div class="field">
+          <label for="timeline">How soon are you looking to move? <span class="opt">· optional</span></label>
+          <select id="timeline"><option value="" disabled selected>Select…</option><option>Just exploring</option><option>This quarter</option><option>As soon as possible</option></select>
+        </div>
+        <div class="nav">
+          <button type="button" class="btn ghost" data-back>Back</button>
+          <button type="submit" class="btn primary" id="submitBtn">Book my session</button>
+          <span class="stepnum">3 / 3</span>
+        </div>
+      </section>
+    </form>
+
+    <!-- SUCCESS -->
+    <div class="done" id="done">
+      <div class="check"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8fb0f2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <h2>You're on the line.</h2>
+      <p>Thanks — we've got your details. Someone from Dogsled's founding team will reach out within one business day to lock in your 60-minute diagnostic.</p>
+    </div>
+  </main>
+
+<script>
+  const form = document.getElementById('wz');
+  const steps = [...form.querySelectorAll('.step')];
+  const segs = [...document.querySelectorAll('.progress .seg')];
+  let cur = 1;
+
+  function paint(){
+    steps.forEach(s => s.classList.toggle('on', +s.dataset.step === cur));
+    segs.forEach(sg => {
+      const n = +sg.dataset.seg;
+      sg.classList.toggle('done', n < cur);
+      sg.classList.toggle('active', n === cur);
+    });
+  }
+  paint();
+
+  // trail chips (single-select — click again to clear)
+  form.querySelectorAll('[data-chips] .chip').forEach(c =>
+    c.addEventListener('click', () => {
+      const on = c.classList.contains('sel');
+      c.closest('[data-chips]').querySelectorAll('.chip').forEach(x => x.classList.remove('sel'));
+      if(!on) c.classList.add('sel');
+    }));
+  document.getElementById('size').addEventListener('change', e => e.target.classList.add('filled'));
+  document.getElementById('timeline').addEventListener('change', e => e.target.classList.add('filled'));
+
+  function setErr(name,msg){ const el=form.querySelector(`[data-err="${name}"]`); if(el) el.textContent=msg||''; }
+  const emailOK = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+  function validate(step){
+    if(step===1){
+      const v=document.getElementById('email').value.trim();
+      if(!emailOK(v)){ setErr('email','Enter a valid work email.'); return false; }
+      setErr('email',''); return true;
+    }
+    if(step===2){
+      let ok=true;
+      if(!document.getElementById('name').value.trim()){ setErr('name','Required'); ok=false;} else setErr('name','');
+      if(!document.getElementById('company').value.trim()){ setErr('company','Required'); ok=false;} else setErr('company','');
+      return ok;
+    }
+    return true;
+  }
+
+  form.querySelectorAll('[data-next]').forEach(b => b.addEventListener('click', () => {
+    if(!validate(cur)) return;
+    if(cur<3){ cur++; paint(); }
+  }));
+  form.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', () => {
+    if(cur>1){ cur--; paint(); }
+  }));
+
+  function collect(){
+    const val = id => (document.getElementById(id).value || '').trim();
+    return {
+      email: val('email'),
+      name: val('name'),
+      company: val('company'),
+      role: val('role'),
+      size: val('size'),
+      trail: (form.querySelector('[data-chips] .chip.sel')?.textContent || '').trim(),
+      workflows: val('notes'),
+      timeline: val('timeline'),
+      source: (new URLSearchParams(location.search).get('src') || 'book-a-demo'),
+      page: (document.referrer || '').slice(0, 300),
+      submittedAt: new Date().toISOString()
+    };
+  }
+
+  function showDone(){ form.style.display='none'; document.getElementById('done').classList.add('on'); segs.forEach(s=>s.classList.add('done')); }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if(!validate(3)) return;
+    const btn=document.getElementById('submitBtn');
+    btn.disabled=true; btn.textContent='Booking…';
+    const payload = collect();
+    // Two independent sinks, fired in parallel: /api/demo-request posts the Slack
+    // notification, /api/crm-sync writes the Notion CRM (event + contact + company).
+    // Neither blocks the visitor's confirmation, and one failing doesn't stop the other.
+    const post = url => fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    try {
+      const sinks = ['/api/demo-request', '/api/crm-sync'];
+      const results = await Promise.allSettled(sinks.map(post));
+      results.forEach((r, i) => {
+        if (r.status === 'rejected' || !r.value.ok) console.warn('[demo] sink failed:', sinks[i], r.reason || r.value.status, payload);
+      });
+    } catch (err) {
+      console.warn('[demo] lead not fully persisted:', err, payload);
+    }
+    showDone();
+  });
+</script>
+</body>
+</html>
