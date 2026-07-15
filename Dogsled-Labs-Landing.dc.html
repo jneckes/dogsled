@@ -26,6 +26,14 @@
   .dv-opt:target .dv-oid{background:#2f6bff;color:#fff}
   .dv-next{margin:24px 0 0;font:12px/1.7 'Hanken Grotesk',sans-serif;color:rgba(255,255,255,.5)}
   .dv-next a{color:#cfd4dd;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
+  .dl-dd{position:relative;display:inline-flex}
+  .dl-dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;display:none;z-index:200}
+  .dl-dd:hover .dl-dd-menu,.dl-dd:focus-within .dl-dd-menu{display:block}
+  .dl-dd-inner{min-width:268px;background:#0d0b15;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;box-shadow:0 20px 44px rgba(0,0,0,.55)}
+  .dl-dd-eyebrow{font:600 9.5px 'JetBrains Mono',monospace;letter-spacing:.16em;color:#6b6480;text-transform:uppercase;padding:6px 12px 8px}
+  .dl-dd-inner a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font-size:13.5px;color:#c9c4d6;text-decoration:none}
+  .dl-dd-inner a:hover{background:rgba(167,139,250,.12);color:#fff}
+  .dl-dd-num{font:600 10px 'JetBrains Mono',monospace;color:#a78bfa}
   @keyframes dl-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
   @keyframes dl-pulse{0%,100%{opacity:.45}50%{opacity:1}}
   @keyframes dl-dash{to{stroke-dashoffset:0}}
@@ -50,7 +58,17 @@
   <nav style="display:flex;align-items:center;gap:14px;">
     <div style="display:flex;align-items:center;gap:26px;padding:8px 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.02);">
       <a href="#" style="font-size:14px;color:#a39db3;text-decoration:none;" style-hover="color:#f3f0f7;">Approach</a>
-      <a href="#" style="font-size:14px;color:#a39db3;text-decoration:none;" style-hover="color:#f3f0f7;">Use cases</a>
+      <div class="dl-dd">
+        <a href="#" style="font-size:14px;color:#a39db3;text-decoration:none;display:inline-flex;align-items:center;gap:6px;" style-hover="color:#f3f0f7;">Trails <span style="font-size:9px;color:#6b6480;">▾</span></a>
+        <div class="dl-dd-menu">
+          <div class="dl-dd-inner">
+            <div class="dl-dd-eyebrow">Where we run</div>
+            <a href="/dtc/"><span class="dl-dd-num">01</span> DTC &amp; consumer brands</a>
+            <a href="/entertainment/"><span class="dl-dd-num">02</span> Entertainment &amp; production</a>
+            <a href="/data-providers/"><span class="dl-dd-num">03</span> Data providers</a>
+          </div>
+        </div>
+      </div>
       <a href="#" style="font-size:14px;color:#a39db3;text-decoration:none;" style-hover="color:#f3f0f7;">Principles</a>
     </div>
     <a href="#" style="font-size:14px;font-weight:600;color:#08070d;background:linear-gradient(92deg,#a78bfa,#22d3ee);padding:10px 18px;border-radius:999px;text-decoration:none;">Get in touch</a>
@@ -358,6 +376,7 @@
           <span style="font-size:12px;color:#c9c4d6;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:5px 11px;">Retention</span>
           <span style="font-size:12px;color:#c9c4d6;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:5px 11px;">Customer service</span>
         </div>
+        <a href="/dtc/" style="display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:13.5px;font-weight:600;color:#a78bfa;text-decoration:none;" style-hover="color:#c4b5fd;">Follow the DTC trail <span style="color:#22d3ee;">→</span></a>
       </div>
     </div>
 
@@ -381,6 +400,7 @@
           <span style="font-size:12px;color:#c9c4d6;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:5px 11px;">Validation</span>
           <span style="font-size:12px;color:#c9c4d6;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:5px 11px;">Living golden record</span>
         </div>
+        <a href="/data-providers/" style="display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:13.5px;font-weight:600;color:#a78bfa;text-decoration:none;" style-hover="color:#c4b5fd;">Meet the Data Mastering Agent <span style="color:#22d3ee;">→</span></a>
       </div>
     </div>
 
@@ -404,6 +424,7 @@
           <span style="font-size:12px;color:#c9c4d6;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:5px 11px;">In-product agents</span>
           <span style="font-size:12px;color:#c9c4d6;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:5px 11px;">Governed access</span>
         </div>
+        <a href="/data-providers/" style="display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-size:13.5px;font-weight:600;color:#a78bfa;text-decoration:none;" style-hover="color:#c4b5fd;">Follow the data-provider trail <span style="color:#22d3ee;">→</span></a>
       </div>
     </div>
 
