@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dogsled Labs — An Agentic Workforce for Data Providers</title>
+<meta name="description" content="Dogsled Labs deploys agentic workforces for the world's leading data providers — data mastering, sharing &amp; delivery, quality, onboarding, concierge, and revenue agents aligned around one central company brain. Built by the team behind Bobsled.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#08070d;color:#f3f0f7;font-family:'Manrope',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{text-decoration:none}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.16em;color:#a78bfa;text-transform:uppercase}
+  .h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(30px,4.5vw,42px);line-height:1.06;letter-spacing:-.03em;color:#f7f5fb;margin:14px 0 0}
+  .sub{font-size:17px;line-height:1.62;color:#a39db3;margin:16px auto 0}
+  .grad-text{-webkit-background-clip:text;background-clip:text;color:transparent;background-image:linear-gradient(92deg,#a78bfa,#22d3ee)}
+  .btn-grad{display:inline-block;font-size:15px;font-weight:600;color:#08070d;background:linear-gradient(92deg,#a78bfa,#22d3ee);padding:14px 26px;border-radius:999px;transition:filter .15s}
+  .btn-grad:hover{filter:brightness(1.1)}
+  .btn-ghost{display:inline-block;font-size:15px;font-weight:600;color:#d7d2e2;border:1px solid rgba(255,255,255,.16);padding:14px 26px;border-radius:999px;transition:border-color .15s}
+  .btn-ghost:hover{border-color:rgba(255,255,255,.4)}
+  .chip{display:inline-block;font-size:12px;color:#c9c4d6;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:5px 11px}
+  .section{padding:92px 40px}
+  .note{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:#5c5670;text-transform:uppercase;margin-top:20px}
+  header.site{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid rgba(255,255,255,.07);flex-wrap:wrap;gap:14px}
+  .logo{display:flex;align-items:center;gap:11px}
+  .logo-bars{display:flex;align-items:flex-end;gap:3px;height:22px}
+  .logo-bars span{width:4px;border-radius:1.5px}
+  .navpill{display:flex;align-items:center;gap:26px;padding:8px 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.02)}
+  .navpill a{font-size:14px;color:#a39db3;transition:color .15s}
+  .navpill a:hover{color:#f3f0f7}
+  .dl-dd{position:relative;display:inline-flex}
+  .dl-dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;display:none;z-index:200}
+  .dl-dd:hover .dl-dd-menu,.dl-dd:focus-within .dl-dd-menu{display:block}
+  .dl-dd-inner{min-width:268px;background:#0d0b15;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;box-shadow:0 20px 44px rgba(0,0,0,.55)}
+  .dl-dd-eyebrow{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:9.5px;letter-spacing:.16em;color:#6b6480;text-transform:uppercase;padding:6px 12px 8px}
+  .dl-dd-inner a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font-size:13.5px;color:#c9c4d6}
+  .dl-dd-inner a:hover{background:rgba(167,139,250,.12);color:#fff}
+  .dl-dd-num{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:10px;color:#a78bfa}
+  .agent-card{position:relative;overflow:hidden;background:linear-gradient(160deg,#14111f,#0c0a14);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:0;transition:border-color .15s}
+  .agent-card:hover{border-color:rgba(167,139,250,.35)}
+  .agent-bullets{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+  .agent-bullets div{display:flex;gap:10px;align-items:flex-start}
+  .agent-bullets span.dot{width:6px;height:6px;border-radius:50%;background:#a78bfa;margin-top:7px;flex:none}
+  .agent-bullets span.txt{font-size:13.5px;line-height:1.5;color:#c1bccf}
+  .feeds{margin-top:auto;padding-top:18px}
+  .feeds-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.12em;color:#6b6480;text-transform:uppercase;margin-bottom:8px}
+  .feeds .chip{font-size:11px;padding:4px 10px;color:#a39db3}
+  .agent-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:3px 9px;margin-left:8px}
+  .tag-cost{color:#22d3ee;border:1px solid rgba(34,211,238,.3);background:rgba(34,211,238,.06)}
+  .tag-rev{color:#a78bfa;border:1px solid rgba(167,139,250,.3);background:rgba(167,139,250,.06)}
+  .step-card{position:relative;overflow:hidden;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:26px}
+  .step-num{position:absolute;top:-10px;right:14px;font-family:'Sora',sans-serif;font-weight:800;font-size:64px;color:rgba(255,255,255,.045)}
+  footer.site{padding:36px 40px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  @media (max-width:720px){.section{padding:64px 22px}header.site{padding:16px 22px}.navpill{display:none}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a href="/" class="logo" aria-label="Dogsled Labs home">
+    <span class="logo-bars"><span style="height:10px;background:#22d3ee"></span><span style="height:15px;background:#8b5cf6"></span><span style="height:22px;background:#f3f0f7"></span></span>
+    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.02em;color:#f3f0f7;">Dogsled<span style="color:#a78bfa;"> Labs</span></span>
+  </a>
+  <nav style="display:flex;align-items:center;gap:14px;">
+    <div class="navpill">
+      <div class="dl-dd">
+        <a href="#" onclick="return false">Trails <span style="font-size:9px;color:#6b6480;">&#9662;</span></a>
+        <div class="dl-dd-menu">
+          <div class="dl-dd-inner">
+            <div class="dl-dd-eyebrow">Where we run</div>
+            <a href="/dtc/"><span class="dl-dd-num">01</span> DTC &amp; consumer brands</a>
+            <a href="/entertainment/"><span class="dl-dd-num">02</span> Entertainment &amp; production</a>
+            <a href="/data-providers/" style="color:#f3f0f7;"><span class="dl-dd-num" style="color:#22d3ee;">03</span> Data providers</a>
+          </div>
+        </div>
+      </div>
+      <a href="#agents">The agents</a>
+      <a href="#brain">One brain</a>
+      <a href="#bonafides">Why us</a>
+    </div>
+    <a class="btn-grad" style="font-size:14px;padding:10px 18px;" href="mailto:hello@dogsledlabs.com?subject=Agentic%20workforce%20for%20our%20data%20business">Get in touch</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section style="position:relative;padding:104px 40px 90px;overflow:hidden;text-align:center;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(120% 80% at 50% 0%,#000 30%,transparent 70%);mask-image:radial-gradient(120% 80% at 50% 0%,#000 30%,transparent 70%);"></div>
+  <div style="position:absolute;top:-160px;left:8%;width:460px;height:380px;background:radial-gradient(circle,rgba(139,92,246,.34),transparent 62%);filter:blur(26px);pointer-events:none;"></div>
+  <div style="position:absolute;top:-130px;right:8%;width:440px;height:360px;background:radial-gradient(circle,rgba(34,211,238,.26),transparent 62%);filter:blur(26px);pointer-events:none;"></div>
+  <div style="position:relative;max-width:900px;margin:0 auto;">
+    <div class="mono" style="display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.16em;color:#a78bfa;border:1px solid rgba(167,139,250,.3);background:rgba(167,139,250,.06);padding:6px 14px;border-radius:999px;text-transform:uppercase;">For data providers</div>
+    <h1 style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(40px,7vw,64px);line-height:1.04;letter-spacing:-.03em;margin:26px 0 0;color:#f7f5fb;">Put an agentic workforce<br><span class="grad-text">behind your data business.</span></h1>
+    <p style="font-size:19px;line-height:1.62;color:#a39db3;max-width:690px;margin:26px auto 0;">Mastering, delivery, quality, onboarding, support, revenue — a coordinated team of agents cutting your cost-to-serve and growing your book, all aligned around one central company brain. Built by the team that already runs data delivery for the world's leading providers.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:36px;flex-wrap:wrap;">
+      <a class="btn-grad" href="mailto:hello@dogsledlabs.com?subject=Agentic%20workforce%20for%20our%20data%20business">Start your transformation</a>
+      <a class="btn-ghost" href="#agents">Meet the agents</a>
+    </div>
+    <div class="mono" style="font-size:11px;letter-spacing:.14em;color:#6b6480;text-transform:uppercase;margin-top:30px;">Agents pull &middot; your people steer the product</div>
+  </div>
+</section>
+
+<!-- Trusted-by strip -->
+<div style="padding:26px 40px;border-top:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.015);text-align:center;">
+  <div class="mono" style="font-size:10px;letter-spacing:.16em;color:#6b6480;text-transform:uppercase;margin-bottom:14px;">From the team behind Bobsled — trusted by the world's leading data providers</div>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px 36px;align-items:center;">
+    <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:17px;letter-spacing:.02em;color:#8b8598;">ZoomInfo</span>
+    <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:17px;letter-spacing:.02em;color:#8b8598;">Cotality</span>
+    <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:17px;letter-spacing:.02em;color:#8b8598;">LinkUp</span>
+    <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:17px;letter-spacing:.02em;color:#8b8598;">TrueData</span>
+    <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:17px;letter-spacing:.02em;color:#8b8598;">Facteus</span>
+  </div>
+</div>
+
+<!-- Stats band -->
+<div style="padding:32px 40px;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);">
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;max-width:940px;margin:0 auto;">
+    <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;border-right:1px solid rgba(255,255,255,.1);">
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#a78bfa;letter-spacing:-.02em;">80%</div>
+      <div style="font-size:13px;color:#a39db3;margin-top:6px;line-height:1.45;">faster customer onboarding at ZoomInfo</div>
+    </div>
+    <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;border-right:1px solid rgba(255,255,255,.1);">
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#22d3ee;letter-spacing:-.02em;">Hours</div>
+      <div style="font-size:13px;color:#a39db3;margin-top:6px;line-height:1.45;">not days, to analytics-ready delivery at LinkUp</div>
+    </div>
+    <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;border-right:1px solid rgba(255,255,255,.1);">
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#f7f5fb;letter-spacing:-.02em;">Weeks</div>
+      <div style="font-size:13px;color:#a39db3;margin-top:6px;line-height:1.45;">to your first agent in production</div>
+    </div>
+    <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;">
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#a78bfa;letter-spacing:-.02em;">100%</div>
+      <div style="font-size:13px;color:#a39db3;margin-top:6px;line-height:1.45;">of the IP &amp; code stays yours</div>
+    </div>
+  </div>
+  <div class="note" style="margin-top:18px;">Onboarding &amp; delivery outcomes from Bobsled platform engagements (bobsled.com) &middot; agent benchmarks illustrative</div>
+</div>
+
+<!-- Agent roster -->
+<section class="section" id="agents" style="position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:760px;height:380px;background:radial-gradient(circle,rgba(139,92,246,.12),transparent 68%);filter:blur(26px);pointer-events:none;"></div>
+  <div style="position:relative;text-align:center;max-width:740px;margin:0 auto 46px;">
+    <div class="eyebrow">The roster</div>
+    <h2 class="h2">Agents that cut cost — and agents that grow revenue.</h2>
+    <p class="sub" style="max-width:640px;">Six example agents we deploy for data providers. The first three attack your cost-to-serve; the second three grow the book. All six pull on the same company brain.</p>
+  </div>
+
+  <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;max-width:1060px;margin:0 auto;">
+
+    <div class="agent-card">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#22d3ee;text-transform:uppercase;">Agent 01<span class="agent-tag tag-cost">Cuts cost</span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Data Mastering Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">A golden record that never goes stale.</div>
+      <div class="agent-bullets">
+        <div><span class="dot"></span><span class="txt">Resolves entities &amp; crosswalks IDs across every source, continuously</span></div>
+        <div><span class="dot"></span><span class="txt">Validates against priority keys and flags conflicts with evidence</span></div>
+        <div><span class="dot"></span><span class="txt">Turns quarterly clean-ups into an always-on living golden record</span></div>
+      </div>
+      <div class="feeds">
+        <div class="feeds-label">Pulls from your company brain</div>
+        <span class="chip">Source feeds</span> <span class="chip">Reference keys</span> <span class="chip">Match rules</span>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#22d3ee;text-transform:uppercase;">Agent 02<span class="agent-tag tag-cost">Cuts cost</span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Data Sharing &amp; Delivery Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">Every feed, every cloud, no tickets.</div>
+      <div class="agent-bullets">
+        <div><span class="dot"></span><span class="txt">Provisions data to Snowflake, Databricks, BigQuery, S3 &amp; beyond</span></div>
+        <div><span class="dot"></span><span class="txt">Watches every delivery, heals failures &amp; absorbs schema changes</span></div>
+        <div><span class="dot"></span><span class="txt">Notifies consumers ahead of change — no more surprise breakage</span></div>
+      </div>
+      <div class="feeds">
+        <div class="feeds-label">Pulls from your company brain</div>
+        <span class="chip">Pipelines</span> <span class="chip">Delivery logs</span> <span class="chip">Destination configs</span>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#22d3ee;text-transform:uppercase;">Agent 03<span class="agent-tag tag-cost">Cuts cost</span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Data Quality &amp; Release Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">Nothing ships broken.</div>
+      <div class="agent-bullets">
+        <div><span class="dot"></span><span class="txt">Gates every release on freshness, completeness &amp; drift checks</span></div>
+        <div><span class="dot"></span><span class="txt">Traces anomalies to root cause before customers ever see them</span></div>
+        <div><span class="dot"></span><span class="txt">Drafts release notes &amp; data-dictionary updates automatically</span></div>
+      </div>
+      <div class="feeds">
+        <div class="feeds-label">Pulls from your company brain</div>
+        <span class="chip">QA suites</span> <span class="chip">Historical baselines</span> <span class="chip">Catalog</span>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#a78bfa;text-transform:uppercase;">Agent 04<span class="agent-tag tag-rev">Drives revenue</span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Onboarding &amp; Entitlements Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">Trials that convert themselves.</div>
+      <div class="agent-bullets">
+        <div><span class="dot"></span><span class="txt">Stands up trials &amp; POCs in hours with the right sample data</span></div>
+        <div><span class="dot"></span><span class="txt">Manages entitlements by contract, territory &amp; usage tier</span></div>
+        <div><span class="dot"></span><span class="txt">Walks every new customer to first query — time-to-value, measured</span></div>
+      </div>
+      <div class="feeds">
+        <div class="feeds-label">Pulls from your company brain</div>
+        <span class="chip">CRM</span> <span class="chip">Contracts</span> <span class="chip">Provisioning</span>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#a78bfa;text-transform:uppercase;">Agent 05<span class="agent-tag tag-rev">Drives revenue</span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Data Concierge Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">Every customer's favorite analyst.</div>
+      <div class="agent-bullets">
+        <div><span class="dot"></span><span class="txt">Answers field, coverage &amp; methodology questions in natural language</span></div>
+        <div><span class="dot"></span><span class="txt">Suggests joins &amp; use cases from how customers actually query</span></div>
+        <div><span class="dot"></span><span class="txt">Deflects tickets while surfacing product gaps in a weekly brief</span></div>
+      </div>
+      <div class="feeds">
+        <div class="feeds-label">Pulls from your company brain</div>
+        <span class="chip">Data dictionary</span> <span class="chip">Support history</span> <span class="chip">Usage logs</span>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#a78bfa;text-transform:uppercase;">Agent 06<span class="agent-tag tag-rev">Drives revenue</span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Revenue Intelligence Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">Sees churn &amp; upsell in the usage.</div>
+      <div class="agent-bullets">
+        <div><span class="dot"></span><span class="txt">Reads consumption signals for churn risk &amp; expansion openings</span></div>
+        <div><span class="dot"></span><span class="txt">Reconciles usage against billing and flags revenue leakage</span></div>
+        <div><span class="dot"></span><span class="txt">Preps every renewal with the customer's real value story</span></div>
+      </div>
+      <div class="feeds">
+        <div class="feeds-label">Pulls from your company brain</div>
+        <span class="chip">Usage metering</span> <span class="chip">Billing</span> <span class="chip">CRM</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="note">Example agents — every roster is designed around your products, your stack, your goals</div>
+
+  <!-- Mid-page direct CTA -->
+  <div style="position:relative;max-width:1060px;margin:40px auto 0;background:linear-gradient(160deg,#14111f,#0c0a14);border:1px solid rgba(167,139,250,.25);border-radius:18px;padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+    <div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:21px;color:#f7f5fb;">Want this roster behind your data products?</div>
+      <div style="font-size:14.5px;color:#a39db3;margin-top:6px;">Tell us your company and where cost-to-serve hurts most. We'll come back with the first three agents worth deploying.</div>
+    </div>
+    <a class="btn-grad" href="mailto:hello@dogsledlabs.com?subject=Agentic%20workforce%20for%20our%20data%20business&amp;body=Company%3A%0AWhere%20cost-to-serve%20hurts%3A%0A">Send it over &rarr;</a>
+  </div>
+</section>
+
+<!-- One company brain -->
+<section class="section" id="brain" style="background:linear-gradient(180deg,#08070d,#0c0a14);border-top:1px solid rgba(255,255,255,.07);">
+  <div style="text-align:center;max-width:720px;margin:0 auto 46px;">
+    <div class="eyebrow">One company brain</div>
+    <h2 class="h2">Six agents. One company brain.</h2>
+    <p class="sub" style="max-width:640px;">These aren't six point solutions. Every agent works off one central brain — a unified, governed picture of your products, pipelines, customers, and usage. You're a data company; your agents should run on your best asset.</p>
+  </div>
+
+  <!-- Diagram -->
+  <div style="display:flex;flex-direction:column;align-items:center;max-width:760px;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;">
+      <span class="chip" style="border-color:rgba(34,211,238,.3);">Mastering</span>
+      <span class="chip" style="border-color:rgba(34,211,238,.3);">Delivery</span>
+      <span class="chip" style="border-color:rgba(34,211,238,.3);">Quality</span>
+      <span class="chip" style="border-color:rgba(167,139,250,.3);">Onboarding</span>
+      <span class="chip" style="border-color:rgba(167,139,250,.3);">Concierge</span>
+      <span class="chip" style="border-color:rgba(167,139,250,.3);">Revenue</span>
+    </div>
+    <div style="width:2px;height:26px;background:linear-gradient(180deg,#a78bfa,#22d3ee);margin-top:14px;"></div>
+    <div class="mono" style="font-size:13px;color:#a78bfa;line-height:1;margin:3px 0 9px;">&#9662;</div>
+    <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(167,139,250,.4);background:rgba(167,139,250,.08);border-radius:12px;padding:13px 20px;">
+      <span style="width:9px;height:9px;border-radius:50%;background:linear-gradient(92deg,#a78bfa,#22d3ee);box-shadow:0 0 10px rgba(139,92,246,.7);"></span>
+      <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:#f3f0f7;">One company brain — your data platform</span>
+    </div>
+    <div style="width:2px;height:22px;background:linear-gradient(180deg,#22d3ee,rgba(255,255,255,.15));margin-top:10px;"></div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px;">
+      <span class="chip" style="color:#a39db3;">Pipelines</span>
+      <span class="chip" style="color:#a39db3;">Catalog</span>
+      <span class="chip" style="color:#a39db3;">CRM</span>
+      <span class="chip" style="color:#a39db3;">Billing</span>
+      <span class="chip" style="color:#a39db3;">Delivery logs</span>
+      <span class="chip" style="color:#a39db3;">Support</span>
+    </div>
+    <div style="font-size:11.5px;color:#8b8598;margin-top:12px;text-align:center;">Your systems stay where they are — the brain unifies what agents see</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:980px;margin:46px auto 0;">
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(167,139,250,.13);display:flex;align-items:center;justify-content:center;gap:3px;margin-bottom:18px;"><span style="width:6px;height:6px;border-radius:50%;background:#a78bfa;"></span><span style="width:6px;height:6px;border-radius:50%;background:#22d3ee;"></span><span style="width:6px;height:6px;border-radius:50%;background:#a78bfa;"></span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#f3f0f7;">They scale together</div>
+      <div style="font-size:14.5px;line-height:1.55;color:#9b95a8;margin-top:8px;">Every new agent starts with everything the brain already knows — your schemas, your customers, your history. The tenth agent deploys as easily as the first.</div>
+    </div>
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(34,211,238,.13);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><span style="width:15px;height:15px;border-radius:4px;background:#22d3ee;"></span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#f3f0f7;">They compound</div>
+      <div style="font-size:14.5px;line-height:1.55;color:#9b95a8;margin-top:8px;">When mastering fixes an identity, every feed inherits it. When the concierge learns what customers ask, quality knows what to guard. When usage shifts, revenue sees it the same day.</div>
+    </div>
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(167,139,250,.13);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><span style="width:15px;height:15px;border-radius:50%;border:2.5px solid #a78bfa;"></span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#f3f0f7;">Their work is transparent</div>
+      <div style="font-size:14.5px;line-height:1.55;color:#9b95a8;margin-top:8px;">Every match, every delivery, every release gate is logged with its reasoning. Audit any decision, correct it, and the whole team learns from the correction. A glass box — never a black box.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Bonafides -->
+<section class="section" id="bonafides">
+  <div style="text-align:center;max-width:740px;margin:0 auto 44px;">
+    <div class="eyebrow">Why Dogsled</div>
+    <h2 class="h2">Built by the team the data industry already trusts.</h2>
+    <p class="sub" style="max-width:660px;">Dogsled Labs is the lab of <a href="https://www.bobsled.com" style="color:#d7d2e2;border-bottom:1px solid rgba(255,255,255,.25);">Bobsled</a> — the data-sharing platform that runs delivery for the world's leading data providers. We've spent years inside the delivery stacks of the biggest names in data. Now we're helping those same businesses evolve: deploying agentic workforces that cut costs and drive revenue, aligned around one company brain.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:980px;margin:0 auto;">
+    <div class="step-card" style="text-align:center;">
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:38px;letter-spacing:-.02em;" class="grad-text">80%</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:17px;color:#f3f0f7;margin-top:10px;">ZoomInfo</div>
+      <div style="font-size:14px;line-height:1.55;color:#9b95a8;margin-top:6px;">cut customer onboarding time by 80% — from ~90 days to ~15 — moving from manual delivery to scalable productization.</div>
+    </div>
+    <div class="step-card" style="text-align:center;">
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:38px;letter-spacing:-.02em;" class="grad-text">1–2 hrs</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:17px;color:#f3f0f7;margin-top:10px;">LinkUp</div>
+      <div style="font-size:14px;line-height:1.55;color:#9b95a8;margin-top:6px;">went from 1–2 days to 1–2 hours to get customers running on analytics-ready data, in the platform of their choice.</div>
+    </div>
+    <div class="step-card" style="text-align:center;">
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:38px;letter-spacing:-.02em;" class="grad-text">Retired</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:17px;color:#f3f0f7;margin-top:10px;">Cotality</div>
+      <div style="font-size:14px;line-height:1.55;color:#9b95a8;margin-top:6px;">replaced home-built data product creation &amp; fulfillment infrastructure — cutting cloud costs and freeing its team.</div>
+    </div>
+  </div>
+  <div class="note">Reference outcomes from Bobsled platform engagements &middot; see bobsled.com</div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:980px;margin:44px auto 0;">
+    <div class="step-card">
+      <span class="step-num">01</span>
+      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#f3f0f7;">Map</div><div style="font-size:14px;line-height:1.55;color:#9b95a8;margin-top:8px;">Your products, your stack, your customer signals — ranked by impact and readiness, with the cost &amp; revenue case for each agent up front.</div></div>
+    </div>
+    <div class="step-card">
+      <span class="step-num">02</span>
+      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#f3f0f7;">Deploy</div><div style="font-size:14px;line-height:1.55;color:#9b95a8;margin-top:8px;">First agents in production in weeks — embedded in your delivery stack, with handoffs and guardrails designed in.</div></div>
+    </div>
+    <div class="step-card" style="border-color:rgba(167,139,250,.25);">
+      <span class="step-num" style="color:rgba(167,139,250,.12);">03</span>
+      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#f3f0f7;">Scale</div><div style="font-size:14px;line-height:1.55;color:#9b95a8;margin-top:8px;">Grow the roster on the one brain — and take the reins. The IP, the code, the agents: yours from day one.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section style="position:relative;padding:104px 40px;text-align:center;overflow:hidden;background:linear-gradient(180deg,#08070d,#0c0a14);border-top:1px solid rgba(255,255,255,.07);">
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 120%,rgba(139,92,246,.26),transparent 58%),radial-gradient(circle at 50% -10%,rgba(34,211,238,.14),transparent 55%);"></div>
+  <div style="position:relative;max-width:720px;margin:0 auto;">
+    <h2 style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(34px,5.5vw,46px);line-height:1.05;letter-spacing:-.03em;color:#f7f5fb;margin:0;">Your data business, pulling as one.</h2>
+    <p style="font-size:17px;line-height:1.62;color:#a39db3;margin:18px auto 32px;max-width:580px;">Email us today. Within two weeks we'll map your delivery stack, your catalog, and your customer signals — and hand you a roadmap for the first three agents worth deploying, with the cost and revenue case for each.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
+      <a class="btn-grad" style="padding:15px 28px;" href="mailto:hello@dogsledlabs.com?subject=Agentic%20workforce%20for%20our%20data%20business">Get your agent roadmap</a>
+      <a class="mono" href="mailto:hello@dogsledlabs.com" style="font-size:15px;color:#a39db3;">hello@dogsledlabs.com</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div style="display:flex;align-items:center;gap:11px;">
+    <span class="logo-bars" style="height:18px;gap:2.5px;"><span style="width:3.5px;height:8px;background:#22d3ee;"></span><span style="width:3.5px;height:12px;background:#8b5cf6;"></span><span style="width:3.5px;height:18px;background:#f3f0f7;"></span></span>
+    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:15px;color:#f3f0f7;">Dogsled Labs</span>
+    <span style="font-size:13px;color:#736c84;margin-left:6px;">— the lab of <a href="https://www.bobsled.com" style="color:#a39db3;border-bottom:1px solid rgba(255,255,255,.2);">Bobsled</a></span>
+  </div>
+  <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;">
+    <a href="/" style="font-size:13px;color:#a39db3;">&larr; Dogsled Labs home</a>
+    <a href="/dtc/" style="font-size:13px;color:#a39db3;">For DTC &amp; consumer brands &rarr;</a>
+    <a href="/entertainment/" style="font-size:13px;color:#a39db3;">For entertainment &amp; production &rarr;</a>
+    <span class="mono" style="font-size:11px;color:#5c5670;">© 2026 Dogsled Labs</span>
+  </div>
+</footer>
+
+</body>
+</html>

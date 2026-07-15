@@ -32,6 +32,14 @@
   .navpill{display:flex;align-items:center;gap:26px;padding:8px 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.02)}
   .navpill a{font-size:14px;color:#a39db3;transition:color .15s}
   .navpill a:hover{color:#f3f0f7}
+  .dl-dd{position:relative;display:inline-flex}
+  .dl-dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;display:none;z-index:200}
+  .dl-dd:hover .dl-dd-menu,.dl-dd:focus-within .dl-dd-menu{display:block}
+  .dl-dd-inner{min-width:268px;background:#0d0b15;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;box-shadow:0 20px 44px rgba(0,0,0,.55)}
+  .dl-dd-eyebrow{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:9.5px;letter-spacing:.16em;color:#6b6480;text-transform:uppercase;padding:6px 12px 8px}
+  .dl-dd-inner a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font-size:13.5px;color:#c9c4d6}
+  .dl-dd-inner a:hover{background:rgba(167,139,250,.12);color:#fff}
+  .dl-dd-num{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:10px;color:#a78bfa}
   .agent-card{position:relative;overflow:hidden;background:linear-gradient(160deg,#14111f,#0c0a14);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:0;transition:border-color .15s}
   .agent-card:hover{border-color:rgba(167,139,250,.35)}
   .agent-bullets{display:flex;flex-direction:column;gap:9px;margin-top:14px}
@@ -56,6 +64,17 @@
   </a>
   <nav style="display:flex;align-items:center;gap:14px;">
     <div class="navpill">
+      <div class="dl-dd">
+        <a href="#" onclick="return false">Trails <span style="font-size:9px;color:#6b6480;">&#9662;</span></a>
+        <div class="dl-dd-menu">
+          <div class="dl-dd-inner">
+            <div class="dl-dd-eyebrow">Where we run</div>
+            <a href="/dtc/"><span class="dl-dd-num">01</span> DTC &amp; consumer brands</a>
+            <a href="/entertainment/" style="color:#f3f0f7;"><span class="dl-dd-num" style="color:#22d3ee;">02</span> Entertainment &amp; production</a>
+            <a href="/data-providers/"><span class="dl-dd-num">03</span> Data providers</a>
+          </div>
+        </div>
+      </div>
       <a href="#agents">The agents</a>
       <a href="#paradigm">One paradigm</a>
       <a href="#how">How we work</a>
@@ -317,6 +336,7 @@
   <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;">
     <a href="/" style="font-size:13px;color:#a39db3;">&larr; Dogsled Labs home</a>
     <a href="/dtc/" style="font-size:13px;color:#a39db3;">For DTC &amp; consumer brands &rarr;</a>
+    <a href="/data-providers/" style="font-size:13px;color:#a39db3;">For data providers &rarr;</a>
     <span class="mono" style="font-size:11px;color:#5c5670;">© 2026 Dogsled Labs</span>
   </div>
 </footer>
