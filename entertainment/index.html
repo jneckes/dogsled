@@ -13,44 +13,44 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:#08070d;color:#f3f0f7;font-family:'Manrope',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  body{background:#070b16;color:#eef3fa;font-family:'Manrope',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
   a{text-decoration:none}
   .mono{font-family:'JetBrains Mono',monospace}
-  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.16em;color:#a78bfa;text-transform:uppercase}
-  .h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(30px,4.5vw,42px);line-height:1.06;letter-spacing:-.03em;color:#f7f5fb;margin:14px 0 0}
-  .sub{font-size:17px;line-height:1.62;color:#a39db3;margin:16px auto 0}
-  .grad-text{-webkit-background-clip:text;background-clip:text;color:transparent;background-image:linear-gradient(92deg,#a78bfa,#22d3ee)}
-  .btn-grad{display:inline-block;font-size:15px;font-weight:600;color:#08070d;background:linear-gradient(92deg,#a78bfa,#22d3ee);padding:14px 26px;border-radius:999px;transition:filter .15s}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.16em;color:#8fb0f2;text-transform:uppercase}
+  .h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(30px,4.5vw,42px);line-height:1.06;letter-spacing:-.03em;color:#f6f9fd;margin:14px 0 0}
+  .sub{font-size:17px;line-height:1.62;color:#9ea9bf;margin:16px auto 0}
+  .grad-text{-webkit-background-clip:text;background-clip:text;color:transparent;background-image:linear-gradient(92deg,#8fb0f2,#38bdf8)}
+  .btn-grad{display:inline-block;font-size:15px;font-weight:600;color:#070b16;background:linear-gradient(92deg,#8fb0f2,#38bdf8);padding:14px 26px;border-radius:999px;transition:filter .15s}
   .btn-grad:hover{filter:brightness(1.1)}
-  .btn-ghost{display:inline-block;font-size:15px;font-weight:600;color:#d7d2e2;border:1px solid rgba(255,255,255,.16);padding:14px 26px;border-radius:999px;transition:border-color .15s}
+  .btn-ghost{display:inline-block;font-size:15px;font-weight:600;color:#d3dcea;border:1px solid rgba(255,255,255,.16);padding:14px 26px;border-radius:999px;transition:border-color .15s}
   .btn-ghost:hover{border-color:rgba(255,255,255,.4)}
-  .chip{display:inline-block;font-size:12px;color:#c9c4d6;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:5px 11px}
+  .chip{display:inline-block;font-size:12px;color:#c4cedf;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:5px 11px}
   .section{padding:92px 40px}
-  .note{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:#5c5670;text-transform:uppercase;margin-top:20px}
+  .note{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:#57647e;text-transform:uppercase;margin-top:20px}
   header.site{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid rgba(255,255,255,.07);flex-wrap:wrap;gap:14px}
   .logo{display:flex;align-items:center;gap:11px}
   .logo-bars{display:flex;align-items:flex-end;gap:3px;height:22px}
   .logo-bars span{width:4px;border-radius:1.5px}
   .navpill{display:flex;align-items:center;gap:26px;padding:8px 20px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.02)}
-  .navpill a{font-size:14px;color:#a39db3;transition:color .15s}
-  .navpill a:hover{color:#f3f0f7}
+  .navpill a{font-size:14px;color:#9ea9bf;transition:color .15s}
+  .navpill a:hover{color:#eef3fa}
   .dl-dd{position:relative;display:inline-flex}
   .dl-dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;display:none;z-index:200}
   .dl-dd:hover .dl-dd-menu,.dl-dd:focus-within .dl-dd-menu{display:block}
-  .dl-dd-inner{min-width:268px;background:#0d0b15;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;box-shadow:0 20px 44px rgba(0,0,0,.55)}
-  .dl-dd-eyebrow{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:9.5px;letter-spacing:.16em;color:#6b6480;text-transform:uppercase;padding:6px 12px 8px}
-  .dl-dd-inner a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font-size:13.5px;color:#c9c4d6}
-  .dl-dd-inner a:hover{background:rgba(167,139,250,.12);color:#fff}
-  .dl-dd-num{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:10px;color:#a78bfa}
-  .agent-card{position:relative;overflow:hidden;background:linear-gradient(160deg,#14111f,#0c0a14);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:0;transition:border-color .15s}
-  .agent-card:hover{border-color:rgba(167,139,250,.35)}
+  .dl-dd-inner{min-width:268px;background:#0c1322;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;box-shadow:0 20px 44px rgba(0,0,0,.55)}
+  .dl-dd-eyebrow{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:9.5px;letter-spacing:.16em;color:#66738e;text-transform:uppercase;padding:6px 12px 8px}
+  .dl-dd-inner a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font-size:13.5px;color:#c4cedf}
+  .dl-dd-inner a:hover{background:rgba(143,176,242,.12);color:#fff}
+  .dl-dd-num{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:10px;color:#8fb0f2}
+  .agent-card{position:relative;overflow:hidden;background:linear-gradient(160deg,#131b2e,#0b1120);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:0;transition:border-color .15s}
+  .agent-card:hover{border-color:rgba(143,176,242,.35)}
   .agent-bullets{display:flex;flex-direction:column;gap:9px;margin-top:14px}
   .agent-bullets div{display:flex;gap:10px;align-items:flex-start}
-  .agent-bullets span.dot{width:6px;height:6px;border-radius:50%;background:#a78bfa;margin-top:7px;flex:none}
-  .agent-bullets span.txt{font-size:13.5px;line-height:1.5;color:#c1bccf}
+  .agent-bullets span.dot{width:6px;height:6px;border-radius:50%;background:#8fb0f2;margin-top:7px;flex:none}
+  .agent-bullets span.txt{font-size:13.5px;line-height:1.5;color:#bcc7da}
   .feeds{margin-top:auto;padding-top:18px}
-  .feeds-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.12em;color:#6b6480;text-transform:uppercase;margin-bottom:8px}
-  .feeds .chip{font-size:11px;padding:4px 10px;color:#a39db3}
+  .feeds-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.12em;color:#66738e;text-transform:uppercase;margin-bottom:8px}
+  .feeds .chip{font-size:11px;padding:4px 10px;color:#9ea9bf}
   .step-card{position:relative;overflow:hidden;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:26px}
   .step-num{position:absolute;top:-10px;right:14px;font-family:'Sora',sans-serif;font-weight:800;font-size:64px;color:rgba(255,255,255,.045)}
   footer.site{padding:36px 40px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
@@ -61,18 +61,18 @@
 
 <header class="site">
   <a href="/" class="logo" aria-label="Dogsled Labs home">
-    <svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="dlfurh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><polygon points="24,23 31,2 45,16" fill="url(#dlfurh)"/><polygon points="76,23 69,2 55,16" fill="url(#dlfurh)"/><polygon points="29,16 31.5,7 39,13.5" fill="#c4b5fd" opacity="0.75"/><polygon points="71,16 68.5,7 61,13.5" fill="#c4b5fd" opacity="0.75"/><polygon points="22,21 78,21 86,31 90,44 84,50 89,57 81,60 84,68 70,74 60,78 50,79 40,78 30,74 16,68 19,60 11,57 16,50 10,44 14,31" fill="#f3f0f7"/><polygon points="22,21 78,21 86,31 90,44 84,50 70,54 58,52 53,56 50,33 47,56 42,52 30,54 16,50 10,44 14,31" fill="url(#dlfurh)"/><polygon points="25,45.5 31.5,40.5 39,43 32.5,48" fill="#22d3ee"/><polygon points="75,45.5 68.5,40.5 61,43 67.5,48" fill="#22d3ee"/><rect x="43.5" y="57.5" width="13" height="6.5" rx="3" fill="#0a0c11"/><rect x="49.35" y="63.5" width="1.3" height="5" fill="#0a0c11" opacity="0.45"/><rect x="33" y="81" width="34" height="4.4" rx="2.2" fill="#22d3ee"/><rect x="26" y="88" width="48" height="4.4" rx="2.2" fill="#8b5cf6"/><rect x="19" y="95" width="62" height="4.4" rx="2.2" fill="#f3f0f7" opacity="0.92"/></svg>
-    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.02em;color:#f3f0f7;">Dogsled<span style="color:#a78bfa;"> Labs</span></span>
+    <svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="dlfurh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9eff9"/><stop offset="1" stop-color="#c6d6f1"/></linearGradient></defs><polygon points="18,22 30,2 40,16" fill="url(#dlfurh)"/><polygon points="42,14 52,2 58,18" fill="url(#dlfurh)"/><polygon points="16,22 58,18 66,26 86,38 86,43 64,45 30,46 16,44" fill="url(#dlfurh)"/><polygon points="16,47 30,49 62,48 70,52 54,57 16,55" fill="url(#dlfurh)"/><polygon points="16,58 54,59 40,66 16,67" fill="url(#dlfurh)"/><polygon points="60,25 64.5,28 60,31 55.5,28" fill="#0b1424"/><polygon points="81,37 86,38 86,43 81,42" fill="#0b1424"/><polygon points="14,68 41,75 68,68 68,72.5 41,79.5 14,72.5" fill="#8fb0f2"/><polygon points="14,77 41,84 68,77 68,81.5 41,88.5 14,81.5" fill="#5f8ae4"/><polygon points="14,86 41,93 68,86 68,90.5 41,97.5 14,90.5" fill="#38bdf8"/></svg>
+    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.02em;color:#eef3fa;">Dogsled<span style="color:#8fb0f2;"> Labs</span></span>
   </a>
   <nav style="display:flex;align-items:center;gap:14px;">
     <div class="navpill">
       <div class="dl-dd">
-        <a href="#" onclick="return false">Trails <span style="font-size:9px;color:#6b6480;">&#9662;</span></a>
+        <a href="#" onclick="return false">Trails <span style="font-size:9px;color:#66738e;">&#9662;</span></a>
         <div class="dl-dd-menu">
           <div class="dl-dd-inner">
             <div class="dl-dd-eyebrow">Where we run</div>
             <a href="/dtc/"><span class="dl-dd-num">01</span> DTC &amp; consumer brands</a>
-            <a href="/entertainment/" style="color:#f3f0f7;"><span class="dl-dd-num" style="color:#22d3ee;">02</span> Entertainment &amp; production</a>
+            <a href="/entertainment/" style="color:#eef3fa;"><span class="dl-dd-num" style="color:#38bdf8;">02</span> Entertainment &amp; production</a>
             <a href="/data-providers/"><span class="dl-dd-num">03</span> Data providers</a>
           </div>
         </div>
@@ -88,17 +88,17 @@
 <!-- Hero -->
 <section style="position:relative;padding:104px 40px 90px;overflow:hidden;text-align:center;">
   <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(120% 80% at 50% 0%,#000 30%,transparent 70%);mask-image:radial-gradient(120% 80% at 50% 0%,#000 30%,transparent 70%);"></div>
-  <div style="position:absolute;top:-160px;left:8%;width:460px;height:380px;background:radial-gradient(circle,rgba(34,211,238,.28),transparent 62%);filter:blur(26px);pointer-events:none;"></div>
-  <div style="position:absolute;top:-130px;right:8%;width:440px;height:360px;background:radial-gradient(circle,rgba(139,92,246,.32),transparent 62%);filter:blur(26px);pointer-events:none;"></div>
+  <div style="position:absolute;top:-160px;left:8%;width:460px;height:380px;background:radial-gradient(circle,rgba(56,189,248,.28),transparent 62%);filter:blur(26px);pointer-events:none;"></div>
+  <div style="position:absolute;top:-130px;right:8%;width:440px;height:360px;background:radial-gradient(circle,rgba(62,107,214,.32),transparent 62%);filter:blur(26px);pointer-events:none;"></div>
   <div style="position:relative;max-width:900px;margin:0 auto;">
-    <div class="mono" style="display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.16em;color:#a78bfa;border:1px solid rgba(167,139,250,.3);background:rgba(167,139,250,.06);padding:6px 14px;border-radius:999px;text-transform:uppercase;">For entertainment &amp; production companies</div>
-    <h1 style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(40px,7vw,64px);line-height:1.04;letter-spacing:-.03em;margin:26px 0 0;color:#f7f5fb;">An agentic workforce belongs<br><span class="grad-text">on the call sheet.</span></h1>
-    <p style="font-size:19px;line-height:1.62;color:#a39db3;max-width:680px;margin:26px auto 0;">Yours, specifically. Six agents across bidding, production, creative, development, rights, and distribution — pulling every project from pitch to delivery, measured in bids won, overages caught, and days saved. Your people keep the creative reins.</p>
+    <div class="mono" style="display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.16em;color:#8fb0f2;border:1px solid rgba(143,176,242,.3);background:rgba(143,176,242,.06);padding:6px 14px;border-radius:999px;text-transform:uppercase;">For entertainment &amp; production companies</div>
+    <h1 style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(40px,7vw,64px);line-height:1.04;letter-spacing:-.03em;margin:26px 0 0;color:#f6f9fd;">An agentic workforce belongs<br><span class="grad-text">on the call sheet.</span></h1>
+    <p style="font-size:19px;line-height:1.62;color:#9ea9bf;max-width:680px;margin:26px auto 0;">Yours, specifically. Six agents across bidding, production, creative, development, rights, and distribution — pulling every project from pitch to delivery, measured in bids won, overages caught, and days saved. Your people keep the creative reins.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:36px;flex-wrap:wrap;">
       <a class="btn-grad" href="mailto:hello@dogsledlabs.com?subject=Agentic%20workforce%20for%20our%20studio">Crew up with agents &rarr;</a>
       <a class="btn-ghost" href="#agents">Meet the crew</a>
     </div>
-    <div class="mono" style="font-size:11px;letter-spacing:.14em;color:#6b6480;text-transform:uppercase;margin-top:30px;">More bids out &middot; fewer overages &middot; every note in one thread</div>
+    <div class="mono" style="font-size:11px;letter-spacing:.14em;color:#66738e;text-transform:uppercase;margin-top:30px;">More bids out &middot; fewer overages &middot; every note in one thread</div>
   </div>
 </section>
 
@@ -106,20 +106,20 @@
 <div style="padding:32px 40px;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.015);">
   <div style="display:flex;flex-wrap:wrap;justify-content:center;max-width:940px;margin:0 auto;">
     <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;border-right:1px solid rgba(255,255,255,.1);">
-      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#a78bfa;letter-spacing:-.02em;">2×</div>
-      <div style="font-size:13px;color:#a39db3;margin-top:6px;line-height:1.45;">the bids out the door, with sharper estimates</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#8fb0f2;letter-spacing:-.02em;">2×</div>
+      <div style="font-size:13px;color:#9ea9bf;margin-top:6px;line-height:1.45;">the bids out the door, with sharper estimates</div>
     </div>
     <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;border-right:1px solid rgba(255,255,255,.1);">
-      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#22d3ee;letter-spacing:-.02em;">Daily</div>
-      <div style="font-size:13px;color:#a39db3;margin-top:6px;line-height:1.45;">budget-vs-actuals visibility on every project</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#38bdf8;letter-spacing:-.02em;">Daily</div>
+      <div style="font-size:13px;color:#9ea9bf;margin-top:6px;line-height:1.45;">budget-vs-actuals visibility on every project</div>
     </div>
     <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;border-right:1px solid rgba(255,255,255,.1);">
-      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#f7f5fb;letter-spacing:-.02em;">Weeks</div>
-      <div style="font-size:13px;color:#a39db3;margin-top:6px;line-height:1.45;">to your first agent in production</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#f6f9fd;letter-spacing:-.02em;">Weeks</div>
+      <div style="font-size:13px;color:#9ea9bf;margin-top:6px;line-height:1.45;">to your first agent in production</div>
     </div>
     <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;">
-      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#a78bfa;letter-spacing:-.02em;">100%</div>
-      <div style="font-size:13px;color:#a39db3;margin-top:6px;line-height:1.45;">of the IP &amp; code stays yours</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#8fb0f2;letter-spacing:-.02em;">100%</div>
+      <div style="font-size:13px;color:#9ea9bf;margin-top:6px;line-height:1.45;">of the IP &amp; code stays yours</div>
     </div>
   </div>
   <div class="note" style="margin-top:18px;">Illustrative figures — replace with your engagement benchmarks</div>
@@ -127,7 +127,7 @@
 
 <!-- Agent roster -->
 <section class="section" id="agents" style="position:relative;overflow:hidden;">
-  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:760px;height:380px;background:radial-gradient(circle,rgba(139,92,246,.12),transparent 68%);filter:blur(26px);pointer-events:none;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:760px;height:380px;background:radial-gradient(circle,rgba(62,107,214,.12),transparent 68%);filter:blur(26px);pointer-events:none;"></div>
   <div style="position:relative;text-align:center;max-width:720px;margin:0 auto 46px;">
     <div class="eyebrow">The roster</div>
     <h2 class="h2">Agents for every stage of the slate.</h2>
@@ -137,9 +137,9 @@
   <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;max-width:1060px;margin:0 auto;">
 
     <div class="agent-card">
-      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#22d3ee;text-transform:uppercase;">Agent 01</div>
-      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Bidding &amp; Estimation Agent</div>
-      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">Bid more. Bid sharper. Win more.</div>
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#38bdf8;text-transform:uppercase;">Agent 01</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#eef3fa;margin:10px 0 4px;">Bidding &amp; Estimation Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d3dcea;">Bid more. Bid sharper. Win more.</div>
       <div class="agent-bullets">
         <div><span class="dot"></span><span class="txt">Breaks down scripts &amp; boards into scope, crew, and days</span></div>
         <div><span class="dot"></span><span class="txt">Builds estimates from your historical actuals — not gut feel</span></div>
@@ -152,9 +152,9 @@
     </div>
 
     <div class="agent-card">
-      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#a78bfa;text-transform:uppercase;">Agent 02</div>
-      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Production Management Agent</div>
-      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">On schedule, on budget, every day.</div>
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#8fb0f2;text-transform:uppercase;">Agent 02</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#eef3fa;margin:10px 0 4px;">Production Management Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d3dcea;">On schedule, on budget, every day.</div>
       <div class="agent-bullets">
         <div><span class="dot"></span><span class="txt">Keeps schedules, call sheets &amp; crew logistics current across changes</span></div>
         <div><span class="dot"></span><span class="txt">Tracks budget vs. actuals daily and flags overages before they compound</span></div>
@@ -167,9 +167,9 @@
     </div>
 
     <div class="agent-card">
-      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#22d3ee;text-transform:uppercase;">Agent 03</div>
-      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Creative Management Agent</div>
-      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">Every version, every note, one thread.</div>
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#38bdf8;text-transform:uppercase;">Agent 03</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#eef3fa;margin:10px 0 4px;">Creative Management Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d3dcea;">Every version, every note, one thread.</div>
       <div class="agent-bullets">
         <div><span class="dot"></span><span class="txt">Tracks cuts, assets &amp; versions across every tool you use</span></div>
         <div><span class="dot"></span><span class="txt">Consolidates stakeholder notes into one actionable list per review</span></div>
@@ -182,9 +182,9 @@
     </div>
 
     <div class="agent-card">
-      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#a78bfa;text-transform:uppercase;">Agent 04</div>
-      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Development &amp; Greenlight Agent</div>
-      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">Reads everything. Misses nothing.</div>
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#8fb0f2;text-transform:uppercase;">Agent 04</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#eef3fa;margin:10px 0 4px;">Development &amp; Greenlight Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d3dcea;">Reads everything. Misses nothing.</div>
       <div class="agent-bullets">
         <div><span class="dot"></span><span class="txt">Coverage on every incoming script &amp; pitch, in your house style</span></div>
         <div><span class="dot"></span><span class="txt">Pulls comps, audience signals &amp; talent data for each project</span></div>
@@ -197,9 +197,9 @@
     </div>
 
     <div class="agent-card">
-      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#22d3ee;text-transform:uppercase;">Agent 05</div>
-      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Rights &amp; Clearances Agent</div>
-      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">Know what you own — and what you owe.</div>
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#38bdf8;text-transform:uppercase;">Agent 05</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#eef3fa;margin:10px 0 4px;">Rights &amp; Clearances Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d3dcea;">Know what you own — and what you owe.</div>
       <div class="agent-bullets">
         <div><span class="dot"></span><span class="txt">Reads contracts into a living rights ledger by title &amp; territory</span></div>
         <div><span class="dot"></span><span class="txt">Checks availabilities and flags clearance gaps before air</span></div>
@@ -212,9 +212,9 @@
     </div>
 
     <div class="agent-card">
-      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#a78bfa;text-transform:uppercase;">Agent 06</div>
-      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#f3f0f7;margin:10px 0 4px;">Distribution &amp; Audience Agent</div>
-      <div style="font-size:14px;font-weight:600;color:#d7d2e2;">Every title where it earns the most.</div>
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#8fb0f2;text-transform:uppercase;">Agent 06</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#eef3fa;margin:10px 0 4px;">Distribution &amp; Audience Agent</div>
+      <div style="font-size:14px;font-weight:600;color:#d3dcea;">Every title where it earns the most.</div>
       <div class="agent-bullets">
         <div><span class="dot"></span><span class="txt">Monitors title performance across platforms &amp; territories</span></div>
         <div><span class="dot"></span><span class="txt">Recommends windowing and reconciles platform statements</span></div>
@@ -230,17 +230,17 @@
   <div class="note">Example agents — every roster is designed around your slate, your workflows, your goals</div>
 
   <!-- Mid-page direct CTA -->
-  <div style="position:relative;max-width:1060px;margin:40px auto 0;background:linear-gradient(160deg,#14111f,#0c0a14);border:1px solid rgba(167,139,250,.25);border-radius:18px;padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+  <div style="position:relative;max-width:1060px;margin:40px auto 0;background:linear-gradient(160deg,#131b2e,#0b1120);border:1px solid rgba(143,176,242,.25);border-radius:18px;padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
     <div>
-      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:21px;color:#f7f5fb;">Want this roster on your next production?</div>
-      <div style="font-size:14.5px;color:#a39db3;margin-top:6px;">Tell us your company and the workflow that hurts most. We'll come back with the first three agents worth deploying.</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:21px;color:#f6f9fd;">Want this roster on your next production?</div>
+      <div style="font-size:14.5px;color:#9ea9bf;margin-top:6px;">Tell us your company and the workflow that hurts most. We'll come back with the first three agents worth deploying.</div>
     </div>
     <a class="btn-grad" href="mailto:hello@dogsledlabs.com?subject=Agentic%20workforce%20for%20our%20studio&amp;body=Company%3A%0AHardest%20workflow%3A%0A">Send it over &rarr;</a>
   </div>
 </section>
 
 <!-- One paradigm -->
-<section class="section" id="paradigm" style="background:linear-gradient(180deg,#08070d,#0c0a14);border-top:1px solid rgba(255,255,255,.07);">
+<section class="section" id="paradigm" style="background:linear-gradient(180deg,#070b16,#0b1120);border-top:1px solid rgba(255,255,255,.07);">
   <div style="text-align:center;max-width:700px;margin:0 auto 46px;">
     <div class="eyebrow">One paradigm</div>
     <h2 class="h2">Six agents. One picture of your studio.</h2>
@@ -250,45 +250,45 @@
   <!-- Diagram -->
   <div style="display:flex;flex-direction:column;align-items:center;max-width:760px;margin:0 auto;">
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;">
-      <span class="chip" style="border-color:rgba(34,211,238,.3);">Bidding</span>
-      <span class="chip" style="border-color:rgba(167,139,250,.3);">Production</span>
-      <span class="chip" style="border-color:rgba(34,211,238,.3);">Creative</span>
-      <span class="chip" style="border-color:rgba(167,139,250,.3);">Development</span>
-      <span class="chip" style="border-color:rgba(34,211,238,.3);">Rights</span>
-      <span class="chip" style="border-color:rgba(167,139,250,.3);">Distribution</span>
+      <span class="chip" style="border-color:rgba(56,189,248,.3);">Bidding</span>
+      <span class="chip" style="border-color:rgba(143,176,242,.3);">Production</span>
+      <span class="chip" style="border-color:rgba(56,189,248,.3);">Creative</span>
+      <span class="chip" style="border-color:rgba(143,176,242,.3);">Development</span>
+      <span class="chip" style="border-color:rgba(56,189,248,.3);">Rights</span>
+      <span class="chip" style="border-color:rgba(143,176,242,.3);">Distribution</span>
     </div>
-    <div style="width:2px;height:26px;background:linear-gradient(180deg,#a78bfa,#22d3ee);margin-top:14px;"></div>
-    <div class="mono" style="font-size:13px;color:#a78bfa;line-height:1;margin:3px 0 9px;">&#9662;</div>
-    <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(167,139,250,.4);background:rgba(167,139,250,.08);border-radius:12px;padding:13px 20px;">
-      <span style="width:9px;height:9px;border-radius:50%;background:linear-gradient(92deg,#a78bfa,#22d3ee);box-shadow:0 0 10px rgba(139,92,246,.7);"></span>
-      <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:#f3f0f7;">One unified data paradigm</span>
+    <div style="width:2px;height:26px;background:linear-gradient(180deg,#8fb0f2,#38bdf8);margin-top:14px;"></div>
+    <div class="mono" style="font-size:13px;color:#8fb0f2;line-height:1;margin:3px 0 9px;">&#9662;</div>
+    <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(143,176,242,.4);background:rgba(143,176,242,.08);border-radius:12px;padding:13px 20px;">
+      <span style="width:9px;height:9px;border-radius:50%;background:linear-gradient(92deg,#8fb0f2,#38bdf8);box-shadow:0 0 10px rgba(62,107,214,.7);"></span>
+      <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:#eef3fa;">One unified data paradigm</span>
     </div>
-    <div style="width:2px;height:22px;background:linear-gradient(180deg,#22d3ee,rgba(255,255,255,.15));margin-top:10px;"></div>
+    <div style="width:2px;height:22px;background:linear-gradient(180deg,#38bdf8,rgba(255,255,255,.15));margin-top:10px;"></div>
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px;">
-      <span class="chip" style="color:#a39db3;">Budgets &amp; actuals</span>
-      <span class="chip" style="color:#a39db3;">Scheduling</span>
-      <span class="chip" style="color:#a39db3;">Asset systems</span>
-      <span class="chip" style="color:#a39db3;">Contracts</span>
-      <span class="chip" style="color:#a39db3;">Platform reports</span>
+      <span class="chip" style="color:#9ea9bf;">Budgets &amp; actuals</span>
+      <span class="chip" style="color:#9ea9bf;">Scheduling</span>
+      <span class="chip" style="color:#9ea9bf;">Asset systems</span>
+      <span class="chip" style="color:#9ea9bf;">Contracts</span>
+      <span class="chip" style="color:#9ea9bf;">Platform reports</span>
     </div>
-    <div style="font-size:11.5px;color:#8b8598;margin-top:12px;text-align:center;">Your systems stay where they are — the paradigm unifies what agents see</div>
+    <div style="font-size:11.5px;color:#8791a5;margin-top:12px;text-align:center;">Your systems stay where they are — the paradigm unifies what agents see</div>
   </div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:980px;margin:46px auto 0;">
     <div class="step-card">
-      <div style="width:42px;height:42px;border-radius:12px;background:rgba(167,139,250,.13);display:flex;align-items:center;justify-content:center;gap:3px;margin-bottom:18px;"><span style="width:6px;height:6px;border-radius:50%;background:#a78bfa;"></span><span style="width:6px;height:6px;border-radius:50%;background:#22d3ee;"></span><span style="width:6px;height:6px;border-radius:50%;background:#a78bfa;"></span></div>
-      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#f3f0f7;">They scale together</div>
-      <div style="font-size:14.5px;line-height:1.55;color:#9b95a8;margin-top:8px;">Every new agent starts with everything the team already knows about your slate. Adding the tenth is as easy as the first — you grow a workforce, not a pile of pilots.</div>
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(143,176,242,.13);display:flex;align-items:center;justify-content:center;gap:3px;margin-bottom:18px;"><span style="width:6px;height:6px;border-radius:50%;background:#8fb0f2;"></span><span style="width:6px;height:6px;border-radius:50%;background:#38bdf8;"></span><span style="width:6px;height:6px;border-radius:50%;background:#8fb0f2;"></span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#eef3fa;">They scale together</div>
+      <div style="font-size:14.5px;line-height:1.55;color:#96a1b5;margin-top:8px;">Every new agent starts with everything the team already knows about your slate. Adding the tenth is as easy as the first — you grow a workforce, not a pile of pilots.</div>
     </div>
     <div class="step-card">
-      <div style="width:42px;height:42px;border-radius:12px;background:rgba(34,211,238,.13);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><span style="width:15px;height:15px;border-radius:4px;background:#22d3ee;"></span></div>
-      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#f3f0f7;">They compound</div>
-      <div style="font-size:14.5px;line-height:1.55;color:#9b95a8;margin-top:8px;">When production closes out a job, bidding's next estimate gets sharper. When rights clears a title, distribution can move the same day. Efficiency compounds across the roster.</div>
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(56,189,248,.13);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><span style="width:15px;height:15px;border-radius:4px;background:#38bdf8;"></span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#eef3fa;">They compound</div>
+      <div style="font-size:14.5px;line-height:1.55;color:#96a1b5;margin-top:8px;">When production closes out a job, bidding's next estimate gets sharper. When rights clears a title, distribution can move the same day. Efficiency compounds across the roster.</div>
     </div>
     <div class="step-card">
-      <div style="width:42px;height:42px;border-radius:12px;background:rgba(167,139,250,.13);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><span style="width:15px;height:15px;border-radius:50%;border:2.5px solid #a78bfa;"></span></div>
-      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#f3f0f7;">Their work is transparent</div>
-      <div style="font-size:14.5px;line-height:1.55;color:#9b95a8;margin-top:8px;">Every action is logged with its reasoning. You can audit any estimate, any note, any clearance call — correct it, and the whole team learns from the correction. A glass box, never a black box.</div>
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(143,176,242,.13);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><span style="width:15px;height:15px;border-radius:50%;border:2.5px solid #8fb0f2;"></span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#eef3fa;">Their work is transparent</div>
+      <div style="font-size:14.5px;line-height:1.55;color:#96a1b5;margin-top:8px;">Every action is logged with its reasoning. You can audit any estimate, any note, any clearance call — correct it, and the whole team learns from the correction. A glass box, never a black box.</div>
     </div>
   </div>
 </section>
@@ -298,48 +298,48 @@
   <div style="text-align:center;max-width:700px;margin:0 auto 44px;">
     <div class="eyebrow">Your transformation partner</div>
     <h2 class="h2">Experienced hands on the reins.</h2>
-    <p class="sub" style="max-width:620px;">Dogsled Labs is the lab of <a href="https://www.bobsled.com" style="color:#d7d2e2;border-bottom:1px solid rgba(255,255,255,.25);">Bobsled</a> — built by a team that has spent years harnessing enterprise data. We embed with your team, forward-deployed, and own the path from your goals to a working agentic workforce. Agents handle the coordination; your people keep the creative reins.</p>
+    <p class="sub" style="max-width:620px;">Dogsled Labs is the lab of <a href="https://www.bobsled.com" style="color:#d3dcea;border-bottom:1px solid rgba(255,255,255,.25);">Bobsled</a> — built by a team that has spent years harnessing enterprise data. We embed with your team, forward-deployed, and own the path from your goals to a working agentic workforce. Agents handle the coordination; your people keep the creative reins.</p>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:980px;margin:0 auto;">
     <div class="step-card">
       <span class="step-num">01</span>
-      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#f3f0f7;">Map</div><div style="font-size:14px;line-height:1.55;color:#9b95a8;margin-top:8px;">Your slate, your data, your workflows — ranked by impact and readiness, with the ROI case for each agent up front.</div></div>
+      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#eef3fa;">Map</div><div style="font-size:14px;line-height:1.55;color:#96a1b5;margin-top:8px;">Your slate, your data, your workflows — ranked by impact and readiness, with the ROI case for each agent up front.</div></div>
     </div>
     <div class="step-card">
       <span class="step-num">02</span>
-      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#f3f0f7;">Deploy</div><div style="font-size:14px;line-height:1.55;color:#9b95a8;margin-top:8px;">First agents in production in weeks — embedded where your teams already work, with handoffs and guardrails designed in.</div></div>
+      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#eef3fa;">Deploy</div><div style="font-size:14px;line-height:1.55;color:#96a1b5;margin-top:8px;">First agents in production in weeks — embedded where your teams already work, with handoffs and guardrails designed in.</div></div>
     </div>
-    <div class="step-card" style="border-color:rgba(167,139,250,.25);">
-      <span class="step-num" style="color:rgba(167,139,250,.12);">03</span>
-      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#f3f0f7;">Scale</div><div style="font-size:14px;line-height:1.55;color:#9b95a8;margin-top:8px;">Grow the roster on the one paradigm — and take the reins. The IP, the code, the agents: yours from day one.</div></div>
+    <div class="step-card" style="border-color:rgba(143,176,242,.25);">
+      <span class="step-num" style="color:rgba(143,176,242,.12);">03</span>
+      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#eef3fa;">Scale</div><div style="font-size:14px;line-height:1.55;color:#96a1b5;margin-top:8px;">Grow the roster on the one paradigm — and take the reins. The IP, the code, the agents: yours from day one.</div></div>
     </div>
   </div>
 </section>
 
 <!-- Final CTA -->
-<section style="position:relative;padding:104px 40px;text-align:center;overflow:hidden;background:linear-gradient(180deg,#08070d,#0c0a14);border-top:1px solid rgba(255,255,255,.07);">
-  <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 120%,rgba(139,92,246,.26),transparent 58%),radial-gradient(circle at 50% -10%,rgba(34,211,238,.14),transparent 55%);"></div>
+<section style="position:relative;padding:104px 40px;text-align:center;overflow:hidden;background:linear-gradient(180deg,#070b16,#0b1120);border-top:1px solid rgba(255,255,255,.07);">
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 120%,rgba(62,107,214,.26),transparent 58%),radial-gradient(circle at 50% -10%,rgba(56,189,248,.14),transparent 55%);"></div>
   <div style="position:relative;max-width:720px;margin:0 auto;">
-    <h2 style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(34px,5.5vw,46px);line-height:1.05;letter-spacing:-.03em;color:#f7f5fb;margin:0;">Stop piloting. Start deploying.</h2>
-    <p style="font-size:17px;line-height:1.62;color:#a39db3;margin:18px auto 32px;max-width:580px;">Email us today. Within two weeks we'll map your data and workflows and hand you a roadmap for the first three agents worth deploying — before your next bid goes out.</p>
+    <h2 style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(34px,5.5vw,46px);line-height:1.05;letter-spacing:-.03em;color:#f6f9fd;margin:0;">Stop piloting. Start deploying.</h2>
+    <p style="font-size:17px;line-height:1.62;color:#9ea9bf;margin:18px auto 32px;max-width:580px;">Email us today. Within two weeks we'll map your data and workflows and hand you a roadmap for the first three agents worth deploying — before your next bid goes out.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
       <a class="btn-grad" style="padding:15px 28px;" href="mailto:hello@dogsledlabs.com?subject=Agentic%20workforce%20for%20our%20studio">Get your agent roadmap</a>
-      <a class="mono" href="mailto:hello@dogsledlabs.com" style="font-size:15px;color:#a39db3;">hello@dogsledlabs.com</a>
+      <a class="mono" href="mailto:hello@dogsledlabs.com" style="font-size:15px;color:#9ea9bf;">hello@dogsledlabs.com</a>
     </div>
   </div>
 </section>
 
 <footer class="site">
   <div style="display:flex;align-items:center;gap:11px;">
-    <svg width="20" height="20" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="dlfurf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><polygon points="24,23 31,2 45,16" fill="url(#dlfurf)"/><polygon points="76,23 69,2 55,16" fill="url(#dlfurf)"/><polygon points="29,16 31.5,7 39,13.5" fill="#c4b5fd" opacity="0.75"/><polygon points="71,16 68.5,7 61,13.5" fill="#c4b5fd" opacity="0.75"/><polygon points="22,21 78,21 86,31 90,44 84,50 89,57 81,60 84,68 70,74 60,78 50,79 40,78 30,74 16,68 19,60 11,57 16,50 10,44 14,31" fill="#f3f0f7"/><polygon points="22,21 78,21 86,31 90,44 84,50 70,54 58,52 53,56 50,33 47,56 42,52 30,54 16,50 10,44 14,31" fill="url(#dlfurf)"/><polygon points="25,45.5 31.5,40.5 39,43 32.5,48" fill="#22d3ee"/><polygon points="75,45.5 68.5,40.5 61,43 67.5,48" fill="#22d3ee"/><rect x="43.5" y="57.5" width="13" height="6.5" rx="3" fill="#0a0c11"/><rect x="49.35" y="63.5" width="1.3" height="5" fill="#0a0c11" opacity="0.45"/><rect x="33" y="81" width="34" height="4.4" rx="2.2" fill="#22d3ee"/><rect x="26" y="88" width="48" height="4.4" rx="2.2" fill="#8b5cf6"/><rect x="19" y="95" width="62" height="4.4" rx="2.2" fill="#f3f0f7" opacity="0.92"/></svg>
-    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:15px;color:#f3f0f7;">Dogsled Labs</span>
-    <span style="font-size:13px;color:#736c84;margin-left:6px;">— the lab of <a href="https://www.bobsled.com" style="color:#a39db3;border-bottom:1px solid rgba(255,255,255,.2);">Bobsled</a></span>
+    <svg width="20" height="20" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="dlfurf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9eff9"/><stop offset="1" stop-color="#c6d6f1"/></linearGradient></defs><polygon points="18,22 30,2 40,16" fill="url(#dlfurf)"/><polygon points="42,14 52,2 58,18" fill="url(#dlfurf)"/><polygon points="16,22 58,18 66,26 86,38 86,43 64,45 30,46 16,44" fill="url(#dlfurf)"/><polygon points="16,47 30,49 62,48 70,52 54,57 16,55" fill="url(#dlfurf)"/><polygon points="16,58 54,59 40,66 16,67" fill="url(#dlfurf)"/><polygon points="60,25 64.5,28 60,31 55.5,28" fill="#0b1424"/><polygon points="81,37 86,38 86,43 81,42" fill="#0b1424"/><polygon points="14,68 41,75 68,68 68,72.5 41,79.5 14,72.5" fill="#8fb0f2"/><polygon points="14,77 41,84 68,77 68,81.5 41,88.5 14,81.5" fill="#5f8ae4"/><polygon points="14,86 41,93 68,86 68,90.5 41,97.5 14,90.5" fill="#38bdf8"/></svg>
+    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:15px;color:#eef3fa;">Dogsled Labs</span>
+    <span style="font-size:13px;color:#707c93;margin-left:6px;">— the lab of <a href="https://www.bobsled.com" style="color:#9ea9bf;border-bottom:1px solid rgba(255,255,255,.2);">Bobsled</a></span>
   </div>
   <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;">
-    <a href="/" style="font-size:13px;color:#a39db3;">&larr; Dogsled Labs home</a>
-    <a href="/dtc/" style="font-size:13px;color:#a39db3;">For DTC &amp; consumer brands &rarr;</a>
-    <a href="/data-providers/" style="font-size:13px;color:#a39db3;">For data providers &rarr;</a>
-    <span class="mono" style="font-size:11px;color:#5c5670;">© 2026 Dogsled Labs</span>
+    <a href="/" style="font-size:13px;color:#9ea9bf;">&larr; Dogsled Labs home</a>
+    <a href="/dtc/" style="font-size:13px;color:#9ea9bf;">For DTC &amp; consumer brands &rarr;</a>
+    <a href="/data-providers/" style="font-size:13px;color:#9ea9bf;">For data providers &rarr;</a>
+    <span class="mono" style="font-size:11px;color:#57647e;">© 2026 Dogsled Labs</span>
   </div>
 </footer>
 
