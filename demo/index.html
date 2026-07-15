@@ -339,6 +339,12 @@
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
+    // All steps share one <form>, so pressing Enter can submit from step 1 or 2.
+    // Enforce the whole wizard here — not just step 3 — otherwise a partial/empty
+    // lead reaches the success panel while both API sinks reject it.
+    for(const s of [1,2]){
+      if(!validate(s)){ if(cur!==s){ cur=s; paint(); } return; }
+    }
     if(!validate(3)) return;
     const btn=document.getElementById('submitBtn');
     btn.disabled=true; btn.textContent='Booking…';
