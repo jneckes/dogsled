@@ -1,9 +1,9 @@
-// POST /api/crm-sync — secondary router for the demo-request lead.
+// POST /api/crm-sync — routes the demo-form lead into the Notion CRM.
 //
 // Upserts a Company and a Contact (deduped, so repeat submitters don't pile up)
 // and always creates an Event ("Demo Request") in the Notion CRM, linking the
-// Event to the Contact + Company. Runs independently of /api/demo-request (Slack)
-// so one failing never blocks the other.
+// Event to the Contact + Company. The team's Slack lead alert now comes from the
+// Cal.com booking webhook (/api/booking) once the visitor books a slot.
 //
 // Runtime: Vercel Node serverless function (Node 18+, global fetch).
 //
