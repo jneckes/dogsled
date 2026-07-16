@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snowpack — Dogsled Labs' Agentic Harness &amp; Data Foundation</title>
+<meta name="description" content="Snowpack is the general-purpose agentic harness and data foundation Dogsled Labs deploys inside your enterprise — deploy, command, and monitor agents across the critical workflows that drive your business. Customized for you. Owned by you.">
+<link rel="icon" type="image/svg+xml" href="/logo.svg?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#070b16;color:#eef3fa;font-family:'Manrope',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{text-decoration:none}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.16em;color:#8fb0f2;text-transform:uppercase}
+  .h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(30px,4.5vw,42px);line-height:1.06;letter-spacing:-.03em;color:#f6f9fd;margin:14px 0 0}
+  .sub{font-size:17px;line-height:1.62;color:#9ea9bf;margin:16px auto 0}
+  .grad-text{-webkit-background-clip:text;background-clip:text;color:transparent;background-image:linear-gradient(92deg,#8fb0f2,#38bdf8)}
+  .btn-grad{display:inline-block;font-size:15px;font-weight:600;color:#070b16;background:linear-gradient(92deg,#8fb0f2,#38bdf8);padding:14px 26px;border-radius:999px;transition:filter .15s}
+  .btn-grad:hover{filter:brightness(1.1)}
+  .btn-ghost{display:inline-block;font-size:15px;font-weight:600;color:#d3dcea;border:1px solid rgba(255,255,255,.16);padding:14px 26px;border-radius:999px;transition:border-color .15s}
+  .btn-ghost:hover{border-color:rgba(255,255,255,.4)}
+  .chip{display:inline-block;font-size:12px;color:#c4cedf;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:5px 11px}
+  .section{padding:92px 40px}
+  .note{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:#57647e;text-transform:uppercase;margin-top:20px}
+  header.site{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid rgba(255,255,255,.07);flex-wrap:wrap;gap:14px}
+  .logo{display:flex;align-items:center;gap:8px}
+  .navpill{display:flex;align-items:center;gap:40px;padding:9px 24px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.02)}
+  .navpill a{font-size:14.5px;font-weight:600;color:#c4cedf;transition:color .15s}
+  .navpill a:hover{color:#fff}
+  .dl-dd{position:relative;display:inline-flex}
+  .dl-dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;display:none;z-index:200}
+  .dl-dd:hover .dl-dd-menu,.dl-dd:focus-within .dl-dd-menu{display:block}
+  .dl-dd-inner{min-width:268px;background:#0c1322;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;box-shadow:0 20px 44px rgba(0,0,0,.55)}
+  .dl-dd-eyebrow{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:9.5px;letter-spacing:.16em;color:#66738e;text-transform:uppercase;padding:6px 12px 8px}
+  .dl-dd-inner a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font-size:13.5px;color:#c4cedf}
+  .dl-dd-inner a:hover{background:rgba(143,176,242,.12);color:#fff}
+  .dl-dd-num{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:10px;color:#8fb0f2}
+  .part-card{position:relative;overflow:hidden;background:linear-gradient(160deg,#131b2e,#0b1120);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:28px;display:flex;flex-direction:column;transition:border-color .15s}
+  .part-card:hover{border-color:rgba(143,176,242,.35)}
+  .part-bullets{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+  .part-bullets div{display:flex;gap:10px;align-items:flex-start}
+  .part-bullets span.dot{width:6px;height:6px;border-radius:50%;background:#8fb0f2;margin-top:7px;flex:none}
+  .part-bullets span.txt{font-size:13.5px;line-height:1.5;color:#bcc7da}
+  .feeds{margin-top:auto;padding-top:18px}
+  .feeds .chip{font-size:11px;padding:4px 10px;color:#9ea9bf}
+  .step-card{position:relative;overflow:hidden;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:26px}
+  .step-num{position:absolute;top:-10px;right:14px;font-family:'Sora',sans-serif;font-weight:800;font-size:64px;color:rgba(255,255,255,.045)}
+  footer.site{padding:36px 40px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .mnav{display:none}
+  header.site{position:relative}
+  .mnav summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(255,255,255,.14);border-radius:12px;background:rgba(255,255,255,.03)}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav[open] summary{border-color:rgba(143,176,242,.5)}
+  .mnav-panel{position:absolute;right:22px;top:calc(100% + 8px);min-width:252px;background:#0c1322;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;box-shadow:0 20px 44px rgba(0,0,0,.55);z-index:300}
+  .mnav-panel a{display:block;padding:9px 12px;border-radius:9px;font-size:14px;font-weight:600;color:#c4cedf}
+  .mnav-panel a:hover{background:rgba(143,176,242,.12);color:#fff}
+  .mnav-eyebrow{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:9.5px;letter-spacing:.16em;color:#66738e;text-transform:uppercase;padding:8px 12px 5px}
+  @media (max-width:940px){.navpill{display:none}.mnav{display:block}}
+  @media (max-width:720px){.section{padding:64px 22px}header.site{padding:16px 22px}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a href="/" class="logo" aria-label="Dogsled Labs home">
+    <svg width="28" height="28" viewBox="0 0 644 644" aria-hidden="true"><path fill="#79b3f9" fill-rule="evenodd" d="M187.8 549.2L94.1 488.5L94 470.8L94 453L102.2 458.4C106.8 461.3 149.2 488.8 196.4 519.4C243.7 550 282.8 574.9 283.4 574.7C284 574.4 324.7 551 373.8 522.6C422.8 494.2 463.2 471 463.5 471C463.8 471 464 478.6 464 487.9L464 504.8L373 557.4C323 586.3 281.9 610 281.8 610C281.6 610 239.3 582.6 187.8 549.2ZM189.9 480C139.6 447.5 97.5 420.2 96.2 419.2C93.9 417.5 93.9 417.2 94.2 400.3L94.5 383L187.5 443.2C238.7 476.3 281.2 503.4 282 503.4C282.9 503.4 323.9 480.2 373.2 451.7C422.5 423.3 463.1 400 463.4 400C463.7 400 464 407.6 464 416.8L464 433.7L375.8 484.5C327.2 512.5 286.1 536.2 284.4 537.2L281.3 539L189.9 480ZM245 437.4C223.8 424.4 206.2 413.5 205.9 413.2C205.5 412.8 206 406.9 207.1 400C208.1 393.1 209 386.7 209 385.8C209 384.1 207.4 384 188.7 384L168.5 384L141.7 367.7C127 358.7 114.7 351 114.3 350.7C114 350.3 126 312 141 265.6L168.3 181.2L212.9 157L257.5 132.9L280.5 98.7C310.1 54.6 319.6 44.6 339.2 36.9L344 35L344 76L344 117L350.2 119.9C353.7 121.4 356.8 122.5 357.2 122.1C357.5 121.8 361.5 114.8 366 106.5C375.2 89.8 376.5 87.7 382.8 80.2C386.6 75.6 397.9 66 399.4 66C399.7 66 400.1 82.3 400.2 102.2L400.5 138.3L425.2 151.4L450 164.4L450 181L450 197.5L495.3 214.9C520.1 224.5 542.9 233.4 545.8 234.6L551 236.9L551 246.5C551 255.7 550.8 256.4 546.9 264.3C534.7 288.6 513.9 310.6 491.5 322.4L486.7 325L449 325C406.3 325 410 324.2 410 333.6C410 343.3 412.9 347.2 428.9 359.7C436.6 365.6 442.6 370.8 442.2 371.1C441 372.2 284.7 461 284.1 461C283.8 460.9 266.2 450.3 245 437.4ZM367.2 333.4L402.2 298.9L432.3 299.7C480.3 301 476.1 301.3 487.5 295.6C495.3 291.8 498.8 289.2 504.4 283.6C510.8 277.2 516.1 269.7 515 268.7C514.7 268.5 510 266.6 504.5 264.4L494.5 260.5L494 250.6L493.5 240.8L458.5 228.5L423.5 216.2L423.2 196.6C423.1 185.8 422.8 177 422.6 177C422.5 177 416.3 175.1 408.9 172.8C395.8 168.8 395.1 168.7 381 168.6C367.8 168.6 365.8 168.8 358.5 171.2C354.1 172.7 348 175.5 345 177.4L339.5 180.9L317.1 181C299.7 181 294.9 181.3 295.3 182.2C295.5 182.9 298.5 187.7 301.8 192.9L307.9 202.3L297.4 209.6C291.6 213.6 283.5 219 279.4 221.7L272 226.5L272 255.5L272.1 284.5L301.7 326.2C318.1 349.2 331.6 368 331.8 368C332 368 347.9 352.5 367.2 333.4ZM356.8 215.4C350.8 211.8 346 208.6 346 208.2C346 207.8 349.8 204.7 354.4 201.2L362.7 195L379.6 195.2L396.5 195.5L397.2 200.8C398.1 206.7 400.8 212.6 405.2 218.2L408.2 222L387.8 222L367.5 221.9L356.8 215.4Z"/></svg>
+    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.02em;color:#eef3fa;">Dogsled<span style="color:#8fb0f2;"> Labs</span></span>
+  </a>
+  <nav style="display:flex;align-items:center;gap:14px;">
+    <div class="navpill">
+      <a href="/why-dogsled/">Why Dogsled</a>
+      <a href="/bearings/">Bearings</a>
+      <a href="/checkpoints/">Checkpoints</a>
+      <a href="/snowpack/" style="color:#fff;">Snowpack</a>
+      <div class="dl-dd">
+        <a href="#" onclick="return false">Trails <span style="font-size:9px;color:#66738e;">&#9662;</span></a>
+        <div class="dl-dd-menu">
+          <div class="dl-dd-inner">
+            <div class="dl-dd-eyebrow">Where we run</div>
+            <a href="/dtc/"><span class="dl-dd-num">01</span> DTC &amp; Consumer Brands</a>
+            <a href="/entertainment/"><span class="dl-dd-num">02</span> Entertainment &amp; Production</a>
+            <a href="/data-providers/"><span class="dl-dd-num">03</span> Data Providers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+      <details class="mnav">
+        <summary aria-label="Open menu"><svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true"><rect y="0" width="18" height="2" rx="1" fill="#c4cedf"/><rect y="6" width="18" height="2" rx="1" fill="#c4cedf"/><rect y="12" width="18" height="2" rx="1" fill="#c4cedf"/></svg></summary>
+        <div class="mnav-panel">
+          <div class="mnav-eyebrow">Dogsled Labs</div>
+          <a href="/why-dogsled/">Why Dogsled</a>
+          <a href="/bearings/">Bearings</a>
+          <a href="/checkpoints/">Checkpoints</a>
+          <a href="/snowpack/">Snowpack</a>
+          <a href="/">Home</a>
+          <div class="mnav-eyebrow">Where we run</div>
+          <a href="/dtc/">DTC &amp; Consumer Brands</a>
+          <a href="/entertainment/">Entertainment &amp; Production</a>
+          <a href="/data-providers/">Data Providers</a>
+        </div>
+      </details>
+    <a class="btn-grad" style="font-size:14px;padding:10px 18px;" href="/demo/?src=snowpack">Get in touch</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section style="position:relative;padding:104px 40px 90px;overflow:hidden;text-align:center;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(120% 80% at 50% 0%,#000 30%,transparent 70%);mask-image:radial-gradient(120% 80% at 50% 0%,#000 30%,transparent 70%);"></div>
+  <div style="position:absolute;top:-160px;left:8%;width:460px;height:380px;background:radial-gradient(circle,rgba(62,107,214,.34),transparent 62%);filter:blur(26px);pointer-events:none;"></div>
+  <div style="position:absolute;top:-130px;right:8%;width:440px;height:360px;background:radial-gradient(circle,rgba(56,189,248,.26),transparent 62%);filter:blur(26px);pointer-events:none;"></div>
+  <div style="position:relative;max-width:900px;margin:0 auto;">
+    <div class="mono" style="display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.16em;color:#8fb0f2;border:1px solid rgba(143,176,242,.3);background:rgba(143,176,242,.06);padding:6px 14px;border-radius:999px;text-transform:uppercase;">Our technology</div>
+    <h1 style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(40px,7vw,64px);line-height:1.04;letter-spacing:-.03em;margin:26px 0 0;color:#f6f9fd;">Every agent. Solid ground.<br><span class="grad-text">Meet Snowpack.</span></h1>
+    <p style="font-size:19px;line-height:1.62;color:#9ea9bf;max-width:700px;margin:26px auto 0;">On the trail, everything runs on the snowpack — the packed base that carries the whole team. Ours carries your agents: a general-purpose agentic harness and data foundation that lets you deploy, command, and monitor agents across every critical workflow. We customize it and deploy it for you. You own it.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:36px;flex-wrap:wrap;">
+      <a class="btn-grad" href="/demo/?src=snowpack">See Snowpack on your data &rarr;</a>
+      <a class="btn-ghost" href="#harness">How it works</a>
+    </div>
+    <div class="mono" style="font-size:11px;letter-spacing:.14em;color:#66738e;text-transform:uppercase;margin-top:30px;">Deploy &middot; Command &middot; Monitor &mdash; on solid ground</div>
+  </div>
+</section>
+
+<!-- Quick facts band -->
+<div style="padding:32px 40px;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.015);">
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;max-width:940px;margin:0 auto;">
+    <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;border-right:1px solid rgba(255,255,255,.1);">
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#8fb0f2;letter-spacing:-.02em;">Weeks</div>
+      <div style="font-size:13px;color:#9ea9bf;margin-top:6px;line-height:1.45;">from kickoff to agents in production</div>
+    </div>
+    <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;border-right:1px solid rgba(255,255,255,.1);">
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#38bdf8;letter-spacing:-.02em;">100%</div>
+      <div style="font-size:13px;color:#9ea9bf;margin-top:6px;line-height:1.45;">of the IP &amp; code stays yours</div>
+    </div>
+    <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;border-right:1px solid rgba(255,255,255,.1);">
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#f6f9fd;letter-spacing:-.02em;">Every</div>
+      <div style="font-size:13px;color:#9ea9bf;margin-top:6px;line-height:1.45;">agent action logged with its reasoning</div>
+    </div>
+    <div style="flex:1;min-width:180px;text-align:center;padding:4px 22px;">
+      <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:34px;color:#8fb0f2;letter-spacing:-.02em;">Zero</div>
+      <div style="font-size:13px;color:#9ea9bf;margin-top:6px;line-height:1.45;">lock-in — swap any model, tool, or cloud</div>
+    </div>
+  </div>
+</div>
+
+<!-- The Harness -->
+<section class="section" id="harness" style="position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:760px;height:380px;background:radial-gradient(circle,rgba(62,107,214,.12),transparent 68%);filter:blur(26px);pointer-events:none;"></div>
+  <div style="position:relative;text-align:center;max-width:720px;margin:0 auto 42px;">
+    <div class="eyebrow">The harness</div>
+    <h2 class="h2">Four parts. One system.</h2>
+    <p class="sub" style="max-width:620px;">Snowpack is what every Dogsled engagement runs on — the same architecture whether your agents are chasing purchase orders or clearing rights.</p>
+  </div>
+
+  <!-- Architecture diagram -->
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;max-width:760px;margin:0 auto 46px;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;">
+      <span class="chip" style="border-color:rgba(56,189,248,.3);">Acquisition agent</span>
+      <span class="chip" style="border-color:rgba(143,176,242,.3);">Bidding agent</span>
+      <span class="chip" style="border-color:rgba(56,189,248,.3);">Mastering agent</span>
+      <span class="chip" style="border-color:rgba(143,176,242,.3);">Care agent</span>
+      <span class="chip" style="border-color:rgba(56,189,248,.3);">Yours next</span>
+    </div>
+    <div style="width:2px;height:24px;background:linear-gradient(180deg,#8fb0f2,#38bdf8);margin-top:12px;"></div>
+    <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(143,176,242,.4);background:rgba(143,176,242,.08);border-radius:12px;padding:12px 20px;margin-top:8px;">
+      <span style="width:9px;height:9px;border-radius:50%;background:linear-gradient(92deg,#8fb0f2,#38bdf8);box-shadow:0 0 10px rgba(62,107,214,.7);"></span>
+      <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:#eef3fa;">Gangline Runtime &mdash; the harness</span>
+    </div>
+    <div style="width:2px;height:20px;background:linear-gradient(180deg,#38bdf8,rgba(255,255,255,.15));margin-top:8px;"></div>
+    <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);border-radius:12px;padding:12px 20px;margin-top:6px;">
+      <span style="width:9px;height:9px;border-radius:3px;background:#38bdf8;"></span>
+      <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:#eef3fa;">Permafrost &mdash; the data foundation</span>
+    </div>
+    <div style="width:2px;height:20px;background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.05));margin-top:8px;"></div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:6px;">
+      <span class="chip" style="color:#9ea9bf;">Warehouse</span>
+      <span class="chip" style="color:#9ea9bf;">ERP</span>
+      <span class="chip" style="color:#9ea9bf;">CRM</span>
+      <span class="chip" style="color:#9ea9bf;">SaaS apps</span>
+      <span class="chip" style="color:#9ea9bf;">Streams</span>
+    </div>
+    <div style="font-size:11.5px;color:#8791a5;margin-top:12px;text-align:center;">Your systems stay where they are &mdash; Snowpack harnesses what's already there</div>
+  </div>
+
+  <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;max-width:1060px;margin:0 auto;">
+
+    <div class="part-card">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#38bdf8;text-transform:uppercase;">Part 01</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#eef3fa;margin:10px 0 4px;">Permafrost</div>
+      <div style="font-size:14px;font-weight:600;color:#d3dcea;">One governed picture of your business.</div>
+      <div class="part-bullets">
+        <div><span class="dot"></span><span class="txt">Unifies your warehouse, apps &amp; streams without moving your systems</span></div>
+        <div><span class="dot"></span><span class="txt">Governance &amp; entitlements built in from day one</span></div>
+        <div><span class="dot"></span><span class="txt">Every agent reads the same truth — no drift between teams</span></div>
+      </div>
+      <div class="feeds"><span class="chip">Data foundation</span></div>
+    </div>
+
+    <div class="part-card">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#8fb0f2;text-transform:uppercase;">Part 02</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#eef3fa;margin:10px 0 4px;">Gangline Runtime</div>
+      <div style="font-size:14px;font-weight:600;color:#d3dcea;">Hitch any agent to the line.</div>
+      <div class="part-bullets">
+        <div><span class="dot"></span><span class="txt">Shared context, tools &amp; guardrails for every agent you deploy</span></div>
+        <div><span class="dot"></span><span class="txt">Clean handoffs between agents — and between agents and people</span></div>
+        <div><span class="dot"></span><span class="txt">Add the tenth agent as easily as the first</span></div>
+      </div>
+      <div class="feeds"><span class="chip">The harness</span></div>
+    </div>
+
+    <div class="part-card">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#38bdf8;text-transform:uppercase;">Part 03</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#eef3fa;margin:10px 0 4px;">Musher Console</div>
+      <div style="font-size:14px;font-weight:600;color:#d3dcea;">You hold the reins.</div>
+      <div class="part-bullets">
+        <div><span class="dot"></span><span class="txt">Set goals, priorities &amp; guardrails in plain language</span></div>
+        <div><span class="dot"></span><span class="txt">Approve what needs approving — nothing ships without you</span></div>
+        <div><span class="dot"></span><span class="txt">Redirect the whole team from one place, mid-run</span></div>
+      </div>
+      <div class="feeds"><span class="chip">Command</span></div>
+    </div>
+
+    <div class="part-card">
+      <div class="mono" style="font-size:10.5px;letter-spacing:.12em;color:#8fb0f2;text-transform:uppercase;">Part 04</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:20px;color:#eef3fa;margin:10px 0 4px;">Trail Log</div>
+      <div style="font-size:14px;font-weight:600;color:#d3dcea;">A glass box — never a black box.</div>
+      <div class="part-bullets">
+        <div><span class="dot"></span><span class="txt">Every action logged with the reasoning behind it</span></div>
+        <div><span class="dot"></span><span class="txt">Audit anything, correct anything — the whole team learns</span></div>
+        <div><span class="dot"></span><span class="txt">A compliance-ready trail from day one</span></div>
+      </div>
+      <div class="feeds"><span class="chip">Monitor</span></div>
+    </div>
+
+  </div>
+
+  <!-- Mid-page CTA -->
+  <div style="position:relative;max-width:1060px;margin:40px auto 0;background:linear-gradient(160deg,#131b2e,#0b1120);border:1px solid rgba(143,176,242,.25);border-radius:18px;padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+    <div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:21px;color:#f6f9fd;">Want to see Snowpack under your stack?</div>
+      <div style="font-size:14.5px;color:#9ea9bf;margin-top:6px;">Tell us your systems and your hardest workflow. We'll show you the harness running on data like yours.</div>
+    </div>
+    <a class="btn-grad" href="/demo/?src=snowpack">Book a demo &rarr;</a>
+  </div>
+</section>
+
+<!-- The Run: Deploy / Command / Monitor -->
+<section class="section" id="run" style="background:linear-gradient(180deg,#070b16,#0b1120);border-top:1px solid rgba(255,255,255,.07);">
+  <div style="text-align:center;max-width:700px;margin:0 auto 44px;">
+    <div class="eyebrow">The run</div>
+    <h2 class="h2">Deploy. Command. Monitor.</h2>
+    <p class="sub" style="max-width:600px;">Snowpack turns an agentic workforce from a science project into an operating rhythm.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:980px;margin:0 auto;">
+    <div class="step-card">
+      <span class="step-num">01</span>
+      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#eef3fa;">Deploy</div><div style="font-size:14px;line-height:1.55;color:#96a1b5;margin-top:8px;">We customize Snowpack to your data and workflows and stand up your first agents in weeks — embedded where your team already works.</div></div>
+    </div>
+    <div class="step-card">
+      <span class="step-num">02</span>
+      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#eef3fa;">Command</div><div style="font-size:14px;line-height:1.55;color:#96a1b5;margin-top:8px;">Your people steer from the Musher Console — goals, guardrails, approvals. Agents pull; you drive.</div></div>
+    </div>
+    <div class="step-card" style="border-color:rgba(143,176,242,.25);">
+      <span class="step-num" style="color:rgba(143,176,242,.12);">03</span>
+      <div style="position:relative;"><div style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:#eef3fa;">Monitor</div><div style="font-size:14px;line-height:1.55;color:#96a1b5;margin-top:8px;">The Trail Log shows every step of every run. Audit anything, correct anything — and the whole team learns from the correction.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- You own it -->
+<section class="section" id="own">
+  <div style="text-align:center;max-width:720px;margin:0 auto 44px;">
+    <div class="eyebrow">Yours from day one</div>
+    <h2 class="h2">Customized for you. Owned by you.</h2>
+    <p class="sub" style="max-width:620px;">Snowpack isn't a subscription you rent forever. It's infrastructure we build into your enterprise, tune to your business, and hand over — reins included.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:980px;margin:0 auto;">
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(56,189,248,.13);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><span style="width:15px;height:15px;border-radius:4px;background:#38bdf8;"></span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#eef3fa;">You own everything</div>
+      <div style="font-size:14.5px;line-height:1.55;color:#96a1b5;margin-top:8px;">IP, models, code, agents — yours from day one, never rented back to you. The same promise as everything we build.</div>
+    </div>
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(143,176,242,.13);display:flex;align-items:center;justify-content:center;gap:3px;margin-bottom:18px;"><span style="width:6px;height:6px;border-radius:50%;background:#8fb0f2;"></span><span style="width:6px;height:6px;border-radius:50%;background:#38bdf8;"></span><span style="width:6px;height:6px;border-radius:50%;background:#8fb0f2;"></span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#eef3fa;">Tool-agnostic</div>
+      <div style="font-size:14.5px;line-height:1.55;color:#96a1b5;margin-top:8px;">Snowpack harnesses the stack that's best for you — any model, any cloud, any warehouse. No lock-in, no house bias.</div>
+    </div>
+    <div class="step-card">
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(143,176,242,.13);display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><span style="width:15px;height:15px;border-radius:50%;border:2.5px solid #8fb0f2;"></span></div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:19px;color:#eef3fa;">Forward-deployed</div>
+      <div style="font-size:14.5px;line-height:1.55;color:#96a1b5;margin-top:8px;">We embed with your team to customize and deploy it, train your mushers, and hand you the reins.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section style="position:relative;padding:104px 40px;text-align:center;overflow:hidden;background:linear-gradient(180deg,#070b16,#0b1120);border-top:1px solid rgba(255,255,255,.07);">
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 120%,rgba(62,107,214,.26),transparent 58%),radial-gradient(circle at 50% -10%,rgba(56,189,248,.14),transparent 55%);"></div>
+  <div style="position:relative;max-width:720px;margin:0 auto;">
+    <h2 style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(34px,5.5vw,46px);line-height:1.05;letter-spacing:-.03em;color:#f6f9fd;margin:0;">Ready to hitch up?</h2>
+    <p style="font-size:17px;line-height:1.62;color:#9ea9bf;margin:18px auto 32px;max-width:560px;">Email us today. Within two weeks we'll map your stack and show you Snowpack running on your own data — with the first three agents worth hitching to the line.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
+      <a class="btn-grad" style="padding:15px 28px;" href="/demo/?src=snowpack">Get your Snowpack demo</a>
+      <a class="mono" href="mailto:hello@dogsledlabs.com" style="font-size:15px;color:#9ea9bf;">hello@dogsledlabs.com</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <svg width="20" height="20" viewBox="0 0 644 644" aria-hidden="true"><path fill="#79b3f9" fill-rule="evenodd" d="M187.8 549.2L94.1 488.5L94 470.8L94 453L102.2 458.4C106.8 461.3 149.2 488.8 196.4 519.4C243.7 550 282.8 574.9 283.4 574.7C284 574.4 324.7 551 373.8 522.6C422.8 494.2 463.2 471 463.5 471C463.8 471 464 478.6 464 487.9L464 504.8L373 557.4C323 586.3 281.9 610 281.8 610C281.6 610 239.3 582.6 187.8 549.2ZM189.9 480C139.6 447.5 97.5 420.2 96.2 419.2C93.9 417.5 93.9 417.2 94.2 400.3L94.5 383L187.5 443.2C238.7 476.3 281.2 503.4 282 503.4C282.9 503.4 323.9 480.2 373.2 451.7C422.5 423.3 463.1 400 463.4 400C463.7 400 464 407.6 464 416.8L464 433.7L375.8 484.5C327.2 512.5 286.1 536.2 284.4 537.2L281.3 539L189.9 480ZM245 437.4C223.8 424.4 206.2 413.5 205.9 413.2C205.5 412.8 206 406.9 207.1 400C208.1 393.1 209 386.7 209 385.8C209 384.1 207.4 384 188.7 384L168.5 384L141.7 367.7C127 358.7 114.7 351 114.3 350.7C114 350.3 126 312 141 265.6L168.3 181.2L212.9 157L257.5 132.9L280.5 98.7C310.1 54.6 319.6 44.6 339.2 36.9L344 35L344 76L344 117L350.2 119.9C353.7 121.4 356.8 122.5 357.2 122.1C357.5 121.8 361.5 114.8 366 106.5C375.2 89.8 376.5 87.7 382.8 80.2C386.6 75.6 397.9 66 399.4 66C399.7 66 400.1 82.3 400.2 102.2L400.5 138.3L425.2 151.4L450 164.4L450 181L450 197.5L495.3 214.9C520.1 224.5 542.9 233.4 545.8 234.6L551 236.9L551 246.5C551 255.7 550.8 256.4 546.9 264.3C534.7 288.6 513.9 310.6 491.5 322.4L486.7 325L449 325C406.3 325 410 324.2 410 333.6C410 343.3 412.9 347.2 428.9 359.7C436.6 365.6 442.6 370.8 442.2 371.1C441 372.2 284.7 461 284.1 461C283.8 460.9 266.2 450.3 245 437.4ZM367.2 333.4L402.2 298.9L432.3 299.7C480.3 301 476.1 301.3 487.5 295.6C495.3 291.8 498.8 289.2 504.4 283.6C510.8 277.2 516.1 269.7 515 268.7C514.7 268.5 510 266.6 504.5 264.4L494.5 260.5L494 250.6L493.5 240.8L458.5 228.5L423.5 216.2L423.2 196.6C423.1 185.8 422.8 177 422.6 177C422.5 177 416.3 175.1 408.9 172.8C395.8 168.8 395.1 168.7 381 168.6C367.8 168.6 365.8 168.8 358.5 171.2C354.1 172.7 348 175.5 345 177.4L339.5 180.9L317.1 181C299.7 181 294.9 181.3 295.3 182.2C295.5 182.9 298.5 187.7 301.8 192.9L307.9 202.3L297.4 209.6C291.6 213.6 283.5 219 279.4 221.7L272 226.5L272 255.5L272.1 284.5L301.7 326.2C318.1 349.2 331.6 368 331.8 368C332 368 347.9 352.5 367.2 333.4ZM356.8 215.4C350.8 211.8 346 208.6 346 208.2C346 207.8 349.8 204.7 354.4 201.2L362.7 195L379.6 195.2L396.5 195.5L397.2 200.8C398.1 206.7 400.8 212.6 405.2 218.2L408.2 222L387.8 222L367.5 221.9L356.8 215.4Z"/></svg>
+    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:15px;color:#eef3fa;">Dogsled Labs</span>
+    <span style="font-size:13px;color:#707c93;margin-left:6px;">— the lab of <a href="https://www.bobsled.com" style="color:#9ea9bf;border-bottom:1px solid rgba(255,255,255,.2);">Bobsled</a></span>
+  </div>
+  <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;">
+    <a href="/" style="font-size:13px;color:#9ea9bf;">&larr; Dogsled Labs home</a>
+    <a href="/dtc/" style="font-size:13px;color:#9ea9bf;">DTC &rarr;</a>
+    <a href="/entertainment/" style="font-size:13px;color:#9ea9bf;">Entertainment &rarr;</a>
+    <a href="/data-providers/" style="font-size:13px;color:#9ea9bf;">Data providers &rarr;</a>
+    <span class="mono" style="font-size:11px;color:#57647e;">© 2026 Dogsled Labs</span>
+  </div>
+</footer>
+
+</body>
+</html>
