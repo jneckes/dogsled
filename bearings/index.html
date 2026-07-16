@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bearings — The 60-Minute Maturity Audit | Dogsled Labs</title>
+<meta name="description" content="Bearings: a free 60-minute audit that places you on the agentic workforce maturity trail — where you are, how you stack up against your peers, what the leaders are running, your highest-leverage next moves, and the instruments to map your data estate, workflows, and human–agent interfaces. Free, if you qualify.">
+<link rel="icon" type="image/svg+xml" href="/logo.svg?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#070b16;color:#eef3fa;font-family:'Manrope',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{text-decoration:none}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .btn-grad{display:inline-block;font-size:15px;font-weight:600;color:#070b16;background:linear-gradient(92deg,#8fb0f2,#38bdf8);padding:14px 26px;border-radius:999px;transition:filter .15s}
+  .btn-grad:hover{filter:brightness(1.1)}
+  header.site{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid rgba(255,255,255,.07);flex-wrap:wrap;gap:14px}
+  .logo{display:flex;align-items:center;gap:8px}
+  .navpill{display:flex;align-items:center;gap:40px;padding:9px 24px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.02)}
+  .navpill a{font-size:14.5px;font-weight:600;color:#c4cedf;transition:color .15s}
+  .navpill a:hover{color:#fff}
+  .dl-dd{position:relative;display:inline-flex}
+  .dl-dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;display:none;z-index:200}
+  .dl-dd:hover .dl-dd-menu,.dl-dd:focus-within .dl-dd-menu{display:block}
+  .dl-dd-inner{min-width:268px;background:#0c1322;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;box-shadow:0 20px 44px rgba(0,0,0,.55)}
+  .dl-dd-eyebrow{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:9.5px;letter-spacing:.16em;color:#66738e;text-transform:uppercase;padding:6px 12px 8px}
+  .dl-dd-inner a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font-size:13.5px;color:#c4cedf}
+  .dl-dd-inner a:hover{background:rgba(143,176,242,.12);color:#fff}
+  .dl-dd-num{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:10px;color:#8fb0f2}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 40px}
+  .mnav{display:none}
+  header.site{position:relative}
+  .mnav summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(255,255,255,.14);border-radius:12px;background:rgba(255,255,255,.03)}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav[open] summary{border-color:rgba(143,176,242,.5)}
+  .mnav-panel{position:absolute;right:22px;top:calc(100% + 8px);min-width:252px;background:#0c1322;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;box-shadow:0 20px 44px rgba(0,0,0,.55);z-index:300}
+  .mnav-panel a{display:block;padding:9px 12px;border-radius:9px;font-size:14px;font-weight:600;color:#c4cedf}
+  .mnav-panel a:hover{background:rgba(143,176,242,.12);color:#fff}
+  .mnav-eyebrow{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:9.5px;letter-spacing:.16em;color:#66738e;text-transform:uppercase;padding:8px 12px 5px}
+  @media (max-width:940px){.navpill{display:none}.mnav{display:block}}
+
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.18em;color:#8fb0f2;text-transform:uppercase}
+  h2.sec{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(27px,4.2vw,38px);letter-spacing:-.03em;line-height:1.1;color:#f6f9fd;margin:14px 0 0}
+  .sec-intro{font-size:15.5px;line-height:1.64;color:#96a1b5;margin-top:14px;max-width:640px}
+
+  /* Four fixes */
+  .fixes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+  .fix{border:1px solid rgba(255,255,255,.08);border-radius:16px;background:rgba(255,255,255,.02);padding:22px;transition:border-color .15s,background .15s}
+  .fix:hover{border-color:rgba(143,176,242,.4);background:rgba(143,176,242,.05)}
+  .fix .fl{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.14em;color:#38bdf8;text-transform:uppercase}
+  .fix h3{font-family:'Sora',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.015em;color:#f6f9fd;margin:10px 0 8px}
+  .fix p{font-size:13.5px;line-height:1.58;color:#96a1b5}
+
+  /* Trail chart */
+  .trailcard{margin-top:38px;border:1px solid rgba(255,255,255,.09);border-radius:20px;background:linear-gradient(165deg,#0d1526,#0a101f);padding:30px 26px 20px;overflow:hidden}
+  .trailwrap{overflow-x:auto;scrollbar-width:thin}
+  .trailwrap svg{display:block;width:100%;min-width:760px;height:auto}
+  .legend{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
+  .legend .li{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#96a1b5}
+  .sw{flex:none;width:12px;height:12px;border-radius:999px}
+  .sw.pack{background:#66738e}
+  .sw.lead{background:#38bdf8;box-shadow:0 0 8px rgba(56,189,248,.7)}
+  .sw.you{background:transparent;border:1.6px dashed #eef3fa}
+  .you-halo{transform-box:fill-box;transform-origin:center;animation:bpulse 2.8s ease-out infinite}
+  @keyframes bpulse{0%{transform:scale(.55);opacity:.75}70%{transform:scale(1.9);opacity:0}100%{transform:scale(1.9);opacity:0}}
+  @media (prefers-reduced-motion:reduce){.you-halo{animation:none;opacity:.25}}
+
+  /* Legs of the hour */
+  .legs{margin-top:36px;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:rgba(255,255,255,.015);overflow:hidden}
+  .leg{display:grid;grid-template-columns:150px 240px 1fr;gap:20px;padding:22px 26px;border-bottom:1px solid rgba(255,255,255,.06);transition:background .15s}
+  .leg:last-child{border-bottom:none}
+  .leg:hover{background:rgba(143,176,242,.05)}
+  .leg .t{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#38bdf8;padding-top:3px}
+  .leg h3{font-family:'Sora',sans-serif;font-weight:700;font-size:17px;letter-spacing:-.015em;color:#f6f9fd}
+  .leg .sub{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#66738e;margin-top:5px}
+  .leg p{font-size:14px;line-height:1.6;color:#96a1b5}
+
+  /* Gear */
+  .gear{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+  .g{border:1px solid rgba(255,255,255,.08);border-radius:18px;background:rgba(255,255,255,.02);padding:26px;transition:border-color .15s,background .15s}
+  .g:hover{border-color:rgba(143,176,242,.4);background:rgba(143,176,242,.05)}
+  .g .dim{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.14em;color:#38bdf8;text-transform:uppercase}
+  .g h3{font-family:'Sora',sans-serif;font-weight:700;font-size:19px;letter-spacing:-.015em;color:#f6f9fd;margin:10px 0 10px}
+  .g p{font-size:14px;line-height:1.6;color:#96a1b5}
+
+  /* After the hour */
+  .after{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+  .af{border:1px solid rgba(255,255,255,.08);border-radius:18px;background:linear-gradient(165deg,rgba(143,176,242,.06),rgba(255,255,255,.01));padding:28px}
+  .af .fl{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.14em;color:#38bdf8;text-transform:uppercase}
+  .af h3{font-family:'Sora',sans-serif;font-weight:700;font-size:21px;letter-spacing:-.02em;color:#f6f9fd;margin:10px 0 10px}
+  .af p{font-size:14.5px;line-height:1.62;color:#96a1b5}
+  .af .etas{list-style:none;margin-top:14px;display:grid;gap:8px}
+  .af .etas li{display:flex;gap:10px;align-items:baseline;font-size:13.5px;color:#c4cedf}
+  .af .etas .n{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:#8fb0f2;flex:none}
+
+  /* Qualifier */
+  .qual{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .qc{border:1px solid rgba(255,255,255,.08);border-radius:16px;background:rgba(255,255,255,.02);padding:22px}
+  .qc .ck{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:rgba(143,176,242,.1);border:1px solid rgba(143,176,242,.3);margin-bottom:12px}
+  .qc h3{font-family:'Sora',sans-serif;font-weight:700;font-size:16.5px;letter-spacing:-.01em;color:#f6f9fd;margin-bottom:7px}
+  .qc p{font-size:13.5px;line-height:1.58;color:#96a1b5}
+
+  footer.site{padding:36px 40px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+
+  @media (max-width:960px){
+    .fixes{grid-template-columns:1fr 1fr}
+    .gear{grid-template-columns:1fr}
+    .after{grid-template-columns:1fr}
+    .qual{grid-template-columns:1fr}
+    .leg{grid-template-columns:120px 1fr;grid-template-rows:auto auto}
+    .leg .t{grid-row:1}
+    .leg p{grid-column:2}
+  }
+  @media (max-width:640px){
+    .fixes{grid-template-columns:1fr}
+    .leg{grid-template-columns:1fr;gap:8px}
+    .leg p{grid-column:1}
+  }
+  @media (max-width:720px){.wrap{padding:0 22px}header.site{padding:16px 22px}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a href="/" class="logo" aria-label="Dogsled Labs home">
+    <svg width="28" height="28" viewBox="0 0 644 644" aria-hidden="true"><path fill="#79b3f9" fill-rule="evenodd" d="M187.8 549.2L94.1 488.5L94 470.8L94 453L102.2 458.4C106.8 461.3 149.2 488.8 196.4 519.4C243.7 550 282.8 574.9 283.4 574.7C284 574.4 324.7 551 373.8 522.6C422.8 494.2 463.2 471 463.5 471C463.8 471 464 478.6 464 487.9L464 504.8L373 557.4C323 586.3 281.9 610 281.8 610C281.6 610 239.3 582.6 187.8 549.2ZM189.9 480C139.6 447.5 97.5 420.2 96.2 419.2C93.9 417.5 93.9 417.2 94.2 400.3L94.5 383L187.5 443.2C238.7 476.3 281.2 503.4 282 503.4C282.9 503.4 323.9 480.2 373.2 451.7C422.5 423.3 463.1 400 463.4 400C463.7 400 464 407.6 464 416.8L464 433.7L375.8 484.5C327.2 512.5 286.1 536.2 284.4 537.2L281.3 539L189.9 480ZM245 437.4C223.8 424.4 206.2 413.5 205.9 413.2C205.5 412.8 206 406.9 207.1 400C208.1 393.1 209 386.7 209 385.8C209 384.1 207.4 384 188.7 384L168.5 384L141.7 367.7C127 358.7 114.7 351 114.3 350.7C114 350.3 126 312 141 265.6L168.3 181.2L212.9 157L257.5 132.9L280.5 98.7C310.1 54.6 319.6 44.6 339.2 36.9L344 35L344 76L344 117L350.2 119.9C353.7 121.4 356.8 122.5 357.2 122.1C357.5 121.8 361.5 114.8 366 106.5C375.2 89.8 376.5 87.7 382.8 80.2C386.6 75.6 397.9 66 399.4 66C399.7 66 400.1 82.3 400.2 102.2L400.5 138.3L425.2 151.4L450 164.4L450 181L450 197.5L495.3 214.9C520.1 224.5 542.9 233.4 545.8 234.6L551 236.9L551 246.5C551 255.7 550.8 256.4 546.9 264.3C534.7 288.6 513.9 310.6 491.5 322.4L486.7 325L449 325C406.3 325 410 324.2 410 333.6C410 343.3 412.9 347.2 428.9 359.7C436.6 365.6 442.6 370.8 442.2 371.1C441 372.2 284.7 461 284.1 461C283.8 460.9 266.2 450.3 245 437.4ZM367.2 333.4L402.2 298.9L432.3 299.7C480.3 301 476.1 301.3 487.5 295.6C495.3 291.8 498.8 289.2 504.4 283.6C510.8 277.2 516.1 269.7 515 268.7C514.7 268.5 510 266.6 504.5 264.4L494.5 260.5L494 250.6L493.5 240.8L458.5 228.5L423.5 216.2L423.2 196.6C423.1 185.8 422.8 177 422.6 177C422.5 177 416.3 175.1 408.9 172.8C395.8 168.8 395.1 168.7 381 168.6C367.8 168.6 365.8 168.8 358.5 171.2C354.1 172.7 348 175.5 345 177.4L339.5 180.9L317.1 181C299.7 181 294.9 181.3 295.3 182.2C295.5 182.9 298.5 187.7 301.8 192.9L307.9 202.3L297.4 209.6C291.6 213.6 283.5 219 279.4 221.7L272 226.5L272 255.5L272.1 284.5L301.7 326.2C318.1 349.2 331.6 368 331.8 368C332 368 347.9 352.5 367.2 333.4ZM356.8 215.4C350.8 211.8 346 208.6 346 208.2C346 207.8 349.8 204.7 354.4 201.2L362.7 195L379.6 195.2L396.5 195.5L397.2 200.8C398.1 206.7 400.8 212.6 405.2 218.2L408.2 222L387.8 222L367.5 221.9L356.8 215.4Z"/></svg>
+    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.02em;color:#eef3fa;">Dogsled<span style="color:#8fb0f2;"> Labs</span></span>
+  </a>
+  <nav style="display:flex;align-items:center;gap:14px;">
+    <div class="navpill">
+      <a href="/why-dogsled/">Why Dogsled</a>
+      <a href="/gangline/">Gangline</a>
+      <a href="/checkpoints/">Checkpoints</a>
+      <div class="dl-dd">
+        <a href="#" onclick="return false">Trails <span style="font-size:9px;color:#66738e;">&#9662;</span></a>
+        <div class="dl-dd-menu">
+          <div class="dl-dd-inner">
+            <div class="dl-dd-eyebrow">Where we run</div>
+            <a href="/dtc/"><span class="dl-dd-num">01</span> DTC &amp; Consumer Brands</a>
+            <a href="/entertainment/"><span class="dl-dd-num">02</span> Entertainment &amp; Production</a>
+            <a href="/data-providers/"><span class="dl-dd-num">03</span> Data Providers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+      <details class="mnav">
+        <summary aria-label="Open menu"><svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true"><rect y="0" width="18" height="2" rx="1" fill="#c4cedf"/><rect y="6" width="18" height="2" rx="1" fill="#c4cedf"/><rect y="12" width="18" height="2" rx="1" fill="#c4cedf"/></svg></summary>
+        <div class="mnav-panel">
+          <div class="mnav-eyebrow">Dogsled Labs</div>
+          <a href="/why-dogsled/">Why Dogsled</a>
+          <a href="/gangline/">Gangline</a>
+          <a href="/checkpoints/">Checkpoints</a>
+          <a href="/">Home</a>
+          <div class="mnav-eyebrow">Where we run</div>
+          <a href="/dtc/">DTC &amp; Consumer Brands</a>
+          <a href="/entertainment/">Entertainment &amp; Production</a>
+          <a href="/data-providers/">Data Providers</a>
+        </div>
+      </details>
+    <a class="btn-grad" style="font-size:14px;padding:10px 18px;" href="/demo/?src=bearings">Get in touch</a>
+  </nav>
+</header>
+
+<!-- Masthead -->
+<section style="border-bottom:1px solid rgba(255,255,255,.1);">
+  <div class="wrap" style="padding-top:64px;padding-bottom:44px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;">
+      <div>
+        <div class="eyebrow" style="display:flex;align-items:center;gap:9px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#38bdf8" stroke-width="1.6"/><path d="M15.5 8.5 13.4 13.4 8.5 15.5 10.6 10.6Z" fill="#38bdf8"/></svg>
+          The 60-minute maturity audit
+        </div>
+        <h1 style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(48px,8vw,84px);line-height:.98;letter-spacing:-.035em;color:#f6f9fd;margin:14px 0 0;">Bearings<span class="mono" style="color:#38bdf8;">.</span></h1>
+      </div>
+      <div style="max-width:420px;padding-bottom:8px;">
+        <p style="font-size:15px;line-height:1.6;color:#9ea9bf;">Every great race runs a tracker — every team a dot on the trail, every musher sure of their position, their pace, and the gap to the front. Your run to an agentic workforce deserves the same. Bearings is sixty minutes that puts your dot on the map.</p>
+        <a class="btn-grad" style="font-size:13.5px;padding:10px 18px;margin-top:14px;" href="/demo/?src=bearings">Take your bearings &rarr;</a>
+        <div class="mono" style="font-size:10px;letter-spacing:.14em;color:#66738e;text-transform:uppercase;margin-top:12px;">Free &middot; if you <a href="#qualifier" style="color:#8fb0f2;">qualify</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Conditions strip -->
+<section style="border-bottom:1px solid rgba(255,255,255,.1);background:linear-gradient(160deg,#0d1526,#0a101f);">
+  <div class="wrap" style="padding-top:34px;padding-bottom:34px;display:flex;gap:40px;align-items:center;flex-wrap:wrap;">
+    <div style="display:flex;gap:34px;flex-wrap:wrap;">
+      <div><div class="mono" style="font-size:22px;font-weight:600;color:#eef3fa;">60</div><div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#66738e;text-transform:uppercase;margin-top:3px;">Minutes</div></div>
+      <div><div class="mono" style="font-size:22px;font-weight:600;color:#eef3fa;">04</div><div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#66738e;text-transform:uppercase;margin-top:3px;">Fixes you leave with</div></div>
+      <div><div class="mono" style="font-size:22px;font-weight:600;color:#eef3fa;">03</div><div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#66738e;text-transform:uppercase;margin-top:3px;">Instruments in the bag</div></div>
+      <div><div class="mono" style="font-size:22px;font-weight:600;color:#eef3fa;">$0</div><div class="mono" style="font-size:9.5px;letter-spacing:.14em;color:#66738e;text-transform:uppercase;margin-top:3px;">If you qualify</div></div>
+    </div>
+    <p style="font-size:14.5px;line-height:1.6;color:#96a1b5;max-width:520px;">One hour with people who've crossed every checkpoint with real teams, on real data. No deck-first pitch, no obligation. You bring the terrain — we bring the map.</p>
+  </div>
+</section>
+
+<!-- The run you can't skip -->
+<section style="border-bottom:1px solid rgba(255,255,255,.07);">
+  <div class="wrap" style="padding-top:70px;padding-bottom:74px;">
+    <div class="eyebrow">The run you can't skip</div>
+    <h2 class="sec" style="max-width:660px;">Everyone makes this run. Not everyone runs it with a map.</h2>
+    <p class="sec-intro">You already know the job: harness agents to the work that matters, make your data available to them, keep it safe while you do — and answer the <a href="/checkpoints/" style="color:#c4cedf;border-bottom:1px solid rgba(255,255,255,.25);">seven checkpoints</a> of hard questions between you and a workforce that pulls as one. Then the ones beyond. None of that is optional anymore. What's optional is doing it blind. Before you commit the team, you need four fixes:</p>
+    <div class="fixes">
+      <div class="fix">
+        <div class="fl">Fix 01 &middot; Position</div>
+        <h3>Where you are</h3>
+        <p>Your true position on the maturity trail — measured against what's real, not what the last vendor deck assumed.</p>
+      </div>
+      <div class="fix">
+        <div class="fl">Fix 02 &middot; Standings</div>
+        <h3>How you stack up</h3>
+        <p>The pack around you: what companies your size and shape have actually shipped — and where they stalled.</p>
+      </div>
+      <div class="fix">
+        <div class="fl">Fix 03 &middot; The leaders' line</div>
+        <h3>What good looks like</h3>
+        <p>What the front of the race is running on governed data, and what it's compounding into while everyone else pilots.</p>
+      </div>
+      <div class="fix">
+        <div class="fl">Fix 04 &middot; The route</div>
+        <h3>Where you could go</h3>
+        <p>The legs ahead, in order — what each one is worth, and how fast teams like yours have covered them.</p>
+      </div>
+    </div>
+    <a class="mono" style="display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8fb0f2;margin-top:26px;" href="/checkpoints/">Meet the seven checkpoints — 47 questions, one trail &rarr;</a>
+  </div>
+</section>
+
+<!-- The maturity trail -->
+<section style="border-bottom:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg,#0a101f,#070b16);">
+  <div class="wrap" style="padding-top:70px;padding-bottom:74px;">
+    <div class="eyebrow">The maturity trail</div>
+    <h2 class="sec" style="max-width:620px;">Somewhere on this trail is your dot.</h2>
+    <p class="sec-intro">This is the trail every enterprise is on, whether it's tracked or not — from a few people pasting into chatbots to a coordinated agentic workforce with your people holding the reins. Most of the pack is still between Stage 00 and 01. The leaders are past 02 — and the trail steepens behind them, because every leg they clear compounds. In one hour, we place your dot honestly and chart the line from there.</p>
+
+    <div class="trailcard">
+      <div class="trailwrap">
+      <svg viewBox="0 0 1040 460" role="img" aria-label="The agentic maturity trail, climbing from Stage 00, isolated LLM use, through team pilots and coordinated workflows to Stage 03, agentic workforce. A pack of dots sits low on the trail, a few leaders sit high, and unplaced markers ask where you are.">
+        <defs>
+          <linearGradient id="trail" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="#8fb0f2" stop-opacity=".55"/>
+            <stop offset="1" stop-color="#38bdf8"/>
+          </linearGradient>
+          <linearGradient id="under" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#38bdf8" stop-opacity=".14"/>
+            <stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <!-- axis hints -->
+        <text x="36" y="30" class="mono" font-family="'JetBrains Mono',monospace" font-size="9.5" letter-spacing="1.5" fill="#57647e">VALUE COMPOUNDS &#8593;</text>
+        <text x="1004" y="452" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="9.5" letter-spacing="1.5" fill="#57647e">THE TRAIL &#8594;</text>
+
+        <!-- area under the trail -->
+        <path d="M36,388 C180,380 320,364 420,336 C520,308 620,262 700,206 C760,166 870,112 960,70 L960,460 L36,460 Z" fill="url(#under)"/>
+
+        <!-- the trail -->
+        <path d="M36,388 C180,380 320,364 420,336 C520,308 620,262 700,206 C760,166 870,112 960,70" fill="none" stroke="url(#trail)" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- the trail continues past stage 03 -->
+        <path d="M960,70 C985,59 1005,51 1026,44" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 8" opacity=".55"/>
+
+        <!-- the pack -->
+        <g fill="#66738e">
+          <circle cx="88" cy="382" r="4"/><circle cx="122" cy="389" r="3.5" opacity=".7"/>
+          <circle cx="150" cy="375" r="4.5"/><circle cx="182" cy="386" r="3.5" opacity=".65"/>
+          <circle cx="208" cy="370" r="4"/><circle cx="240" cy="378" r="4.5" opacity=".8"/>
+          <circle cx="268" cy="360" r="3.5"/><circle cx="298" cy="369" r="4" opacity=".7"/>
+          <circle cx="324" cy="351" r="4.5"/><circle cx="354" cy="359" r="3.5" opacity=".75"/>
+          <circle cx="388" cy="340" r="4"/><circle cx="465" cy="327" r="4" opacity=".85"/>
+          <circle cx="502" cy="311" r="3.5" opacity=".7"/>
+        </g>
+
+        <!-- the leaders -->
+        <g fill="#38bdf8">
+          <circle cx="730" cy="187" r="5"/>
+          <circle cx="778" cy="160" r="4.5"/>
+          <circle cx="847" cy="124" r="5"/>
+        </g>
+        <g fill="none" stroke="#38bdf8" opacity=".35">
+          <circle cx="730" cy="187" r="9"/>
+          <circle cx="778" cy="160" r="8.5"/>
+          <circle cx="847" cy="124" r="9"/>
+        </g>
+
+        <!-- you? — unplaced markers -->
+        <g>
+          <circle class="you-halo" cx="245" cy="369" r="12" fill="none" stroke="#eef3fa" stroke-width="1.4" opacity=".6"/>
+          <circle cx="245" cy="369" r="11" fill="#0b1120" stroke="#eef3fa" stroke-width="1.4" stroke-dasharray="3 3.5"/>
+          <text x="245" y="369" dy=".36em" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" font-weight="600" fill="#eef3fa">?</text>
+        </g>
+        <g>
+          <circle class="you-halo" style="animation-delay:.9s" cx="568" cy="282" r="12" fill="none" stroke="#eef3fa" stroke-width="1.4" opacity=".6"/>
+          <circle cx="568" cy="282" r="11" fill="#0b1120" stroke="#eef3fa" stroke-width="1.4" stroke-dasharray="3 3.5"/>
+          <text x="568" y="282" dy=".36em" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" font-weight="600" fill="#eef3fa">?</text>
+        </g>
+        <g>
+          <circle class="you-halo" style="animation-delay:1.8s" cx="819" cy="139" r="12" fill="none" stroke="#eef3fa" stroke-width="1.4" opacity=".6"/>
+          <circle cx="819" cy="139" r="11" fill="#0b1120" stroke="#eef3fa" stroke-width="1.4" stroke-dasharray="3 3.5"/>
+          <text x="819" y="139" dy=".36em" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" font-weight="600" fill="#eef3fa">?</text>
+        </g>
+
+        <!-- stage checkpoints -->
+        <g>
+          <rect x="62" y="378" width="15" height="15" rx="3.5" transform="rotate(45 69.5 385.5)" fill="#0b1120" stroke="#38bdf8" stroke-width="2"/>
+          <text x="52" y="417" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="600" letter-spacing="1.2" fill="#8fb0f2">STAGE 00</text>
+          <text x="52" y="433" font-family="'Manrope',sans-serif" font-size="12.5" font-weight="600" fill="#96a1b5">Isolated LLM use</text>
+        </g>
+        <g>
+          <rect x="412.5" y="328.5" width="15" height="15" rx="3.5" transform="rotate(45 420 336)" fill="#0b1120" stroke="#38bdf8" stroke-width="2"/>
+          <text x="404" y="370" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="600" letter-spacing="1.2" fill="#8fb0f2">STAGE 01</text>
+          <text x="404" y="386" font-family="'Manrope',sans-serif" font-size="12.5" font-weight="600" fill="#96a1b5">Team pilots</text>
+        </g>
+        <g>
+          <rect x="692.5" y="198.5" width="15" height="15" rx="3.5" transform="rotate(45 700 206)" fill="#0b1120" stroke="#38bdf8" stroke-width="2"/>
+          <text x="684" y="240" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="600" letter-spacing="1.2" fill="#8fb0f2">STAGE 02</text>
+          <text x="684" y="256" font-family="'Manrope',sans-serif" font-size="12.5" font-weight="600" fill="#96a1b5">Coordinated workflows</text>
+        </g>
+        <g>
+          <rect x="952.5" y="62.5" width="15" height="15" rx="3.5" transform="rotate(45 960 70)" fill="#0b1120" stroke="#38bdf8" stroke-width="2"/>
+          <text x="936" y="46" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="600" letter-spacing="1.2" fill="#8fb0f2">STAGE 03</text>
+          <text x="936" y="62" text-anchor="end" font-family="'Manrope',sans-serif" font-size="12.5" font-weight="600" fill="#96a1b5">Agentic workforce</text>
+        </g>
+      </svg>
+      </div>
+      <div class="legend">
+        <div class="li"><span class="sw pack"></span>The pack — where most enterprises sit today</div>
+        <div class="li"><span class="sw lead"></span>The leaders — already compounding</div>
+        <div class="li"><span class="sw you"></span>Your dot — placed in the hour</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The hour, leg by leg -->
+<section style="border-bottom:1px solid rgba(255,255,255,.07);">
+  <div class="wrap" style="padding-top:70px;padding-bottom:74px;">
+    <div class="eyebrow">The session</div>
+    <h2 class="sec">Sixty minutes, five legs.</h2>
+    <p class="sec-intro">A working session, not a webinar. Bring the people who own the terrain — data, ops, and whoever holds the map.</p>
+    <div class="legs">
+      <div class="leg">
+        <div class="t">:00 &ndash; :10</div>
+        <div><h3>Trail conditions</h3><div class="sub">The state of the market</div></div>
+        <p>What's actually working out there — models, harnesses, spend patterns, where the real returns are showing up — and what's still conference-stage vapor.</p>
+      </div>
+      <div class="leg">
+        <div class="t">:10 &ndash; :20</div>
+        <div><h3>The leaders' line</h3><div class="sub">The state of the possible</div></div>
+        <p>What the front of the pack is running on governed data — and what it's doing to their cycle times, cost lines, and headcount leverage.</p>
+      </div>
+      <div class="leg">
+        <div class="t">:20 &ndash; :35</div>
+        <div><h3>Your position fix</h3><div class="sub">Where you actually are</div></div>
+        <p>We walk your data estate, your workflows, and how your people work today — and place you on the trail against companies like yours.</p>
+      </div>
+      <div class="leg">
+        <div class="t">:35 &ndash; :50</div>
+        <div><h3>The fastest line</h3><div class="sub">Highest leverage first</div></div>
+        <p>The two or three moves that make up the most trail from your position — and the ones to skip, whatever the vendors say.</p>
+      </div>
+      <div class="leg">
+        <div class="t">:50 &ndash; :60</div>
+        <div><h3>Route order &amp; ETA</h3><div class="sub">Leave with a map</div></div>
+        <p>What to run first, who should own what, and an honest ETA to first value — and to the full promise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mandatory gear -->
+<section style="border-bottom:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg,#0a101f,#070b16);">
+  <div class="wrap" style="padding-top:70px;padding-bottom:74px;">
+    <div class="eyebrow">Mandatory gear</div>
+    <h2 class="sec">The gear you leave with.</h2>
+    <p class="sec-intro">The thousand-milers publish a mandatory gear list — no team starts without it. Ours has three instruments, one for each dimension of the work ahead. They're yours after the hour, to run on your own enterprise.</p>
+    <div class="gear">
+      <div class="g">
+        <div class="dim">Dimension 01 &middot; Your data estate</div>
+        <h3>Data Source Mapping</h3>
+        <p>A way to chart every source that should fuel your agents — ranked by priority and readiness, with the seams where sources pull together and the role each one plays on the sled.</p>
+      </div>
+      <div class="g">
+        <div class="dim">Dimension 02 &middot; Your workflows</div>
+        <h3>Workflow Mapping</h3>
+        <p>A model for enumerating, locating, and validating the places agents can step in — owner, data required, what success looks like, and a difficulty &times; impact ranking with estimated ROI.</p>
+      </div>
+      <div class="g">
+        <div class="dim">Dimension 03 &middot; The human&ndash;agent interface</div>
+        <h3>Interface Mapping</h3>
+        <p>A blueprint for rationalizing every point where agents meet your people — Slack, email, meetings, and beyond — and shaping the handoffs, escalations, and guardrails so adoption sticks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- After the hour -->
+<section style="border-bottom:1px solid rgba(255,255,255,.07);">
+  <div class="wrap" style="padding-top:70px;padding-bottom:74px;">
+    <div class="eyebrow">After the hour</div>
+    <h2 class="sec">Your ETA — and who rides where.</h2>
+    <p class="sec-intro">The map is only half the run. The other half is knowing how long the route takes from your position, and who you put in the harness to cover it.</p>
+    <div class="after">
+      <div class="af">
+        <div class="fl">Placement &middot; refined</div>
+        <h3>Time to deliver value</h3>
+        <p>Share whatever you're comfortable sharing — before the session or after it — and we'll sharpen your placement into numbers you can commit to upstairs. No heroic assumptions:</p>
+        <ul class="etas">
+          <li><span class="n">ETA 01</span>Time to your first agent in production</li>
+          <li><span class="n">ETA 02</span>Time to coordinated workflows on governed data</li>
+          <li><span class="n">ETA 03</span>Time to the full promise — a workforce that pulls as one</li>
+        </ul>
+      </div>
+      <div class="af">
+        <div class="fl">Resourcing &middot; the transition</div>
+        <h3>Who to put in charge of what</h3>
+        <p>Forward momentum is a staffing call before it's a technology one. We'll help you set the harness: who owns data readiness, who owns workflow selection, who runs the human&ndash;agent operating model — and what to hire, borrow, or promote for the legs after.</p>
+        <p style="margin-top:12px;color:#c4cedf;">People steer. Agents pull. Someone still has to hitch the team — the hour ends with names next to jobs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Qualifier -->
+<section id="qualifier" style="border-bottom:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg,#0a101f,#070b16);">
+  <div class="wrap" style="padding-top:70px;padding-bottom:74px;">
+    <div class="eyebrow">Free, if you qualify</div>
+    <h2 class="sec">Every great race has a qualifier.</h2>
+    <p class="sec-intro">Nobody enters a thousand-miler cold — you qualify in. Bearings works the same way, just inverted: the hour is free, but we only run it where it can honestly move things. Qualifying has nothing to do with size or spend. It looks like this:</p>
+    <div class="qual">
+      <div class="qc">
+        <div class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8fb0f2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>Real workflows</h3>
+        <p>Recurring work with real volume behind it — reconciliation, triage, validation, review — not a hypothetical.</p>
+      </div>
+      <div class="qc">
+        <div class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8fb0f2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>A data estate worth harnessing</h3>
+        <p>Data you own with business riding on it. Scattered across forty systems is fine — scattered is the job.</p>
+      </div>
+      <div class="qc">
+        <div class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8fb0f2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>A mandate to move</h3>
+        <p>Someone at the table who can act on the map the hour produces — this quarter, not someday.</p>
+      </div>
+    </div>
+    <p style="font-size:14.5px;line-height:1.6;color:#96a1b5;max-width:600px;margin-top:26px;">Not a fit yet? We'll say so straight and point you somewhere useful — no sandbagging, no nurture sequence. That's the deal.</p>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section style="background:linear-gradient(180deg,#0b1120,#070b16);">
+  <div class="wrap" style="padding-top:70px;padding-bottom:78px;text-align:center;">
+    <div class="eyebrow">The trailhead</div>
+    <h2 style="font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(28px,4.5vw,42px);letter-spacing:-.03em;line-height:1.08;color:#f6f9fd;margin:14px auto 0;max-width:680px;">An hour from now, you could know exactly where you stand.</h2>
+    <p style="font-size:16px;line-height:1.62;color:#9ea9bf;max-width:560px;margin:16px auto 0;">Your position. Your standings. The leaders' line. The fastest route from here — and the instruments to run it. Sixty minutes, free if you qualify.</p>
+    <a class="btn-grad" style="margin-top:28px;font-size:16px;padding:16px 34px;" href="/demo/?src=bearings">Take your bearings &rarr;</a>
+    <div style="margin-top:16px;"><a class="mono" style="font-size:11px;letter-spacing:.12em;color:#707c93;text-transform:uppercase;" href="mailto:hello@dogsledlabs.com?subject=Bearings%20%E2%80%94%20where%20do%20we%20stand%3F">Prefer email? hello@dogsledlabs.com &rarr;</a></div>
+  </div>
+</section>
+
+<footer class="site">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <svg width="20" height="20" viewBox="0 0 644 644" aria-hidden="true"><path fill="#79b3f9" fill-rule="evenodd" d="M187.8 549.2L94.1 488.5L94 470.8L94 453L102.2 458.4C106.8 461.3 149.2 488.8 196.4 519.4C243.7 550 282.8 574.9 283.4 574.7C284 574.4 324.7 551 373.8 522.6C422.8 494.2 463.2 471 463.5 471C463.8 471 464 478.6 464 487.9L464 504.8L373 557.4C323 586.3 281.9 610 281.8 610C281.6 610 239.3 582.6 187.8 549.2ZM189.9 480C139.6 447.5 97.5 420.2 96.2 419.2C93.9 417.5 93.9 417.2 94.2 400.3L94.5 383L187.5 443.2C238.7 476.3 281.2 503.4 282 503.4C282.9 503.4 323.9 480.2 373.2 451.7C422.5 423.3 463.1 400 463.4 400C463.7 400 464 407.6 464 416.8L464 433.7L375.8 484.5C327.2 512.5 286.1 536.2 284.4 537.2L281.3 539L189.9 480ZM245 437.4C223.8 424.4 206.2 413.5 205.9 413.2C205.5 412.8 206 406.9 207.1 400C208.1 393.1 209 386.7 209 385.8C209 384.1 207.4 384 188.7 384L168.5 384L141.7 367.7C127 358.7 114.7 351 114.3 350.7C114 350.3 126 312 141 265.6L168.3 181.2L212.9 157L257.5 132.9L280.5 98.7C310.1 54.6 319.6 44.6 339.2 36.9L344 35L344 76L344 117L350.2 119.9C353.7 121.4 356.8 122.5 357.2 122.1C357.5 121.8 361.5 114.8 366 106.5C375.2 89.8 376.5 87.7 382.8 80.2C386.6 75.6 397.9 66 399.4 66C399.7 66 400.1 82.3 400.2 102.2L400.5 138.3L425.2 151.4L450 164.4L450 181L450 197.5L495.3 214.9C520.1 224.5 542.9 233.4 545.8 234.6L551 236.9L551 246.5C551 255.7 550.8 256.4 546.9 264.3C534.7 288.6 513.9 310.6 491.5 322.4L486.7 325L449 325C406.3 325 410 324.2 410 333.6C410 343.3 412.9 347.2 428.9 359.7C436.6 365.6 442.6 370.8 442.2 371.1C441 372.2 284.7 461 284.1 461C283.8 460.9 266.2 450.3 245 437.4ZM367.2 333.4L402.2 298.9L432.3 299.7C480.3 301 476.1 301.3 487.5 295.6C495.3 291.8 498.8 289.2 504.4 283.6C510.8 277.2 516.1 269.7 515 268.7C514.7 268.5 510 266.6 504.5 264.4L494.5 260.5L494 250.6L493.5 240.8L458.5 228.5L423.5 216.2L423.2 196.6C423.1 185.8 422.8 177 422.6 177C422.5 177 416.3 175.1 408.9 172.8C395.8 168.8 395.1 168.7 381 168.6C367.8 168.6 365.8 168.8 358.5 171.2C354.1 172.7 348 175.5 345 177.4L339.5 180.9L317.1 181C299.7 181 294.9 181.3 295.3 182.2C295.5 182.9 298.5 187.7 301.8 192.9L307.9 202.3L297.4 209.6C291.6 213.6 283.5 219 279.4 221.7L272 226.5L272 255.5L272.1 284.5L301.7 326.2C318.1 349.2 331.6 368 331.8 368C332 368 347.9 352.5 367.2 333.4ZM356.8 215.4C350.8 211.8 346 208.6 346 208.2C346 207.8 349.8 204.7 354.4 201.2L362.7 195L379.6 195.2L396.5 195.5L397.2 200.8C398.1 206.7 400.8 212.6 405.2 218.2L408.2 222L387.8 222L367.5 221.9L356.8 215.4Z"/></svg>
+    <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:15px;color:#eef3fa;">Dogsled Labs</span>
+    <span style="font-size:13px;color:#707c93;margin-left:6px;">— the lab of <a href="https://www.bobsled.com" style="color:#9ea9bf;border-bottom:1px solid rgba(255,255,255,.2);">Bobsled</a></span>
+  </div>
+  <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;">
+    <a href="/" style="font-size:13px;color:#9ea9bf;">&larr; Dogsled Labs home</a>
+    <a href="/checkpoints/" style="font-size:13px;color:#9ea9bf;">Checkpoints &rarr;</a>
+    <a href="/gangline/" style="font-size:13px;color:#9ea9bf;">Gangline &rarr;</a>
+    <span class="mono" style="font-size:11px;color:#57647e;">© 2026 Dogsled Labs</span>
+  </div>
+</footer>
+
+</body>
+</html>
