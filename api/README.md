@@ -7,7 +7,10 @@ can fail without affecting the other or the visitor's confirmation.
 ```
                         ┌─ POST /api/demo-request ─▶ api/demo-request.js ─▶ Incoming Webhook ─▶ #trailhead
 /demo (static form) ────┤
+                        │  then hands off to ▶ Cal.com inline embed (pick a real slot with Josh)
                         └─ POST /api/crm-sync ──────▶ api/crm-sync.js ─────▶ Notion CRM (Event + Contact + Company)
+
+Cal.com ─ webhook (BOOKING_CREATED/…) ─▶ api/booking.js ─▶ Incoming Webhook ─▶ #trailhead
 ```
 
 - **Host:** Vercel project `dogsled` (team `bobsled-gtm`) → https://www.dogsledai.com
@@ -52,6 +55,40 @@ vercel env ls          # verify
 
 Env changes only take effect on the **next deployment** — redeploy after editing.
 For local testing, copy `.env.example` → `.env` and run `vercel dev`.
+
+---
+
+## The booking route (`/api/booking`) — Cal.com
+
+After the lead is captured, `/demo` swaps its confirmation screen for a **Cal.com
+inline embed** so the visitor picks a real slot on Josh's calendar (prefilled with
+their email, dark-themed to match). Cal.com then sends the invite *and* fires a
+webhook at `api/booking.js`, which posts a **📅 Session booked** card to the same
+`#trailhead` channel — so the team sees confirmed bookings, not just leads.
+
+### Wire-up (Josh owns the Cal side)
+1. Josh creates a Cal.com account, connects his Google Calendar, and makes two event
+   types matching the form's two formats: a 60-min working session and a 15-min intro.
+2. Put his real slugs in `CAL_LINKS` at the top of `demo/index.html`
+   (`{ working: '<user>/<60min-slug>', quick: '<user>/<15min-slug>' }`) — they're
+   `josh/60min` / `josh/15min` placeholders today, which render a Cal 404 until swapped.
+3. In Cal.com → **Settings → Developer → Webhooks**, add a webhook to
+   `https://www.dogsledai.com/api/booking` subscribed to **Booking Created /
+   Rescheduled / Cancelled**. Set a signing secret and store it as `CAL_WEBHOOK_SECRET`
+   in Vercel (Production + Preview), then redeploy.
+
+### Env vars
+| Var | Used by | Notes |
+|---|---|---|
+| `SLACK_WEBHOOK_URL` | `booking.js` | Reused — same `#trailhead` webhook as the lead flow |
+| `CAL_WEBHOOK_SECRET` | `booking.js` | Optional. When set, `X-Cal-Signature-256` is HMAC-verified; unset = accept unsigned (deploy-first) |
+
+`api/booking.js` responses: `200 {ok:true}` · `400` bad body · `401` bad signature ·
+`405` non-POST · `500` Slack not configured · `502` Slack rejected. It reads the raw
+body (`bodyParser` off) so the HMAC matches byte-for-byte.
+
+If the embed script is blocked/offline, the page falls back to the original static
+"we'll reach out" confirmation, so no lead is ever stranded.
 
 ---
 
@@ -179,3 +216,7 @@ Or submit the real `/demo` form once deployed to production.
 - **Live end-to-end check** — after `NOTION_TOKEN` is set and deployed, submit the
   `/demo` form once and confirm a Slack card in `#trailhead` + an Event/Contact/Company
   in Notion. (Every underlying Notion call is already verified against the live CRM.)
+- **Stand up Cal.com** — Josh creates the account + event types, then swap the
+  `CAL_LINKS` placeholders in `demo/index.html` and add the `/api/booking` webhook +
+  `CAL_WEBHOOK_SECRET` (see the booking-route section above). Until the slugs are real
+  the embed shows a Cal 404; the lead capture (Slack + Notion) works regardless.

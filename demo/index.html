@@ -123,6 +123,21 @@
   .chip.sel{background:rgba(143,176,242,.12);border-color:var(--a1);color:#fff;
     box-shadow:0 0 0 3px rgba(143,176,242,.12);}
 
+  /* format options */
+  .opts{display:grid;gap:12px;margin:0 0 24px;}
+  .opt-card{text-align:left;font-family:inherit;cursor:pointer;color:inherit;width:100%;
+    background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;
+    padding:15px 17px;transition:border-color .15s,background .15s,box-shadow .15s;}
+  .opt-card:hover{border-color:rgba(143,176,242,.5);}
+  .opt-card.sel{border-color:var(--a1);background:rgba(143,176,242,.08);
+    box-shadow:0 0 0 3px rgba(143,176,242,.12);}
+  .opt-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
+  .opt-name{font-family:'Sora',sans-serif;font-weight:700;font-size:16px;color:var(--ink);letter-spacing:-.01em;}
+  .opt-dur{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;white-space:nowrap;
+    color:var(--a1);border:1px solid rgba(143,176,242,.3);background:rgba(143,176,242,.08);
+    padding:3px 9px;border-radius:999px;}
+  .opt-desc{margin:7px 0 0;font-size:13.5px;line-height:1.5;color:var(--muted);}
+
   .nav{display:flex;align-items:center;gap:14px;margin-top:34px;}
   .btn{font-family:inherit;font-weight:700;font-size:15px;border-radius:999px;padding:13px 26px;cursor:pointer;border:0;transition:transform .12s,box-shadow .2s,filter .2s;}
   .btn.primary{color:#070b16;background:var(--grad);box-shadow:0 10px 30px -10px rgba(56,189,248,.5);}
@@ -138,6 +153,13 @@
     background:rgba(143,176,242,.1);border:1px solid rgba(143,176,242,.4);box-shadow:0 0 0 6px rgba(143,176,242,.06);margin-bottom:22px;}
   .done h2{font-family:'Sora',sans-serif;font-weight:800;font-size:28px;margin:0 0 10px;}
   .done p{color:var(--muted);font-size:15px;line-height:1.6;margin:0 0 6px;max-width:42ch;}
+
+  /* scheduler (Cal.com inline embed — shown after the lead is captured) */
+  .scheduler{display:none;flex:1;width:100%;max-width:560px;}
+  .scheduler.on{display:flex;flex-direction:column;animation:fade .35s ease;}
+  .scheduler h2{font-family:'Sora',sans-serif;font-weight:800;font-size:27px;letter-spacing:-.02em;margin:10px 0 6px;}
+  .scheduler .hint{color:var(--muted);font-size:14.5px;line-height:1.55;margin:0 0 22px;}
+  #cal-embed{flex:1;min-height:560px;width:100%;overflow:auto;border-radius:14px;}
 
   @media(max-width:900px){
     body{grid-template-columns:1fr;}
@@ -184,76 +206,28 @@
 
   <!-- RIGHT -->
   <main class="wizard">
-    <div class="progress">
-      <div class="seg" data-seg="1"><i></i></div>
-      <div class="seg" data-seg="2"><i></i></div>
-      <div class="seg" data-seg="3"><i></i></div>
-    </div>
-
     <form id="wz" class="stepwrap" novalidate>
-      <!-- STEP 1 -->
       <section class="step on" data-step="1">
-        <div class="kicker">Step 1 of 3</div>
         <h2>Let's get started</h2>
-        <p class="hint">Where should we point the diagnostic? Start with your work email.</p>
+        <p class="hint">Pick the format that fits — then drop your work email.</p>
+        <label style="display:block;margin-bottom:11px;">Choose your format</label>
+        <div class="opts" data-opts>
+          <button type="button" class="opt-card sel" data-opt="working" data-label="60-minute working session">
+            <div class="opt-top"><span class="opt-name">Working session</span><span class="opt-dur">60 min</span></div>
+            <p class="opt-desc">The full diagnostic — everything listed on the left.</p>
+          </button>
+          <button type="button" class="opt-card" data-opt="quick" data-label="15-minute intro">
+            <div class="opt-top"><span class="opt-name">Quick sniff</span><span class="opt-dur">15 min</span></div>
+            <p class="opt-desc">Meet the team and see if there's something here.</p>
+          </button>
+        </div>
         <div class="field">
           <label for="email">Work email</label>
           <input id="email" type="email" placeholder="you@company.com" autocomplete="email">
           <div class="err" data-err="email"></div>
         </div>
-        <label style="display:block;margin-bottom:6px;">Pick your trail</label>
-        <div class="pickhint">Where you run</div>
-        <div class="chips" data-chips>
-          <span class="chip">DTC &amp; Consumer Brands</span>
-          <span class="chip">Entertainment &amp; Production</span>
-          <span class="chip">Data Providers</span>
-          <span class="chip">Other</span>
-        </div>
         <div class="nav">
-          <button type="button" class="btn primary" data-next>Continue</button>
-          <span class="stepnum">1 / 3</span>
-        </div>
-      </section>
-
-      <!-- STEP 2 -->
-      <section class="step" data-step="2">
-        <div class="kicker">Step 2 of 3</div>
-        <h2>A bit about you</h2>
-        <p class="hint">So the right person from our team walks into the session.</p>
-        <div class="row">
-          <div class="field"><label for="name">Name</label><input id="name" type="text" placeholder="Jane Rivera" autocomplete="name"><div class="err" data-err="name"></div></div>
-          <div class="field"><label for="company">Company</label><input id="company" type="text" placeholder="Acme Inc." autocomplete="organization"><div class="err" data-err="company"></div></div>
-        </div>
-        <div class="row">
-          <div class="field"><label for="role">Role <span class="opt">· optional</span></label><input id="role" type="text" placeholder="VP Operations"></div>
-          <div class="field"><label for="size">Company size</label>
-            <select id="size"><option value="" disabled selected>Select…</option><option>1–50</option><option>51–200</option><option>201–1,000</option><option>1,001–5,000</option><option>5,000+</option></select>
-          </div>
-        </div>
-        <div class="nav">
-          <button type="button" class="btn ghost" data-back>Back</button>
-          <button type="button" class="btn primary" data-next>Continue</button>
-          <span class="stepnum">2 / 3</span>
-        </div>
-      </section>
-
-      <!-- STEP 3 -->
-      <section class="step" data-step="3">
-        <div class="kicker">Step 3 of 3</div>
-        <h2>What's the hardest part?</h2>
-        <p class="hint">The workflows, handoffs, or backlogs you'd most want to hand off. This is what we'll dig into live.</p>
-        <div class="field">
-          <label for="notes">Your hardest workflows <span class="opt">· optional</span></label>
-          <textarea id="notes" placeholder="e.g. Manual invoice reconciliation across 4 systems; support triage; contract review…"></textarea>
-        </div>
-        <div class="field">
-          <label for="timeline">How soon are you looking to move? <span class="opt">· optional</span></label>
-          <select id="timeline"><option value="" disabled selected>Select…</option><option>Just exploring</option><option>This quarter</option><option>As soon as possible</option></select>
-        </div>
-        <div class="nav">
-          <button type="button" class="btn ghost" data-back>Back</button>
           <button type="submit" class="btn primary" id="submitBtn">Book my session</button>
-          <span class="stepnum">3 / 3</span>
         </div>
       </section>
     </form>
@@ -262,90 +236,98 @@
     <div class="done" id="done">
       <div class="check"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8fb0f2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
       <h2>You're on the line.</h2>
-      <p>Thanks — we've got your details. Someone from Dogsled's founding team will reach out within one business day to lock in your 60-minute diagnostic.</p>
+      <p id="doneMsg">Thanks — we've got your details. Someone from Dogsled's founding team will reach out within one business day to lock in your session.</p>
     </div>
+
+    <!-- SCHEDULER — Cal.com inline embed, shown once the lead is captured -->
+    <section class="scheduler" id="scheduler">
+      <span class="kicker">Last step</span>
+      <h2 id="schedTitle">Pick your time with Josh</h2>
+      <p class="hint">Your details are in. Grab whatever slot works — you'll get a calendar invite on the spot.</p>
+      <div id="cal-embed"></div>
+    </section>
   </main>
 
+<!-- Cal.com embed loader (official snippet). Loads app.cal.com/embed/embed.js async. -->
+<script>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", { origin: "https://cal.com" });
+</script>
 <script>
   const form = document.getElementById('wz');
-  const steps = [...form.querySelectorAll('.step')];
-  const segs = [...document.querySelectorAll('.progress .seg')];
-  let cur = 1;
 
-  function paint(){
-    steps.forEach(s => s.classList.toggle('on', +s.dataset.step === cur));
-    segs.forEach(sg => {
-      const n = +sg.dataset.seg;
-      sg.classList.toggle('done', n < cur);
-      sg.classList.toggle('active', n === cur);
-    });
-  }
-  paint();
+  // Cal.com event slugs, one per format. SWAP these for Josh's real Cal links
+  // once his account exists (format is "<username>/<event-slug>").
+  const CAL_LINKS = {
+    working: 'jneckes/60min',   // 60-minute working session
+    quick:   'jneckes/15min',   // 15-minute quick intro
+  };
 
-  // trail chips (single-select — click again to clear)
-  form.querySelectorAll('[data-chips] .chip').forEach(c =>
-    c.addEventListener('click', () => {
-      const on = c.classList.contains('sel');
-      c.closest('[data-chips]').querySelectorAll('.chip').forEach(x => x.classList.remove('sel'));
-      if(!on) c.classList.add('sel');
-    }));
-  document.getElementById('size').addEventListener('change', e => e.target.classList.add('filled'));
-  document.getElementById('timeline').addEventListener('change', e => e.target.classList.add('filled'));
+  // format cards (single-select — one is always chosen)
+  const optCards = [...form.querySelectorAll('[data-opts] .opt-card')];
+  optCards.forEach(c => c.addEventListener('click', () => {
+    optCards.forEach(x => x.classList.remove('sel'));
+    c.classList.add('sel');
+  }));
+  const chosen = () => form.querySelector('[data-opts] .opt-card.sel') || optCards[0];
 
   function setErr(name,msg){ const el=form.querySelector(`[data-err="${name}"]`); if(el) el.textContent=msg||''; }
   const emailOK = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-  function validate(step){
-    if(step===1){
-      const v=document.getElementById('email').value.trim();
-      if(!emailOK(v)){ setErr('email','Enter a valid work email.'); return false; }
-      setErr('email',''); return true;
-    }
-    if(step===2){
-      let ok=true;
-      if(!document.getElementById('name').value.trim()){ setErr('name','Required'); ok=false;} else setErr('name','');
-      if(!document.getElementById('company').value.trim()){ setErr('company','Required'); ok=false;} else setErr('company','');
-      return ok;
-    }
-    return true;
+  function validate(){
+    const v=document.getElementById('email').value.trim();
+    if(!emailOK(v)){ setErr('email','Enter a valid work email.'); return false; }
+    setErr('email',''); return true;
   }
-
-  form.querySelectorAll('[data-next]').forEach(b => b.addEventListener('click', () => {
-    if(!validate(cur)) return;
-    if(cur<3){ cur++; paint(); }
-  }));
-  form.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', () => {
-    if(cur>1){ cur--; paint(); }
-  }));
 
   function collect(){
     const val = id => (document.getElementById(id).value || '').trim();
+    const pick = chosen();
     return {
       email: val('email'),
-      name: val('name'),
-      company: val('company'),
-      role: val('role'),
-      size: val('size'),
-      trail: (form.querySelector('[data-chips] .chip.sel')?.textContent || '').trim(),
-      workflows: val('notes'),
-      timeline: val('timeline'),
+      sessionType: pick.dataset.opt,
+      sessionLabel: pick.dataset.label,
       source: (new URLSearchParams(location.search).get('src') || 'book-a-demo'),
       page: (document.referrer || '').slice(0, 300),
       submittedAt: new Date().toISOString()
     };
   }
 
-  function showDone(){ form.style.display='none'; document.getElementById('done').classList.add('on'); segs.forEach(s=>s.classList.add('done')); }
+  function showDone(){
+    document.getElementById('doneMsg').textContent =
+      `Thanks — we've got your details. Someone from Dogsled's founding team will reach out within one business day to lock in your ${chosen().dataset.label}.`;
+    form.style.display='none'; document.getElementById('done').classList.add('on');
+  }
+
+  // Hand the visitor off to Cal.com to pick a real slot, prefilled with their email
+  // and themed to match. If the embed script never loaded (blocked/offline), fall
+  // back to the static confirmation so they still know we captured their details.
+  function mountScheduler(payload){
+    if (typeof window.Cal !== 'function') { showDone(); return; }
+    const pick = chosen();
+    const calLink = CAL_LINKS[pick.dataset.opt] || CAL_LINKS.working;
+    form.style.display='none';
+    document.getElementById('schedTitle').textContent = `Pick your time — ${pick.dataset.label}`;
+    document.getElementById('scheduler').classList.add('on');
+    Cal('inline', {
+      elementOrSelector: '#cal-embed',
+      calLink,
+      config: {
+        email: payload.email,
+        theme: 'dark',
+        'metadata[source]': payload.source,   // rides onto the Cal booking + webhook
+      },
+    });
+    Cal('ui', {
+      theme: 'dark',
+      hideEventTypeDetails: false,
+      styles: { branding: { brandColor: '#8fb0f2' } },
+    });
+  }
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    // All steps share one <form>, so pressing Enter can submit from step 1 or 2.
-    // Enforce the whole wizard here — not just step 3 — otherwise a partial/empty
-    // lead reaches the success panel while both API sinks reject it.
-    for(const s of [1,2]){
-      if(!validate(s)){ if(cur!==s){ cur=s; paint(); } return; }
-    }
-    if(!validate(3)) return;
+    if(!validate()) return;
     const btn=document.getElementById('submitBtn');
     btn.disabled=true; btn.textContent='Booking…';
     const payload = collect();
@@ -366,7 +348,8 @@
     } catch (err) {
       console.warn('[demo] lead not fully persisted:', err, payload);
     }
-    showDone();
+    // Lead is captured (Slack + Notion) — now let them book a real slot with Josh.
+    mountScheduler(payload);
   });
 </script>
 </body>
