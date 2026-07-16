@@ -331,16 +331,17 @@
     const btn=document.getElementById('submitBtn');
     btn.disabled=true; btn.textContent='Booking…';
     const payload = collect();
-    // Two independent sinks, fired in parallel: /api/demo-request posts the Slack
-    // notification, /api/crm-sync writes the Notion CRM (event + contact + company).
-    // Neither blocks the visitor's confirmation, and one failing doesn't stop the other.
+    // /api/crm-sync writes the Notion CRM (event + contact + company). The Slack
+    // lead alert is handled downstream by the Cal.com booking webhook (/api/booking),
+    // so we no longer post the form submission to Slack directly.
+    // This doesn't block the visitor's confirmation, and failing doesn't stop the flow.
     const post = url => fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
     try {
-      const sinks = ['/api/demo-request', '/api/crm-sync'];
+      const sinks = ['/api/crm-sync'];
       const results = await Promise.allSettled(sinks.map(post));
       results.forEach((r, i) => {
         if (r.status === 'rejected' || !r.value.ok) console.warn('[demo] sink failed:', sinks[i], r.reason || r.value.status, payload);
@@ -348,7 +349,7 @@
     } catch (err) {
       console.warn('[demo] lead not fully persisted:', err, payload);
     }
-    // Lead is captured (Slack + Notion) — now let them book a real slot with Josh.
+    // Lead is captured (Notion) — now let them book a real slot with Josh.
     mountScheduler(payload);
   });
 </script>

@@ -1,23 +1,30 @@
-# Lead capture → Slack + Notion CRM
+# Lead capture → Notion CRM + Slack (on booking)
 
-When someone submits the `/demo` form, the browser POSTs the lead payload to **two
-independent routes in parallel** — one notifies Slack, one records the CRM. Either
-can fail without affecting the other or the visitor's confirmation.
+When someone submits the `/demo` form, the browser records the lead in the Notion
+CRM, then hands off to a **Cal.com inline embed** so the visitor books a real slot
+with Josh. Cal.com fires a webhook when a booking is created, and *that* is what
+posts the Slack card to `#trailhead` — so the team is alerted on **confirmed
+bookings**, not on every form submission.
 
 ```
-                        ┌─ POST /api/demo-request ─▶ api/demo-request.js ─▶ Incoming Webhook ─▶ #trailhead
-/demo (static form) ────┤
-                        │  then hands off to ▶ Cal.com inline embed (pick a real slot with Josh)
-                        └─ POST /api/crm-sync ──────▶ api/crm-sync.js ─────▶ Notion CRM (Event + Contact + Company)
+/demo (static form) ──▶ POST /api/crm-sync ──▶ api/crm-sync.js ──▶ Notion CRM (Event + Contact + Company)
+                        │
+                        └─ then hands off to ▶ Cal.com inline embed (pick a real slot with Josh)
 
 Cal.com ─ webhook (BOOKING_CREATED/…) ─▶ api/booking.js ─▶ Incoming Webhook ─▶ #trailhead
 ```
 
 - **Host:** Vercel project `dogsled` (team `bobsled-gtm`) → https://www.dogsledai.com
-- **Functions:** `api/demo-request.js` (Slack), `api/crm-sync.js` (Notion) — auto-detected
-  from the `/api` folder, no `vercel.json` needed
+- **Functions:** `api/booking.js` (Slack, on booking), `api/crm-sync.js` (Notion) —
+  auto-detected from the `/api` folder, no `vercel.json` needed
 - **Slack workspace:** Dogsled Labs (`dogsledlabs.slack.com`) · **Channel:** `#trailhead`
 - **Notion CRM:** Companies / Contacts / Events / Deals databases (IDs in `.context/crm/ids.json`)
+
+> **History:** the form used to also POST `/api/demo-request`, which fired a 🐶 "New
+> Pup" Slack card on every submission. Once the Cal.com booking alert (`/api/booking`)
+> went live that produced a second, duplicate alert per lead, so `demo-request.js`
+> was retired and the form now only writes the CRM. The single Slack alert comes
+> from the booking webhook.
 
 ---
 
@@ -31,7 +38,7 @@ https://api.slack.com/apps → **Create New App → From an app manifest**, pick
 
 - App avatar: set under **Basic Information → Display Information → App icon**
   (upload a 512×512 image; the puppy).
-- Message avatar per-post: `api/demo-request.js` also sends `icon_emoji: ':dog:'` so each
+- Message avatar per-post: `api/booking.js` sends `icon_emoji: ':dog:'` so each
   card shows the 🐶 face regardless of the app icon.
 
 ### Webhook
@@ -63,8 +70,8 @@ For local testing, copy `.env.example` → `.env` and run `vercel dev`.
 After the lead is captured, `/demo` swaps its confirmation screen for a **Cal.com
 inline embed** so the visitor picks a real slot on Josh's calendar (prefilled with
 their email, dark-themed to match). Cal.com then sends the invite *and* fires a
-webhook at `api/booking.js`, which posts a **📅 Session booked** card to the same
-`#trailhead` channel — so the team sees confirmed bookings, not just leads.
+webhook at `api/booking.js`, which posts a **📅 Session booked** card to the
+`#trailhead` channel — the team's single lead alert.
 
 ### Wire-up (Josh owns the Cal side)
 1. Josh creates a Cal.com account, connects his Google Calendar, and makes two event
@@ -80,7 +87,7 @@ webhook at `api/booking.js`, which posts a **📅 Session booked** card to the s
 ### Env vars
 | Var | Used by | Notes |
 |---|---|---|
-| `SLACK_WEBHOOK_URL` | `booking.js` | Reused — same `#trailhead` webhook as the lead flow |
+| `SLACK_WEBHOOK_URL` | `booking.js` | The `#trailhead` webhook |
 | `CAL_WEBHOOK_SECRET` | `booking.js` | Optional. When set, `X-Cal-Signature-256` is HMAC-verified; unset = accept unsigned (deploy-first) |
 
 `api/booking.js` responses: `200 {ok:true}` · `400` bad body · `401` bad signature ·
@@ -89,6 +96,19 @@ body (`bodyParser` off) so the HMAC matches byte-for-byte.
 
 If the embed script is blocked/offline, the page falls back to the original static
 "we'll reach out" confirmation, so no lead is ever stranded.
+
+### Message format
+```
+📅 Session booked
+Who:     <name>
+Email:   <email>            (clickable mailto)
+Session: <event title>
+When:    <time>  (their tz: …)
+Source: `<src>` · Cal ref: `<uid>`
+```
+
+Built by `buildSlackMessage()` in `api/booking.js` as Slack Block Kit (header +
+section + context). Reschedules render as 🔄 and cancellations as ❌.
 
 ---
 
@@ -139,20 +159,6 @@ hard-coded in `api/crm-sync.js` from `.context/crm/ids.json`.
 
 ---
 
-## Message format
-
-```
-🐶 New pup
-Name:  <name>
-Email: <email>            (clickable mailto)
-Trails: `chip` `chip`     (the form's "where agents pull first" selections; — if none)
-Source: `<src>` · Submitted <time>
-```
-
-Built by `buildSlackMessage()` in `api/demo-request.js` as Slack Block Kit (header +
-section + context). The form captures more than is shown (company, role, size,
-timeline, workflows) — those stay in the payload for the future Notion CRM.
-
 ## Payload shape (from `demo/index.html`)
 
 ```json
@@ -171,26 +177,29 @@ timeline, workflows) — those stay in the payload for the future Notion CRM.
 }
 ```
 
-`api/demo-request.js` responses: `200 {ok:true}` on success · `400` bad body / missing
-email · `405` non-POST · `500` webhook not configured · `502` Slack rejected.
-
 ---
 
 ## Testing
 
-Fire a card without deploying (uses the real webhook + the production message
-builder):
+Fire a booking card without deploying (uses the real webhook + the production
+message builder):
 
 ```bash
 SLACK_WEBHOOK_URL='<webhook-url>' node --input-type=module -e '
-process.env.SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
-import("./api/demo-request.js").then(async ({default: handler}) => {
+import("./api/booking.js").then(async ({default: handler}) => {
+  const body = JSON.stringify({triggerEvent:"BOOKING_CREATED", payload:{
+    title:"Working session", startTime:new Date().toISOString(),
+    attendees:[{name:"Test", email:"test@acme.com", timeZone:"America/New_York"}],
+    uid:"test-123", metadata:{source:"test"}
+  }});
+  const req = Object.assign(require("stream").Readable.from([body]), {method:"POST", headers:{}});
   const res = {setHeader(){}, status(c){this._s=c;return this}, json(o){console.log(this._s,o)}};
-  await handler({method:"POST", body:{email:"test@acme.com", name:"Test", focus:["Data mapping"], source:"test", submittedAt:new Date().toISOString()}}, res);
+  await handler(req, res);
 });'
 ```
 
-Or submit the real `/demo` form once deployed to production.
+(No `CAL_WEBHOOK_SECRET` set = the signature check is skipped.) Or submit the real
+`/demo` form and complete a booking once deployed to production.
 
 ---
 
@@ -202,21 +211,20 @@ Or submit the real `/demo` form once deployed to production.
   can't delete. Members can only delete messages they authored, so the app's
   cards can only be removed by a Dogsled Labs **workspace owner/admin** (or by
   giving the app `chat:write` and calling `chat.delete`). Keep test volume low.
-- **Preview deploys are SSO-protected** — hitting a preview URL's `/api/demo-request`
+- **Preview deploys are SSO-protected** — hitting a preview URL's `/api/booking`
   returns 401. Test against production (public) or via the script above.
 - **Not on Vercel later?** The handler is `(req, res)`-style; Netlify/Cloudflare
   use `(request) → Response` — a thin adapter is all it'd take.
 
 ## Not done yet
 - **Set `NOTION_TOKEN`** in Vercel (create the integration + share the CRM DBs, above).
-  Until then `/api/crm-sync` returns `500 notion_not_configured` and the lead still
-  reaches Slack.
-- **Deploy** — both functions must ship to production before `/api/demo-request` and
+  Until then `/api/crm-sync` returns `500 notion_not_configured`.
+- **Deploy** — both functions must ship to production before `/api/booking` and
   `/api/crm-sync` exist on `www.dogsledai.com` (commit + push, or `vercel deploy --prod`).
 - **Live end-to-end check** — after `NOTION_TOKEN` is set and deployed, submit the
-  `/demo` form once and confirm a Slack card in `#trailhead` + an Event/Contact/Company
-  in Notion. (Every underlying Notion call is already verified against the live CRM.)
+  `/demo` form and complete a booking, then confirm a 📅 Slack card in `#trailhead` +
+  an Event/Contact/Company in Notion.
 - **Stand up Cal.com** — Josh creates the account + event types, then swap the
   `CAL_LINKS` placeholders in `demo/index.html` and add the `/api/booking` webhook +
   `CAL_WEBHOOK_SECRET` (see the booking-route section above). Until the slugs are real
-  the embed shows a Cal 404; the lead capture (Slack + Notion) works regardless.
+  the embed shows a Cal 404; the CRM write works regardless.
